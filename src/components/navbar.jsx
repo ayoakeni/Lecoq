@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../assets/logo/logo.png";
 
 function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const dropdownRef = useRef(null);
+
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -21,19 +23,17 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
     const aboutSection = document.getElementById("about");
     const contactSection = document.getElementById("contact");
     const heroSection = document.getElementById("hero");
-  
+
     const scrollPosition = window.scrollY + window.innerHeight / 2;
-  
+
     if (contactSection && scrollPosition >= contactSection.offsetTop) {
       setActiveSection("contact");
     } else if (aboutSection && scrollPosition >= aboutSection.offsetTop) {
       setActiveSection("about");
     } else if (heroSection && scrollPosition < aboutSection.offsetTop) {
-      setActiveSection("home")
-    } else {
       setActiveSection("home");
     }
-  };  
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -44,6 +44,19 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    // Update activeSection based on the current route
+    if (location.pathname === "/") {
+      setActiveSection("home");
+    } else if (location.pathname === "/blogs") {
+      setActiveSection("blogs");
+    } else if (location.pathname === "/educational-service" || location.pathname === "/non-educational-service") {
+      setActiveSection("programs");
+    } else {
+      setActiveSection("");
+    }
+  }, [location]);
 
   return (
     <nav>
@@ -56,9 +69,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             <NavLink
               to="/"
               onClick={onHomeClick}
-              className={({ isActive }) =>
-                isActive || activeSection === "home" ? "active-link" : "not-active"
-              }
+              className={activeSection === "home" ? "active-link" : "not-active"}
             >
               home
             </NavLink>
@@ -88,9 +99,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
                 <li>
                   <NavLink
                     to="/educational-service"
-                    className={({ isActive }) =>
-                      isActive ? "active-link" : "not-active"
-                    }
+                    className={activeSection === "programs" ? "active-link" : "not-active"}
                   >
                     educational Service
                   </NavLink>
@@ -98,9 +107,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
                 <li>
                   <NavLink
                     to="/non-educational-service"
-                    className={({ isActive }) =>
-                      isActive ? "active-link" : "not-active"
-                    }
+                    className={activeSection === "programs" ? "active-link" : "not-active"}
                   >
                     non-educational service
                   </NavLink>
@@ -111,9 +118,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
           <li>
             <NavLink
               to="/blogs"
-              className={({ isActive }) =>
-                isActive ? "active-link" : "not-active"
-              }
+              className={activeSection === "blogs" ? "active-link" : "not-active"}
             >
               blogs
             </NavLink>

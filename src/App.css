@@ -1,14 +1,13 @@
 @font-face {
   font-family: 'MyFont';
-  src: url('/src/assets/fonts/Busayo.ttf') format('truetype'),
-       url('/src/assets/fonts/MyFont-Bold.woff') format('woff');
+  src: url('/src/assets/fonts/Busso/BUSSI___.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
   background-color: var(--primary-color);
-  font-family: 'MyFont', Arial, sans-serif;
+  font-family: 'MyFont';
   margin: 0;
   padding: 0;
 }
@@ -170,9 +169,6 @@ nav ul li {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  /* background: var(--background-secondary-color); */
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;

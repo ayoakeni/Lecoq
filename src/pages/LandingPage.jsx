@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Scrollbar, Autoplay } from "swiper/modules";
+import ContactUs from "../components/contact";
 
 // Import images
 import Gcontent from "../assets/images/Globalcontent.png";
@@ -12,8 +13,6 @@ import Gplay from "../assets/images/Globalplayer.png";
 import Aceexam from "../assets/images/Aceexam.png";
 import Kid from "../assets/images/kid.png";
 import Opportunities from "../assets/images/opportunities.png";
-import Kid2 from "../assets/images/kid2.png";
-import ContactUs from "../components/contact";
 
 function LandingPage() {
   const [isEnglish, setIsEnglish] = useState(true);
@@ -63,7 +62,7 @@ function LandingPage() {
           modules={[Scrollbar, Autoplay]}
           className="mySwiper"
         >
-          {[Gcontent, Gplay, Aceexam, Kid, Opportunities, Kid2].map((image, index) => (
+          {[Gcontent, Gplay, Aceexam, Kid, Opportunities].map((image, index) => (
             <SwiperSlide key={index}>
               <img src={image} alt={`Slide ${index + 1}`} className="swiperImage" />
             </SwiperSlide>
@@ -76,7 +75,7 @@ function LandingPage() {
         <h2>about</h2>
         <div className="aboutContent">
           <img
-            src={Kid2}
+            src={Kid}
             alt="About us"
             className="aboutImage"
           />
