@@ -66,7 +66,7 @@ function LandingPage() {
 
       {/* About Section */}
       <section className="about" ref={aboutRef}>
-        <h2>About</h2>
+        <h2>about</h2>
         <div className="aboutContent">
           <img
             src={Kid2}
