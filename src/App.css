@@ -38,7 +38,7 @@ body {
 }
 
 .contBody {
-  margin-top: 90px;
+  /* margin-top: 86px; */
 }
 
 nav {
@@ -72,7 +72,7 @@ nav ul {
 }
 
 nav ul li {
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   position: relative;
   transition: color 0.3s;
@@ -133,7 +133,8 @@ nav ul li {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 20px;
+  padding-top: 85px;
+  height: 100vh;
 }
 
 .heroText {
