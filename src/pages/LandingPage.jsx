@@ -21,6 +21,7 @@ function LandingPage() {
   // Refs for sections
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
+  const heroRef = useRef(null);
 
   const toggleLanguage = () => {
     setIsEnglish((prev) => !prev);
@@ -35,12 +36,13 @@ function LandingPage() {
     <div className="contBody">
       {/* Navbar */}
       <Navbar
+        onHomeClick={() => scrollToSection(heroRef)}
         onAboutClick={() => scrollToSection(aboutRef)}
         onContactClick={() => scrollToSection(contactRef)}
       />
 
       {/* Hero Section */}
-      <section className="heropage">
+      <section className="heropage" ref={heroRef}>
         <div className="heroText">
           <h1>Continue learning and unleash your brain's potential.</h1>
           <button

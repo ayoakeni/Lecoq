@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo/logo.png";
 
-function Navbar({ onAboutClick, onContactClick }) {
+function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home"); // Track the active section
+  const [activeSection, setActiveSection] = useState("home");
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -52,6 +52,7 @@ function Navbar({ onAboutClick, onContactClick }) {
           <li>
             <NavLink
               to="/"
+              onClick={onHomeClick}
               className={({ isActive }) =>
                 isActive || activeSection === "home" ? "active-link" : "not-active"
               }
