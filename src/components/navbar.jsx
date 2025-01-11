@@ -20,17 +20,20 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const handleScroll = () => {
     const aboutSection = document.getElementById("about");
     const contactSection = document.getElementById("contact");
-
+    const heroSection = document.getElementById("hero");
+  
     const scrollPosition = window.scrollY + window.innerHeight / 2;
-
+  
     if (contactSection && scrollPosition >= contactSection.offsetTop) {
       setActiveSection("contact");
     } else if (aboutSection && scrollPosition >= aboutSection.offsetTop) {
       setActiveSection("about");
+    } else if (heroSection && scrollPosition < aboutSection.offsetTop) {
+      setActiveSection("home")
     } else {
       setActiveSection("home");
     }
-  };
+  };  
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);

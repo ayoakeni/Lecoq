@@ -17,7 +17,7 @@ import ContactUs from "../components/contact";
 
 function LandingPage() {
   const [isEnglish, setIsEnglish] = useState(true);
-  
+
   // Refs for sections
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
@@ -42,7 +42,7 @@ function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="heropage" ref={heroRef}>
+      <section className="heropage" ref={heroRef} id="hero">
         <div className="heroText">
           <h1>Continue learning and unleash your brain's potential.</h1>
           <button
@@ -72,7 +72,7 @@ function LandingPage() {
       </section>
 
       {/* About Section */}
-      <section className="about" ref={aboutRef}>
+      <section className="about" ref={aboutRef} id="about">
         <h2>about</h2>
         <div className="aboutContent">
           <img
@@ -94,7 +94,7 @@ function LandingPage() {
       </section>
 
       {/* Contact Us Section */}
-      <section ref={contactRef}>
+      <section ref={contactRef} id="contact">
         <ContactUs />
       </section>
     </div>
