@@ -75,12 +75,13 @@ nav ul li {
   font-size: 23px;
   font-weight: bold;
   position: relative;
+  transition: color 0.3s;
+  cursor: pointer;
 }
 
 .not-active {
   color: var(--link-color);
   text-decoration: none;
-  transition: color 0.3s;
 }
 
 .not-active:hover {
