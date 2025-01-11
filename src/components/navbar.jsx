@@ -56,7 +56,7 @@ function Navbar({ onAboutClick, onContactClick }) {
                 isActive || activeSection === "home" ? "active-link" : "not-active"
               }
             >
-              Home
+              home
             </NavLink>
           </li>
           <li>
@@ -67,12 +67,12 @@ function Navbar({ onAboutClick, onContactClick }) {
               }}
               className={activeSection === "about" ? "active-link" : "not-active"}
             >
-              About
+              about
             </span>
           </li>
           <li className="dropdown" ref={dropdownRef}>
             <span onClick={toggleDropdown} className="dropdown-toggle">
-              Programs{" "}
+              programs{" "}
               {dropdownOpen ? (
                 <i className="fa-solid fa-chevron-up"></i>
               ) : (
@@ -88,7 +88,7 @@ function Navbar({ onAboutClick, onContactClick }) {
                       isActive ? "active-link" : "not-active"
                     }
                   >
-                    Educational Service
+                    educational Service
                   </NavLink>
                 </li>
                 <li>
@@ -98,7 +98,7 @@ function Navbar({ onAboutClick, onContactClick }) {
                       isActive ? "active-link" : "not-active"
                     }
                   >
-                    Non-Educational Service
+                    non-educational service
                   </NavLink>
                 </li>
               </ul>
@@ -111,7 +111,7 @@ function Navbar({ onAboutClick, onContactClick }) {
                 isActive ? "active-link" : "not-active"
               }
             >
-              Blogs
+              blogs
             </NavLink>
           </li>
           <li>
@@ -122,7 +122,7 @@ function Navbar({ onAboutClick, onContactClick }) {
               }}
               className={activeSection === "contact" ? "active-link" : "not-active"}
             >
-              Contact
+              contact
             </span>
           </li>
         </ul>
