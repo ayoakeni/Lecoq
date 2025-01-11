@@ -43,7 +43,12 @@ function LandingPage() {
       <section className="heropage">
         <div className="heroText">
           <h1>Continue learning and unleash your brain's potential.</h1>
-          <button className="heroButton">Get Started</button>
+          <button
+            className="heroButton"
+            onClick={() => scrollToSection(aboutRef)}
+          >
+            Get Started
+          </button>
         </div>
 
         {/* Swiper */}

@@ -37,10 +37,6 @@ body {
   --link-hover-color: var(--tertiary-color);
 }
 
-.contBody {
-  /* margin-top: 86px; */
-}
-
 nav {
   position: fixed;
   top: 0;
