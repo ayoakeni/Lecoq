@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import profile from "../assets/images/lecoq.jpg"
+import profile from "../assets/images/lecoq.jpg";
 
 const WhatsappChatBox = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasTyped, setHasTyped] = useState(false);
   const [message, setMessage] = useState('');
-  const [time, setTime] = useState('00:00');
+  const [sentTime, setSentTime] = useState('');
 
   const textRef = useRef(null);
   const whatsappRef = useRef(null);
@@ -24,12 +24,12 @@ const WhatsappChatBox = () => {
       );
 
       setTimeout(() => {
+        const timeSent = getCurrentTime();
         setMessage(
           `<span class='whatsapp-message-title'>Le Coq French School</span>
            <span class='whatsapp-content-message'>Hi there 👋<br><br> How can I help you?</span>
-           <span class='whatsapp-time'>00:00</span>`
+           <span class='whatsapp-time'>${timeSent}</span>`
         );
-        updateTime();
       }, 2500);
     }
   }, [isOpen, hasTyped]);
@@ -46,11 +46,11 @@ const WhatsappChatBox = () => {
     typeNextCharacter();
   };
 
-  const updateTime = () => {
+  const getCurrentTime = () => {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
-    setTime(`${hours}:${minutes}`);
+    return `${hours}:${minutes}`;
   };
 
   const handleDragStart = (e) => {
