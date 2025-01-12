@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Scrollbar, Autoplay } from "swiper/modules";
+import Testimonials from "../components/testimonial";
 import ContactUs from "../components/contact";
 
 // Import images
@@ -91,6 +92,8 @@ function LandingPage() {
           </article>
         </div>
       </section>
+
+      <Testimonials/>
 
       {/* Contact Us Section */}
       <section ref={contactRef} id="contact">
