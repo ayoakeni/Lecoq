@@ -28,10 +28,10 @@ function ContactUs(onHomeClick) {
           </li>
           <li>
             <strong>WhatsApp (DM): </strong> 
-            <a href="https://wa.me/12896984183" target="_blank" rel="noopener noreferrer">
+            <a href="https://api.whatsapp.com/send?phone=12896984183&text=Hi%20I%20would%20like%20to%3A" target="_blank" rel="noopener noreferrer">
               +1 289-698-4183
             </a>, 
-            <a href="https://wa.me/+2348067524626" target="_blank" rel="noopener noreferrer">
+            <a href="https://api.whatsapp.com/send?phone=+2348067524626&text=Hi%20I%20would%20like%20to%3A" target="_blank" rel="noopener noreferrer">
             +234 806-752-4626
             </a>
           </li>

@@ -113,7 +113,7 @@ const WhatsappChatBox = () => {
         <a
           className="whatsapp-send-field"
           role="button"
-          href="https://api.whatsapp.com/send?phone=12896984183"
+          href="https://api.whatsapp.com/send?phone=12896984183&text=Hi%20I%20would%20like%20to%3A"
           target="_blank"
           rel="noopener noreferrer"
         >
