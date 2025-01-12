@@ -81,6 +81,7 @@ const blogData = [
 
         {/* Swiper */}
         <Swiper
+          loop={true}
           scrollbar={{ hide: true }}
           autoplay={{
             delay: 5000,
