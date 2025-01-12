@@ -22,7 +22,7 @@ function Testimonials() {
 
   return (
     <div className="testimonials-section">
-      <h1 className="section-title">Testimonials</h1>
+      <h2 className="section-title">Testimonials</h2>
       <Swiper
         spaceBetween={30}
         slidesPerView={1}

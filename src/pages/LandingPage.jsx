@@ -78,6 +78,10 @@ function LandingPage() {
         </div>
       </section>
 
+      <section>
+        h2
+      </section>
+
       <Testimonials/>
     </div>
   );

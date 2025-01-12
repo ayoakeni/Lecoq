@@ -48,7 +48,7 @@ function NonEducational() {
     <div className="non-educational-services">
       <Navbar />
       <div className="container">
-        <h1 className="title non">Non-Educational Services</h1>
+        <h2 className="title non">Non-Educational Services</h2>
         <div className="grid">
           {services.map((service, index) => (
             <div key={index} className="service-card">
