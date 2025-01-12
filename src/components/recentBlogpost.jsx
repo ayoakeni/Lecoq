@@ -23,7 +23,7 @@ function RecentBlogs({ blogs }) {
 
         {/* Container for second and third posts */}
         <div className="recentPostGroup">
-          {blogs.slice(1, 3).map((blog, index) => (
+          {blogs.slice(1, 4).map((blog, index) => (
             <div className="recentPost" key={index}>
               <img src={blog.image} alt={blog.title} />
               <div className="recentDetails">
