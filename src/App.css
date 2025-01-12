@@ -29,7 +29,8 @@ body {
 
   /* Button Colors */
   --button-primary-text: var(--primary-text-color);
-  --button-secondary-bg: var(--tertiary-color);
+  --button-primary-bg: var(--tertiary-color);
+  --button-secondary-bg: var(--accent-color);
 
   /* Link Colors */
   --link-color: var(--primary-color);
@@ -147,7 +148,7 @@ nav ul li {
 .heroText .heroButton {
   font-size: 24px;
   color: var(--button-primary-text);
-  background-color: var(--button-secondary-bg);
+  background-color: var(--button-primary-bg);
   border-radius: 30px;
   border: none;
   padding: 10px 20px;
@@ -156,7 +157,7 @@ nav ul li {
 }
 
 .heroText .heroButton:hover {
-  background-color: var(--accent-color);
+  background-color: var(--button-secondary-bg);
 }
 
 .swiper {
@@ -230,7 +231,7 @@ nav ul li {
 .translateButton {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: var(--tertiary-color);
+  background-color: var(--button-primary-bg);
   color: var(--primary-text-color);
   border: none;
   border-radius: 5px;
@@ -240,7 +241,7 @@ nav ul li {
 }
 
 .translateButton:hover {
-  background-color: var(--accent-color);
+  background-color: var(--button-secondary-bg);
 }
 
 /* Responsive Design */
@@ -381,10 +382,10 @@ nav ul li {
 }
 .whatsapp-name{
   font-size: 16px;
-  color: #fff;
+  color: var(--primary-text-color);
 }
 .whatsapp-suggestion{
-  color: #fff;
+  color: var(--primary-text-color);
   font-size: 13px;
   margin-top: 4px;
 }
@@ -397,7 +398,7 @@ nav ul li {
   cursor: pointer;
 }
 .whatsapp-close:hover{
-  color: #ffffff;
+  color: var(--primary-text-color);
 }
 .whatsapp-message-box{
   width: 100%;
@@ -411,7 +412,7 @@ nav ul li {
   position: relative;
   float: left;
   height: auto;
-  background: #fff;
+  background: var(--primary-text-color);
   padding: 7px 14px 6px;
   border-radius: 0px 10px 10px 10px;
 }
@@ -425,7 +426,7 @@ nav ul li {
   transform: rotate(28deg);
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-right: 14px solid #fff;
+  border-right: 14px solid var(--primary-text-color);
 }
 .whatsapp-loading-animation {
   display: flex;
@@ -490,7 +491,7 @@ nav ul li {
   justify-content: center;
   align-items: center;
   width: 320px;
-  background: var(--tertiary-color);
+  background: var(--button-primary-bg);
   padding: 8px 12px;
   border-radius: 25px;
   border: none;
@@ -499,14 +500,14 @@ nav ul li {
   transition: background-color 0.3s;
 }
 .whatsapp-send-field:hover{
-  background: var(--accent-color);
+  background: var(--button-secondary-bg);
 }
 .whatsapp-send-field .fa-whatsapp{
-  color: #fff;
+  color: var(--primary-text-color);
   font-size: 18px;
 }
 .whatsapp-start-chat{
-  color: #fff;
+  color: var(--primary-text-color);
   font-size: 15px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 600;
@@ -523,18 +524,18 @@ nav ul li {
   height: 64px;
   border: none;
   border-radius: 100%;
-  background: var(--tertiary-color);
+  background: var(--button-primary-bg);
   margin: 0px 20px 20px 0px;
   cursor: pointer;
   z-index: 4;
   transition: background-color 0.3s;
 }
 .whatsapp-toggle:hover{
-  background: var(--accent-color);
+  background: var(--button-secondary-bg);
 }
 .whatsapp-toggle .fa-whatsapp{
   font-size: 32px;
-  color: #fff;
+  color: var(--primary-text-color);
 }
 .whatsapp-red-dot{
   position: absolute;
@@ -572,8 +573,8 @@ nav ul li {
     height: 50px;
     border: none;
     border-radius: 50%;
-    background-color: var(--button-secondary-bg);
-    color: white;
+    background-color: var(--button-primary-bg);
+    color: var(--primary-text-color);
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -585,11 +586,12 @@ nav ul li {
   }
   
   .scroll-to-top:hover {
-    background-color: var(--accent-color);
+    background-color: var(--button-secondary-bg);
   }
   
   /* General Styles */
-.educational-services {
+.educational-services,
+.non-educational-services {
   background-color: #f9f9f9;
   padding: 2rem 0;
   font-family: Arial, sans-serif;
@@ -617,39 +619,45 @@ nav ul li {
 }
 
 /* Program Card Styles */
-.program-card {
-  background: #fff;
+.program-card,
+.service-card {
+  background: var(--background-secondary-color);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.program-card:hover {
+.program-card:hover,
+.service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Image Styles */
-.program-image {
+.program-image,
+.service-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
 /* Content Styles */
-.program-content {
+.program-content,
+.service-content {
   padding: 1rem;
 }
 
-.program-title {
+.program-title,
+.service-title {
   font-size: 1.25rem;
   font-weight: bold;
   color: #4a90e2;
   margin-bottom: 0.5rem;
 }
 
-.program-description {
+.program-description,
+.service-description {
   font-size: 1rem;
   color: #555;
   margin-bottom: 1rem;
@@ -662,8 +670,8 @@ nav ul li {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: bold;
-  color: #fff;
-  background: #4a90e2;
+  color: var(--primary-text-color);
+  background: var(--button-primary-bg);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -671,5 +679,5 @@ nav ul li {
 }
 
 .translate-button:hover {
-  background: #357ab8;
+  background: var(--button-secondary-bg);
 }
