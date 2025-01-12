@@ -15,7 +15,7 @@ body {
 :root {
   /* Text Color */
   --primary-text-color: #FFFFFF;
-  --secondary-text-color: #000000;
+  --secondary-text-color: #444444;
 
   /* Background */
   --primary-color: #649B92;
@@ -710,15 +710,15 @@ nav ul li {
 
 /* RecentBlog */
 .recentBlog {
-  padding: 2rem;
+  padding: 85px;
   background-color: #f9f9f9;
   text-align: center;
 }
 
 .recentBlog h2 {
   font-size: 2rem;
-  color: var(--text-color, #333333);
-  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 32px;
 }
 
 .recentBlogBody {
@@ -729,10 +729,6 @@ nav ul li {
 }
 
 .recentPost {
-  /* background-color: var(--background-secondary-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  /* border-radius: 8px; */
-  /* overflow: hidden; */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -748,7 +744,7 @@ nav ul li {
 
 .recentPost:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); */
 }
 
 .recentPost:first-child img {
@@ -763,8 +759,13 @@ nav ul li {
   object-fit: cover;
 }
 .recentDetails {
-  padding: 1rem;
+  padding: 1rem 0;
   text-align: left;
+}
+
+.recentPost:nth-child(2) .recentDetails,
+.recentPost:nth-child(3) .recentDetails {
+  padding: 1rem;
 }
 
 .recentDetails li {
@@ -783,7 +784,7 @@ nav ul li {
 
 .recentDetails p {
   font-size: 0.95rem;
-  color: var(--text-color, #444444);
+  color: var(--secondary-text-color);
   margin-bottom: 1rem;
   line-height: 1.5;
   overflow: hidden;
