@@ -929,11 +929,11 @@ nav ul li {
 }
 
 .swiper-pagination-bullet {
-  background: var(--tertiary-color);
+  background: var(--background-secondary-color);
 }
 
 .swiper-pagination-bullet-active {
-  background: var(--primary-color);
+  background: var(--accent-color);
 }
 
 /* Testimonial Card */
