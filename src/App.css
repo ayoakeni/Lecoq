@@ -7,7 +7,7 @@
 
 body {
   background-color: var(--primary-color);
-  font-family: 'MyFont';
+  font-family: 'MyFont',sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -133,7 +133,6 @@ nav ul li {
 }
 
 .heroText {
-  font-family: 'MyFont', serif;
   width: 50%;
   text-align: center;
 }
@@ -195,7 +194,7 @@ nav ul li {
   width: fit-content;
   margin: auto;
   margin-bottom: 30px;
-  position: relative; /* Ensure the pseudo-element is positioned correctly */
+  position: relative;
 }
 
 .about h2::after {
@@ -443,10 +442,10 @@ nav ul li {
   animation: chase 1s infinite linear;
 }
 .whatsapp-loading-circle:nth-child(2) {
-  animation-delay: 0.33s; /* Delay for the second circle */
+  animation-delay: 0.33s;
 }
 .whatsapp-loading-circle:nth-child(3) {
-  animation-delay: 0.66s; /* Delay for the third circle */
+  animation-delay: 0.66s;
 }
 @keyframes chase {
   0%, 100% {
@@ -546,8 +545,6 @@ nav ul li {
   background: #ff0000;
   border-radius: 100%;
 } 
-
-
 @media (max-width: 361px) {
     /* Whatsapp Chat-box */
     .whatsapp-box {
