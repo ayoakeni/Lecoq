@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../assets/logo/logo.png";
+import Logo from "../assets/logo/logo-full.png";
 
 function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);

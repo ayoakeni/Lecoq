@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/logo/logo.png";
+import Logo from "../assets/logo/logo-full.png";
 
 function ContactUs(onHomeClick) {
   const navigate = useNavigate();
