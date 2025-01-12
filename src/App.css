@@ -706,7 +706,6 @@ nav ul li {
 }
 
 /* General Section Styles */
-/* General Section Styles */
 .testimonials-section {
   background-color: #f9f9f9;
   padding: 85px 0;
@@ -777,5 +776,5 @@ nav ul li {
 .testimonial-author {
   font-size: 1rem;
   font-weight: bold;
-  color: var(--tertiary-color); /* Accent color */
+  color: var(--tertiary-color);
 }

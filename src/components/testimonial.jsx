@@ -27,7 +27,7 @@ function Testimonials() {
         spaceBetween={30}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 5000 }}
         modules={[Pagination, Autoplay]}
         className="testimonials-swiper"
       >
