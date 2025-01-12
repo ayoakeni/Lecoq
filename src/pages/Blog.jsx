@@ -11,8 +11,8 @@ const Blog = ({  }) => {
       image: Opportunities,
       author: "Author 1",
       date: "Jan 10, 2025",
-      title: "Blog Post Title 1",
-      excerpt: "This is a brief summary of blog post 1. This is a brief summary of blog post 3.",
+      title: "5 Sure-banker reasons why you need French",
+      excerpt: "In our increasingly interconnected world, learning a new language can open doors to countless opportunities. Among the many languages you could choose to study, French stands out as a particularly valuable option. Here are five compelling reasons why learning French is important.",
       link: "/blog-post-1",
     },
     {
