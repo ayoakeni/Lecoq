@@ -13,6 +13,7 @@ function RecentBlogs({ blogs }) {
                 <span>{blog.author}</span>
                 <span>{blog.date}</span>
               </li>
+              <strong>{blog.title}</strong>
               <p>{blog.excerpt}</p>
               <button onClick={() => window.location.href = blog.link}>Read</button>
             </div>
