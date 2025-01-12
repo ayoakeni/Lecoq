@@ -26,7 +26,7 @@ function ContactUs() {
             </a>
           </li>
           <li>
-            <strong>X:</strong> <a href="https://x.com/Lecoqfrenchsch">Lecoqfrenchsch</a>
+            <strong><i className="fab fa-x-twitter"></i>:</strong> <a href="https://x.com/Lecoqfrenchsch">Lecoqfrenchsch</a>
           </li>
         </ul>
       </div>
