@@ -718,7 +718,20 @@ nav ul li {
 .recentBlog h2 {
   font-size: 2rem;
   color: var(--primary-color);
+  margin: auto;
   margin-bottom: 32px;
+  position: relative;
+  width: fit-content;
+}
+
+.recentBlog h2::after {
+  content: '';
+  background: var(--tertiary-color);
+  width: 298px;
+  height: 4px;
+  position: absolute;
+  bottom: -5px;
+  left: -10px;
 }
 
 .recentBlogBody {
