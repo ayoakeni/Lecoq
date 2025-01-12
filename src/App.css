@@ -191,6 +191,10 @@ nav ul li {
   align-items: center;
 }
 
+.swiper-scrollbar-drag{
+  background: var(--accent-color);
+}
+
 .swiper-slide img {
   display: block;
   width: 100%;
