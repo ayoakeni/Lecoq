@@ -98,28 +98,24 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
                 <i className="fa-solid fa-chevron-down"></i>
               )}
             </span>
-            {dropdownOpen && (
-              <ul className="dropdown-menu">
-                <li>
-                  <NavLink
-                    to="/educational-service"
-                    className={activeSection === "programs" ? "active-link" : "not-active"}
-                    onClick={closeDropdown}
-                  >
-                    educational Service
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/non-educational-service"
-                    className={activeSection === "programs" ? "active-link" : "not-active"}
-                    onClick={closeDropdown}
-                  >
-                    non-educational service
-                  </NavLink>
-                </li>
-              </ul>
-            )}
+            <ul className={`dropdown-menu ${dropdownOpen ? "open" : ""}`}>
+              <li>
+                <NavLink
+                  to="/educational-service"
+                  onClick={closeDropdown}
+                >
+                  educational service
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/non-educational-service"
+                  onClick={closeDropdown}
+                >
+                  non-educational service
+                </NavLink>
+              </li>
+            </ul>
           </li>
           <li>
             <NavLink

@@ -97,11 +97,14 @@ nav ul li {
   cursor: pointer;
 }
 
-.dropdown-toggle:hover {
+.dropdown-toggle:hover,
+.dropdown-menu li a:hover {
   color: var(--tertiary-color);
 }
 
 .dropdown-menu {
+  flex-direction: column;
+  gap: 0;
   position: absolute;
   top: 170%;
   left: -65px;
@@ -111,17 +114,28 @@ nav ul li {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   list-style: none;
-  display: none;
   z-index: 10;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.dropdown-menu li {
-  border-bottom: 2px solid var(--primary-color);
+.dropdown-menu.open {
+  /* Visible state */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu li{
   margin: 5px 0;
 }
 
-.dropdown-menu {
-  display: block;
+.dropdown-menu li a{
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 2px solid var(--primary-color);
 }
 
 /* LandingPage */
