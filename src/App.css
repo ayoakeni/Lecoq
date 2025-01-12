@@ -396,7 +396,6 @@ nav ul li {
 .whatsapp-title{
   display: flex;
   flex-direction: column;
-  font-family: "Source Sans 3", sans-serif;
   font-weight: 600;
   margin: 0px 16px;
 }
@@ -485,7 +484,6 @@ nav ul li {
 }
 .whatsapp-message-title{
   font-size: 15px;
-  font-family: "Source Sans 3", sans-serif;
   font-weight: 600;
   color: #00000066;
 }
@@ -493,14 +491,12 @@ nav ul li {
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  font-family: "Source Sans 3", sans-serif;
-  color: #111111;
+  color: var(--secondary-text-color);
   font-weight: 400;
   margin-top: 4px;
 }
 .whatsapp-time{
   font-size: 12px;
-  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   margin: 4px -8px -4px 0;
   color: #11111180;
@@ -529,7 +525,6 @@ nav ul li {
 .whatsapp-start-chat{
   color: var(--primary-text-color);
   font-size: 15px;
-  font-family: "Source Sans 3", sans-serif;
   font-weight: 600;
   margin: 0px 8px;
 }
