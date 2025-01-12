@@ -1,4 +1,9 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 function Testimonials() {
   const testimonials = [
@@ -12,19 +17,29 @@ function Testimonials() {
         "Thanks to Le Coq, I started with zero knowledge of the French language but now I can read, write, speak and listen. I love how the tutor makes it fun and easy to grasp.",
       author: "Mrs Ayodeji",
     },
+    // Add more testimonials as needed
   ];
 
   return (
     <div className="testimonials-section">
       <h1 className="section-title">Testimonials</h1>
-      <div className="testimonials-container">
+      <Swiper
+        spaceBetween={30}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 3000 }}
+        modules={[Pagination, Autoplay]}
+        className="testimonials-swiper"
+      >
         {testimonials.map((testimonial, index) => (
-          <div key={index} className="testimonial-card">
-            <p className="testimonial-quote">“{testimonial.quote}”</p>
-            <p className="testimonial-author">- {testimonial.author}</p>
-          </div>
+          <SwiperSlide key={index}>
+            <div className="testimonial-card">
+              <p className="testimonial-quote">“{testimonial.quote}”</p>
+              <p className="testimonial-author">- {testimonial.author}</p>
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 }
