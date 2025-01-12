@@ -105,7 +105,7 @@ nav ul li {
   position: absolute;
   top: 150%;
   left: 0;
-  width: 240px;
+  width: 251px;
   background: var(--background-secondary-color);
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
