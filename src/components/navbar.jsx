@@ -13,6 +13,10 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
     setDropdownOpen((prev) => !prev);
   };
 
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  };
+
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setDropdownOpen(false);
@@ -56,9 +60,9 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
 
   // Scroll to section handler
   const navigateToSection = (path, ref) => {
-    navigate(path); // Navigate to the section URL
+    navigate(path);
     if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to section
+      ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -100,6 +104,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
                   <NavLink
                     to="/educational-service"
                     className={activeSection === "programs" ? "active-link" : "not-active"}
+                    onClick={closeDropdown}
                   >
                     educational Service
                   </NavLink>
@@ -108,6 +113,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
                   <NavLink
                     to="/non-educational-service"
                     className={activeSection === "programs" ? "active-link" : "not-active"}
+                    onClick={closeDropdown}
                   >
                     non-educational service
                   </NavLink>
