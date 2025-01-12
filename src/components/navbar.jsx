@@ -69,9 +69,9 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   return (
     <nav>
       <div className="nav-children">
-        <NavLink to="/">
+        <span onClick={() => navigateToSection("/#home", onHomeClick)}>
           <img className="logo" src={Logo} alt="logo" />
-        </NavLink>
+        </span>
         <ul>
           <li>
             <span

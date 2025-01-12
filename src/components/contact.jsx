@@ -1,13 +1,23 @@
-import React from 'react';
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo/logo.png";
 
-function ContactUs() {
+function ContactUs(onHomeClick) {
+  const navigate = useNavigate();
+
+  // Scroll to section handler
+  const navigateToSection = (path, ref) => {
+    navigate(path);
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="contact-us">
-      <NavLink to="/">
+      <span onClick={() => navigateToSection("/#home", onHomeClick)}>
         <img className="logo" src={Logo} alt="logo" />
-      </NavLink>
+      </span>
       <div className="contact-box">
         <h2>Get in touch</h2>
         <p>You can contact us via:</p>
