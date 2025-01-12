@@ -737,13 +737,13 @@ nav ul li {
 }
 
 .recentPost:first-child{
-  width: 350px;
+  width: 500px;
 }
 .recentPost:nth-child(2),
 .recentPost:nth-child(3){
   display: flex;
-  width: 400px;
-  height: fit-content;
+  width: 410px;
+  height: 170px;
 }
 
 .recentPost:hover {
@@ -751,13 +751,16 @@ nav ul li {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.recentPost img {
+.recentPost:first-child img {
   width: 100%;
+  object-fit: cover;
+  height: 300px;
 }
 
 .recentPost:nth-child(2) img,
 .recentPost:nth-child(3) img {
   width: 50%;
+  object-fit: cover;
 }
 .recentDetails {
   padding: 1rem;
