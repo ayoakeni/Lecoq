@@ -14,10 +14,10 @@ function ContactUs() {
         <ul className="contact-details">
           <li>
             <strong>Email:</strong> 
-            <a href="mailto:lecoqfrenchschool@gmail.com">lecoqfrenchschool@gmail.com</a>
+            <a href="mailto:lecoqfrenchschool@gmail.com"> lecoqfrenchschool@gmail.com</a>
           </li>
           <li>
-            <strong>WhatsApp (DM):</strong> 
+            <strong>WhatsApp (DM): </strong> 
             <a href="https://wa.me/12896984183" target="_blank" rel="noopener noreferrer">
               +1 289-698-4183
             </a>, 
