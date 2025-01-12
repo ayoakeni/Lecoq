@@ -607,8 +607,31 @@ nav ul li {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
+  width: fit-content;
+  margin: auto;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--primary-color);
+  position: relative;
+}
+
+.edu::after {
+  content: '';
+  background: var(--tertiary-color);
+  width: 424px;
+  height: 4px;
+  position: absolute;
+  bottom: -5px;
+  left: -10px;
+}
+
+.non::after {
+  content: '';
+  background: var(--tertiary-color);
+  width: 515px;
+  height: 4px;
+  position: absolute;
+  bottom: -5px;
+  left: -10px;
 }
 
 /* Grid Styles */
@@ -652,7 +675,7 @@ nav ul li {
 .service-title {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #4a90e2;
+  color: var(--tertiary-color);
   margin-bottom: 0.5rem;
 }
 
