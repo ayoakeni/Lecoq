@@ -12,7 +12,7 @@ const Blog = ({  }) => {
       author: "Author 1",
       date: "Jan 10, 2025",
       title: "Blog Post Title 1",
-      excerpt: "This is a brief summary of blog post 1.",
+      excerpt: "This is a brief summary of blog post 1. This is a brief summary of blog post 3.",
       link: "/blog-post-1",
     },
     {
@@ -20,7 +20,7 @@ const Blog = ({  }) => {
       author: "Author 2",
       date: "Jan 12, 2025",
       title: "Blog Post Title 2",
-      excerpt: "This is a brief summary of blog post 2.",
+      excerpt: "This is a brief summary of blog post 2. This is a brief summary of blog post 3. This is a brief summary of blog post 3.",
       link: "/blog-post-2",
     },
     {
@@ -28,7 +28,7 @@ const Blog = ({  }) => {
       author: "Author 3",
       date: "Jan 14, 2025",
       title: "Blog Post Title 3",
-      excerpt: "This is a brief summary of blog post 3.",
+      excerpt: "This is a brief summary of blog post 3. This is a brief summary of blog post 3. This is a brief summary of blog post 3.This is a brief summary of blog post 3.",
       link: "/blog-post-3",
     },
     {
@@ -36,7 +36,7 @@ const Blog = ({  }) => {
       author: "Author 4",
       date: "Jan 16, 2025",
       title: "Blog Post Title 4",
-      excerpt: "This is a brief summary of blog post 4.",
+      excerpt: "This is a brief summary of blog post 4. This is a brief summary of blog post 3. This is a brief summary of blog post 3. This is a brief summary of blog post 3.",
       link: "/blog-post-4",
     },
   ];

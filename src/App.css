@@ -1021,16 +1021,20 @@ nav ul li {
 
 /* Blog title */
 .blogTitle {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 18px;
   color: var(--primary-color);
+  font-weight: bold;
 }
 
 /* Blog excerpt */
 .blogExcerpt {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--secondary-text-color);
   line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /* Read button */
