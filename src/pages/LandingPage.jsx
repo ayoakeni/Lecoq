@@ -1,12 +1,10 @@
 import React, { useRef, useState } from "react";
-import Navbar from "../components/navbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Scrollbar, Autoplay } from "swiper/modules";
 import Testimonials from "../components/testimonial";
-import ContactUs from "../components/contact";
 
 // Import images
 import Gcontent from "../assets/images/Globalcontent.png";
@@ -20,22 +18,14 @@ function LandingPage() {
 
   // Refs for sections
   const aboutRef = useRef(null);
-  const contactRef = useRef(null);
   const heroRef = useRef(null);
-
+  
   const toggleLanguage = () => {
     setIsEnglish((prev) => !prev);
   };
 
   return (
     <div className="contBody">
-      {/* Navbar */}
-      <Navbar
-        onHomeClick={() => heroRef.current?.scrollIntoView({ behavior: "smooth" })}
-        onAboutClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
-        onContactClick={() => contactRef.current?.scrollIntoView({ behavior: "smooth" })}
-      />
-
       {/* Hero Section */}
       <section className="heropage" ref={heroRef} id="home">
         <div className="heroText">
@@ -89,11 +79,6 @@ function LandingPage() {
       </section>
 
       <Testimonials/>
-
-      {/* Contact Us Section */}
-      <section ref={contactRef} id="contact">
-        <ContactUs />
-      </section>
     </div>
   );
 }
