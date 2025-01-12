@@ -974,13 +974,13 @@ nav ul li {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   padding: 170px 85px 85px;
-  background-color: var(--background-color, #f5f5f5);
+  background-color: #f5f5f5;
 }
 
 /* Individual blog post */
 .blogPost {
-  background-color: var(--secondary-color, #ffffff);
-  border: 1px solid var(--primary-color, #4a90e2);
+  background-color: var(--background-secondary-color);
+  border: 1px solid var(--primary-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -997,7 +997,7 @@ nav ul li {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 2px solid var(--primary-color, #4a90e2);
+  border-bottom: 2px solid var(--primary-color);
 }
 
 /* Blog details container */
@@ -1016,28 +1016,28 @@ nav ul li {
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
-  color: var(--text-color, #666);
+  color: var(--tertiary-color);
 }
 
 /* Blog title */
 .blogTitle {
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--primary-color, #4a90e2);
+  color: var(--primary-color);
 }
 
 /* Blog excerpt */
 .blogExcerpt {
   font-size: 1rem;
-  color: var(--text-color, #333);
+  color: var(--secondary-text-color);
   line-height: 1.5;
 }
 
 /* Read button */
 .readButton {
   align-self: flex-start;
-  background-color: var(--primary-color, #4a90e2);
-  color: #fff;
+  background-color: var(--button-primary-bg);
+  color: var(--primary-text-color);
   border: none;
   padding: 8px 16px;
   font-size: 0.9rem;
@@ -1047,5 +1047,5 @@ nav ul li {
 }
 
 .readButton:hover {
-  background-color: var(--accent-color, #ffab40);
+  background-color: var(--button-secondary-bg);
 }
