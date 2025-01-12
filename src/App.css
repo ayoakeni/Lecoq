@@ -724,7 +724,7 @@ nav ul li {
 .recentBlogBody {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
