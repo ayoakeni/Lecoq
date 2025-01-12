@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo/logo.png";
 
 function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const dropdownRef = useRef(null);
-
+  const navigate = useNavigate();
   const location = useLocation();
 
   const toggleDropdown = () => {
@@ -46,17 +46,21 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   }, []);
 
   useEffect(() => {
-    // Update activeSection based on the current route
-    if (location.pathname === "/") {
-      setActiveSection("home");
-    } else if (location.pathname === "/blogs") {
-      setActiveSection("blogs");
-    } else if (location.pathname === "/educational-service" || location.pathname === "/non-educational-service") {
-      setActiveSection("programs");
-    } else {
-      setActiveSection("");
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [location]);
+
+  // Scroll to section handler
+  const navigateToSection = (path, ref) => {
+    navigate(path); // Navigate to the section URL
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to section
+    }
+  };
 
   return (
     <nav>
@@ -66,20 +70,16 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
         </NavLink>
         <ul>
           <li>
-            <NavLink
-              to="/"
-              onClick={onHomeClick}
+            <span
+              onClick={() => navigateToSection("/#hero", onHomeClick)}
               className={activeSection === "home" ? "active-link" : "not-active"}
             >
               home
-            </NavLink>
+            </span>
           </li>
           <li>
             <span
-              onClick={() => {
-                onAboutClick();
-                setActiveSection("about");
-              }}
+              onClick={() => navigateToSection("/#about", onAboutClick)}
               className={activeSection === "about" ? "active-link" : "not-active"}
             >
               about
@@ -125,10 +125,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
           </li>
           <li>
             <span
-              onClick={() => {
-                onContactClick();
-                setActiveSection("contact");
-              }}
+              onClick={() => navigateToSection("/#contact", onContactClick)}
               className={activeSection === "contact" ? "active-link" : "not-active"}
             >
               contact

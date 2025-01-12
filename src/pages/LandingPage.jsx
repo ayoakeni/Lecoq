@@ -36,9 +36,9 @@ function LandingPage() {
     <div className="contBody">
       {/* Navbar */}
       <Navbar
-        onHomeClick={() => scrollToSection(heroRef)}
-        onAboutClick={() => scrollToSection(aboutRef)}
-        onContactClick={() => scrollToSection(contactRef)}
+        onHomeClick={() => heroRef.current?.scrollIntoView({ behavior: "smooth" })}
+        onAboutClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
+        onContactClick={() => contactRef.current?.scrollIntoView({ behavior: "smooth" })}
       />
 
       {/* Hero Section */}
@@ -47,7 +47,7 @@ function LandingPage() {
           <h1>Continue learning and unleash your brain's potential.</h1>
           <button
             className="heroButton"
-            onClick={() => scrollToSection(aboutRef)}
+            onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
           >
             Get Started
           </button>
