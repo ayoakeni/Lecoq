@@ -27,7 +27,7 @@ const WhatsappChatBox = () => {
         const timeSent = getCurrentTime();
         setMessage(
           `<span class='whatsapp-message-title'>Le Coq French School</span>
-           <span class='whatsapp-content-message'>Hi there 👋<br><br> How can I help you?</span>
+           <span class='whatsapp-content-message'>Hi there 👋<br> How can I help you?</span>
            <span class='whatsapp-time'>${timeSent}</span>`
         );
       }, 2500);
