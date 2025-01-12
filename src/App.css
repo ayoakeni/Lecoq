@@ -116,6 +116,7 @@ nav ul li {
 }
 
 .dropdown-menu li {
+  border-bottom: 2px solid var(--primary-color);
   margin: 5px 0;
 }
 
