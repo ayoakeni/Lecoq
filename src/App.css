@@ -737,7 +737,7 @@ nav ul li {
 }
 
 .recentPost:first-child{
-  width: 400px;
+  width: 350px;
 }
 .recentPost:nth-child(2),
 .recentPost:nth-child(3){
