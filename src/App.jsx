@@ -5,6 +5,7 @@ import Blog from "./pages/Blog";
 import Educational from "./pages/EducationalService";
 import NonEducational from "./pages/NonEducationalService";
 import WhatsappChatBox from "./components/whatsapp"
+import ScrollToTopButton from "./components/scrotoTop";
 import "./App.css"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/non-educational-service" element={<NonEducational />} />
       </Routes>
       <WhatsappChatBox/>
+      <ScrollToTopButton/>
     </div>
   );
 }
