@@ -27,11 +27,6 @@ function LandingPage() {
     setIsEnglish((prev) => !prev);
   };
 
-  // Scroll handler
-  const scrollToSection = (sectionRef) => {
-    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="contBody">
       {/* Navbar */}
@@ -42,7 +37,7 @@ function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="heropage" ref={heroRef} id="hero">
+      <section className="heropage" ref={heroRef} id="home">
         <div className="heroText">
           <h1>Continue learning and unleash your brain's potential.</h1>
           <button

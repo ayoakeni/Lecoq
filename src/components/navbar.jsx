@@ -22,7 +22,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const handleScroll = () => {
     const aboutSection = document.getElementById("about");
     const contactSection = document.getElementById("contact");
-    const heroSection = document.getElementById("hero");
+    const heroSection = document.getElementById("home");
 
     const scrollPosition = window.scrollY + window.innerHeight / 2;
 
@@ -71,7 +71,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
         <ul>
           <li>
             <span
-              onClick={() => navigateToSection("/#hero", onHomeClick)}
+              onClick={() => navigateToSection("/#home", onHomeClick)}
               className={activeSection === "home" ? "active-link" : "not-active"}
             >
               home
