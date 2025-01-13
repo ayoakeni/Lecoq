@@ -177,6 +177,7 @@ nav ul li {
   nav ul li {
     font-size: 20px;
     border-bottom: 1px solid var(--primary-color);
+        padding-bottom: 3px;
   }
 
   .hamburger {
@@ -186,7 +187,7 @@ nav ul li {
   .dropdown-menu{
     top: 105%;
     left: 0;
-    width: 253px;
+    width: 100%;
     border: none;
     padding: 10px 0px 0px;
     box-shadow: none;
