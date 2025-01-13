@@ -4,18 +4,15 @@ import Logo from "../assets/logo/logo-full.png";
 
 function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
-
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+  const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
+  const closeDropdown = () => setDropdownOpen(false);
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -26,7 +23,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const handleScroll = () => {
     const aboutSection = document.getElementById("about");
     const contactSection = document.getElementById("contact");
-    const heroSection = document.getElementById("home");
+    const homeSection = document.getElementById("home");
 
     const scrollPosition = window.scrollY + window.innerHeight / 2;
 
@@ -34,7 +31,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
       setActiveSection("contact");
     } else if (aboutSection && scrollPosition >= aboutSection.offsetTop) {
       setActiveSection("about");
-    } else if (heroSection && scrollPosition < aboutSection.offsetTop) {
+    } else if (homeSection && scrollPosition < aboutSection.offsetTop) {
       setActiveSection("home");
     }
   };
@@ -61,18 +58,19 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   // Scroll to section handler
   const navigateToSection = (path, ref) => {
     navigate(path);
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
+    if (onClick) onClick();
   };
 
   return (
-    <nav>
+    <nav className="navbar">
       <div className="nav-children">
         <span onClick={() => navigateToSection("/#home", onHomeClick)}>
           <img className="logo" src={Logo} alt="logo" />
         </span>
-        <ul>
+        <button className="hamburger" onClick={toggleMobileMenu}>
+          <i className={mobileMenuOpen ? "fa-solid fa-times" : "fa-solid fa-bars"}></i>
+        </button>
+        <ul className={`menu ${mobileMenuOpen ? "open" : ""}`}>
           <li>
             <span
               onClick={() => navigateToSection("/#home", onHomeClick)}

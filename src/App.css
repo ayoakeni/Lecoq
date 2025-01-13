@@ -37,7 +37,7 @@ body {
   --link-hover-color: var(--tertiary-color);
 }
 
-nav {
+nav.navbar {
   position: fixed;
   top: 0;
   right: 0;
@@ -60,7 +60,16 @@ nav {
   cursor: pointer;
 }
 
-nav ul {
+.hamburger {
+  display: none;
+  background: none;
+  color: var(--primary-color);
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.menu {
   display: flex;
   gap: 30px;
   list-style: none;
@@ -138,6 +147,62 @@ nav ul li {
 .dropdown-menu li a{
   color: var(--primary-color);
   text-decoration: none;
+}
+
+.menu.open {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: var(--background-secondary-color);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu.open {
+    display: flex;
+    top: 83px;
+    
+  }
+
+  nav ul li {
+    font-size: 20px;
+    border-bottom: 1px solid var(--primary-color);
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dropdown-menu{
+    top: 105%;
+    left: 0;
+    width: 253px;
+    border: none;
+    padding: 10px 0px 0px;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .dropdown-menu li{
+    border-bottom: none;
+    background: var(--background-secondary-color);
+  }
+
+  .dropdown-menu li:last-child{
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+  
 }
 
 /* LandingPage */
