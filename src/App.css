@@ -273,6 +273,19 @@ nav ul li {
   border-radius: 10px;
 }
 
+@media (max-width: 768px) {
+  .heropage{
+    flex-direction: column-reverse;
+    gap: 30px;
+    padding: 70px 20px 40px;
+    height: auto;
+  }
+
+  .sw{
+    margin-top: 40px;
+  }
+}
+
 /* About Section */
 .about {
   background-color: var(--background-secondary-color);
@@ -349,8 +362,16 @@ nav ul li {
     width: 100%;
   }
 
+  .about{
+    padding: 40px 20px;
+  }
+
   .aboutContent {
-    padding: 0 10px;
+    width: 100%;
+  }
+
+  .aboutContent img{
+    display: none;
   }
 }
 
@@ -955,7 +976,7 @@ nav ul li {
 /* Media Query for Smaller Screens */
 @media (max-width: 768px) {
   .recentBlog {
-    padding: 20px;
+    padding: 40px 20px;
   } 
 
   .recentBlogBody {
