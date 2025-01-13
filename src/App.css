@@ -170,7 +170,7 @@ nav ul li {
 
   .menu.open {
     display: flex;
-    top: 83px;
+    top: 70px;
     
   }
 
@@ -182,6 +182,10 @@ nav ul li {
 
   .hamburger {
     display: block;
+  }
+
+  .logo{
+    width: 110px;
   }
 
   .dropdown-menu{
