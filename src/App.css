@@ -821,13 +821,33 @@ nav ul li {
   text-align: left;
 }
 
-.recentDetails li {
+.recentDetails .info {
   list-style: none;
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
   color: var(--tertiary-color);
   margin-bottom: 0.5rem;
+}
+
+.nameDate{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nameDate i{
+  font-size: 8px;
+}
+
+.views{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.views i{
+  color: lightgray;
 }
 
 .recentDetails strong {

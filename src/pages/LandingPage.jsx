@@ -25,46 +25,6 @@ function LandingPage() {
     setIsEnglish((prev) => !prev);
   };
 
-  // Blog data
-const blogData = [
-  {
-    title: "Master French with Le Coq",
-    author: "Busayo Akinjagunla",
-    date: "20 Jan 2024",
-    excerpt:
-      "Le Coq is a one-stop shop for all your French proficiency needs. French is spoken in many countries across various continents...",
-    image: Gcontent,
-    link: "/blog/master-french-with-le-coq",
-  },
-  {
-    title: "5 Tips for Learning French Fast",
-    author: "Jane Doe",
-    date: "15 Jan 2024",
-    excerpt:
-      "Learning French doesn't have to be overwhelming. Here are five practical tips to get you started on your journey...",
-    image: Gplay,
-    link: "/blog/5-tips-learning-french-fast",
-  },
-  {
-    title: "The Joy of Multilingualism",
-    author: "John Smith",
-    date: "10 Jan 2024",
-    excerpt:
-      "Speaking multiple languages opens up new opportunities and experiences. Here's why you should consider learning French...",
-    image: Aceexam,
-    link: "/blog/joy-of-multilingualism",
-  },
-  {
-    title: "French Pronunciation Simplified",
-    author: "Marie Claire",
-    date: "5 Jan 2024",
-    excerpt:
-      "Struggling with French pronunciation? Our experts share key tips to help you master the sounds of the French language...",
-    image: Kid,
-    link: "/blog/french-pronunciation-simplified",
-  },
-];
-
   return (
     <div className="contBody">
       {/* Hero Section */}
@@ -120,7 +80,7 @@ const blogData = [
         </div>
       </section>
       {/* Recent Blogs */}
-      <RecentBlogs blogs={blogData} />
+      <RecentBlogs/>
       <Testimonials/>
     </div>
   );
