@@ -286,7 +286,11 @@ nav ul li {
   }
   
   .heroText h1 {
-    font-size: 40px;
+    font-size: 35px;
+  }
+
+  .heroText .heroButton {
+    font-size: 20px;
   }
   
   .swiper {
@@ -354,7 +358,7 @@ nav ul li {
 /* Responsive Design */
 @media (max-width: 768px) { 
   .about{
-    padding: 95px 20px 40px;
+    padding: 90px 20px 40px;
   }
 
   .about h2 {
