@@ -65,7 +65,7 @@ nav.navbar {
   background: none;
   color: var(--primary-color);
   border: none;
-  font-size: 24px;
+  font-size: 30px;
   cursor: pointer;
 }
 
@@ -188,7 +188,7 @@ nav ul li {
   }
 
   .logo{
-    width: 100px;
+    width: 113px;
   }
 
   .dropdown-menu{
@@ -280,8 +280,8 @@ nav ul li {
 @media (max-width: 768px) {
   .heropage{
     flex-direction: column-reverse;
-    gap: 30px;
-    padding: 51px 20px 40px;
+    gap: 32px;
+    padding: 55px 20px 40px;
     height: auto;
   }
 
@@ -290,11 +290,11 @@ nav ul li {
   }
   
   .heroText h1 {
-    font-size: 35px;
+    font-size: 36px;
   }
 
   .heroText .heroButton {
-    font-size: 20px;
+    font-size: 22px;
   }
   
   .swiper {
