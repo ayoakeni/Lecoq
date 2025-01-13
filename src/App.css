@@ -177,7 +177,7 @@ nav ul li {
   nav ul li {
     font-size: 20px;
     border-bottom: 1px solid var(--primary-color);
-        padding-bottom: 3px;
+    padding-bottom: 3px;
   }
 
   .hamburger {
