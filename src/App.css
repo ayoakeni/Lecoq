@@ -296,20 +296,11 @@ nav ul li {
 .about h2 {
   font-size: 36px;
   color: var(--primary-color);
+  border-bottom: 3px solid var(--tertiary-color);
   width: fit-content;
   margin: auto;
   margin-bottom: 30px;
   position: relative;
-}
-
-.about h2::after {
-  content: '';
-  background: var(--tertiary-color);
-  width: 120px;
-  height: 4px;
-  position: absolute;
-  bottom: -5px;
-  left: -10px;
 }
 
 .aboutContent {
@@ -364,6 +355,11 @@ nav ul li {
 
   .about{
     padding: 40px 20px;
+  }
+
+  .about h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
   }
 
   .aboutContent {
@@ -727,27 +723,15 @@ nav ul li {
   margin: auto;
   margin-bottom: 2rem;
   color: var(--primary-color);
+  border-bottom: 3px solid var(--tertiary-color);
   position: relative;
 }
 
-.edu::after {
-  content: '';
-  background: var(--tertiary-color);
-  width: 382px;
-  height: 4px;
-  position: absolute;
-  bottom: -5px;
-  left: -10px;
-}
-
-.non::after {
-  content: '';
-  background: var(--tertiary-color);
-  width: 464px;
-  height: 4px;
-  position: absolute;
-  bottom: -5px;
-  left: -10px;
+@media (max-width: 768px) {
+  .recentBlog h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
 }
 
 /* Grid Styles */
@@ -831,20 +815,11 @@ nav ul li {
 .recentBlog h2 {
   font-size: 2rem;
   color: var(--primary-color);
+  border-bottom: 3px solid var(--tertiary-color);
   margin: auto;
   margin-bottom: 32px;
   position: relative;
   width: fit-content;
-}
-
-.recentBlog h2::after {
-  content: '';
-  background: var(--tertiary-color);
-  width: 298px;
-  height: 4px;
-  position: absolute;
-  bottom: -5px;
-  left: -10px;
 }
 
 .recentBlogBody {
@@ -989,6 +964,11 @@ nav ul li {
     flex-direction: column;
   }
 
+  .recentBlog h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
   .recentPost.firstPost , .recentPostGroup {
     max-width: 100%;
   }
@@ -1005,7 +985,7 @@ nav ul li {
   }
 
   .recentPostGroup .recentDetails {
-    padding: 1rem;
+    padding: 1rem 0;
   }
 }
 
@@ -1110,17 +1090,8 @@ nav ul li {
   margin: auto;
   margin-bottom: 2rem;
   color: var(--primary-text-color);
+  border-bottom: 3px solid var(--tertiary-color);
   position: relative;
-}
-
-.section-title::after {
-  content: '';
-  background: var(--tertiary-color);
-  width: 245px;
-  height: 4px;
-  position: absolute;
-  bottom: -5px;
-  left: -10px;
 }
 
 /* Swiper Styles */
@@ -1176,5 +1147,10 @@ nav ul li {
 
   .testimonials-swiper {
     padding: 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
   }
 }
