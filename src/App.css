@@ -686,48 +686,59 @@ nav ul li {
 } 
 /* Whatsapp Chat-box */
 @media (max-width: 361px) {
-    .whatsapp-box {
-      width: 320px;
-    }
-    .whatsapp-send-field{
-      width: 280px;
-    }
+  .whatsapp-box {
+    width: 320px;
   }
-  @media (max-width: 320px){
-    /* Whatsapp Chat-box */
-    .whatsapp-box {
-      width: 280px;
-    }
-    .whatsapp-send-field{
-      width: 240px;
-    }
+  .whatsapp-send-field{
+    width: 280px;
   }
+}
+@media (max-width: 320px){
+  /* Whatsapp Chat-box */
+  .whatsapp-box {
+    width: 280px;
+  }
+  .whatsapp-send-field{
+    width: 240px;
+  }
+}
 
+/* Scroll Top */
+.scroll-to-top {
+  position: fixed;
+  bottom: 1.7rem;
+  right: 6rem;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--button-primary-bg);
+  color: var(--primary-text-color);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  background-color: var(--button-secondary-bg);
+}
+
+@media (max-width: 768px) {
   .scroll-to-top {
-    position: fixed;
-    bottom: 1.7rem;
-    right: 6rem;
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--button-primary-bg);
-    color: var(--primary-text-color);
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
+    bottom: 1.6rem;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
   }
+}
   
-  .scroll-to-top:hover {
-    background-color: var(--button-secondary-bg);
-  }
-  
-  /* General Styles */
+/* General Styles */
 .educational-services,
 .non-educational-services {
   background-color: #f9f9f9;
