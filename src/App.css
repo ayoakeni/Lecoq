@@ -65,7 +65,7 @@ nav.navbar {
   background: none;
   color: var(--primary-color);
   border: none;
-  font-size: 30px;
+  font-size: 24px;
   cursor: pointer;
 }
 
@@ -155,6 +155,10 @@ nav ul li {
 }
 
 @media (max-width: 768px) {
+
+  nav.navbar {
+    padding: 7px 0;
+  }
   .menu {
     display: none;
     flex-direction: column;
@@ -184,7 +188,7 @@ nav ul li {
   }
 
   .logo{
-    width: 110px;
+    width: 100px;
   }
 
   .dropdown-menu{
@@ -277,7 +281,7 @@ nav ul li {
   .heropage{
     flex-direction: column-reverse;
     gap: 30px;
-    padding: 70px 20px 40px;
+    padding: 51px 20px 40px;
     height: auto;
   }
 
@@ -358,7 +362,7 @@ nav ul li {
 /* Responsive Design */
 @media (max-width: 768px) { 
   .about{
-    padding: 90px 20px 40px;
+    padding: 60px 20px 40px;
   }
 
   .about h2 {
