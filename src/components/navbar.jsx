@@ -7,16 +7,30 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const hamburgerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
   const closeDropdown = () => setDropdownOpen(false);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
       setDropdownOpen(false);
+    }
+
+    if (
+      mobileMenuRef.current &&
+      !mobileMenuRef.current.contains(event.target) &&
+      (!hamburgerRef.current || !hamburgerRef.current.contains(event.target))
+    ) {
+      setMobileMenuOpen(false);
     }
   };
 
@@ -55,10 +69,10 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
     }
   }, [location]);
 
-  // Scroll to section handler
-  const navigateToSection = (path, ref) => {
+  const navigateToSection = (path, onClick) => {
     navigate(path);
     if (onClick) onClick();
+    closeMobileMenu();
   };
 
   return (
@@ -67,10 +81,17 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
         <span onClick={() => navigateToSection("/#home", onHomeClick)}>
           <img className="logo" src={Logo} alt="logo" />
         </span>
-        <button className="hamburger" onClick={toggleMobileMenu}>
+        <button
+          className="hamburger"
+          onClick={toggleMobileMenu}
+          ref={hamburgerRef}
+        >
           <i className={mobileMenuOpen ? "fa-solid fa-times" : "fa-solid fa-bars"}></i>
         </button>
-        <ul className={`menu ${mobileMenuOpen ? "open" : ""}`}>
+        <ul
+          ref={mobileMenuRef}
+          className={`menu ${mobileMenuOpen ? "open" : ""}`}
+        >
           <li>
             <span
               onClick={() => navigateToSection("/#home", onHomeClick)}
@@ -98,18 +119,12 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             </span>
             <ul className={`dropdown-menu ${dropdownOpen ? "open" : ""}`}>
               <li>
-                <NavLink
-                  to="/educational-service"
-                  onClick={closeDropdown}
-                >
+                <NavLink to="/educational-service" onClick={closeDropdown}>
                   educational service
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/non-educational-service"
-                  onClick={closeDropdown}
-                >
+                <NavLink to="/non-educational-service" onClick={closeDropdown}>
                   non-educational service
                 </NavLink>
               </li>
