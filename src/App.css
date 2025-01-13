@@ -432,6 +432,12 @@ nav ul li {
   margin: 20px auto;
 }
 
+@media (max-width: 768px) {
+  .contact-us{
+    padding: 40px 20px;
+  }
+}
+
 /* Whatsapp Chat-box */
 .whatsapp-box {
   position: fixed;
