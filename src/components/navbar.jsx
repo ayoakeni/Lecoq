@@ -97,7 +97,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
               onClick={() => navigateToSection("/#home", onHomeClick)}
               className={activeSection === "home" ? "active-link" : "not-active"}
             >
-              home
+              Home
             </span>
           </li>
           <li>
@@ -105,12 +105,13 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
               onClick={() => navigateToSection("/#about", onAboutClick)}
               className={activeSection === "about" ? "active-link" : "not-active"}
             >
-              about
+              
+              About
             </span>
           </li>
           <li className="dropdown" ref={dropdownRef}>
             <span onClick={toggleDropdown} className="dropdown-toggle">
-              programs{" "}
+              Programs{" "}
               {dropdownOpen ? (
                 <i className="fa-solid fa-chevron-up"></i>
               ) : (
@@ -120,12 +121,12 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             <ul className={`dropdown-menu ${dropdownOpen ? "open" : ""}`}>
               <li>
                 <NavLink to="/educational-service" onClick={closeDropdown}>
-                  educational service
+                  Educational service
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/non-educational-service" onClick={closeDropdown}>
-                  non-educational service
+                  Non-educational service
                 </NavLink>
               </li>
             </ul>
@@ -135,7 +136,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
               to="/blogs"
               className={activeSection === "blogs" ? "active-link" : "not-active"}
             >
-              blogs
+              Blogs
             </NavLink>
           </li>
           <li>
