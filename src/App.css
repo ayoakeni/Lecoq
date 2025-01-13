@@ -139,7 +139,6 @@ nav ul li {
 }
 
 .dropdown-menu li{
-  width: 100%;
   border-bottom: 2px solid var(--primary-color);
   margin: 5px 0;
 }
@@ -201,6 +200,7 @@ nav ul li {
   .dropdown-menu li{
     border-bottom: none;
     background: var(--background-secondary-color);
+    margin-bottom: 0;
   }
 
   .dropdown-menu li:last-child{
@@ -354,7 +354,7 @@ nav ul li {
 /* Responsive Design */
 @media (max-width: 768px) { 
   .about{
-    padding: 80px 20px 40px;
+    padding: 95px 20px 40px;
   }
 
   .about h2 {
