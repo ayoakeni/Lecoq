@@ -1168,3 +1168,13 @@ nav ul li {
   font-weight: bold;
   color: var(--tertiary-color);
 }
+
+@media (max-width: 768px) {
+  .testimonials-section{
+    padding: 40px 20px;
+  }
+
+  .testimonials-swiper {
+    padding: 0;
+  }
+}
