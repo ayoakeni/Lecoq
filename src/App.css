@@ -387,13 +387,13 @@ nav ul li {
 .contact-us h2 {
   font-size: 28px;
   color: var(--tertiary-color);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .contact-us p {
   font-size: 18px;
   color: var(--tertiary-color);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .contact-details {
@@ -431,6 +431,18 @@ nav ul li {
 @media (max-width: 768px) {
   .contact-us{
     padding: 40px 20px;
+  }
+
+  .contact-us h2{
+    font-size: 24px;
+  }
+
+  .contact-us p {
+    font-size: 16px;
+  }
+  
+  .contact-details {
+    font-size: 14px;
   }
 }
 
@@ -705,14 +717,12 @@ nav ul li {
 .educational-services,
 .non-educational-services {
   background-color: #f9f9f9;
-  padding: 2rem 0;
-  font-family: Arial, sans-serif;
+  padding: 85px 1.25rem;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 85px 1rem 1rem;
 }
 
 .title {
@@ -720,16 +730,25 @@ nav ul li {
   font-size: 36px;
   font-weight: bold;
   width: fit-content;
-  margin: auto;
-  margin-bottom: 2rem;
+  margin: 2rem auto;
   color: var(--primary-color);
   border-bottom: 3px solid var(--tertiary-color);
   position: relative;
 }
 
 @media (max-width: 768px) {
-  .recentBlog h2 {
+  .educational-services,
+  .non-educational-services {
+    padding: 70px 20px 40px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .title {
     font-size: 1.5rem;
+    margin-top: 40px;
     margin-bottom: 25px;
   }
 }
