@@ -47,6 +47,7 @@ const Blog = ({  }) => {
   
   return (
     <section className="blog-grid">
+      <h2 className="title edu">Blogs</h2>
       {blogs.map((blog, index) => (
         <div className="blogPost" key={index}>
           <img src={blog.image} alt={blog.title} className="blogImage" />
