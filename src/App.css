@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'MyFont';
-  src: url('/src/assets/fonts/Busso/BUSSI___.TT') format('truetype');
+  src: url('/src/assets/fonts/Busso/BUSSWBI_.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
   background-color: var(--primary-color);
-  font-family: 'MyFont',sans-serif;
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -1147,6 +1147,8 @@ nav ul li {
 }
 
 .blog-header {
+  display: flex;
+  align-items: center;
   margin: 2rem 0;
 }
 
@@ -1154,20 +1156,22 @@ nav ul li {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  border-radius: 8px;
   margin-bottom: 32px;
 }
 
 .blog-header h1 {
-  font-size: 2rem;
+  font-size: 4rem;
+  font-family: 'MyFont',sans-serif;
+  font-weight: 100 !important;
   color: var(--tertiary-color);
-  margin-bottom: 0.5rem;
-  text-align: center;
+  margin-bottom: 2rem;
+  text-align: left;
 }
 
 .blog-header .meta {
   display: flex;
   gap: 5px;
-  justify-content: center;
   flex-wrap: wrap;
   font-size: 0.9rem;
   color: var(--primary-color);
@@ -1218,15 +1222,21 @@ nav ul li {
   .blog-header {
     font-size: 1.5rem;
     margin-bottom: 15px;
+    flex-direction: column;
+  }
+
+  .titleAuthor{
+    margin-bottom: 10px;
   }
 
   .blog-image {
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
   
   .blog-header h1 {
     font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 
   .blog-content {
