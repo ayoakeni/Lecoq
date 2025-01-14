@@ -120,12 +120,12 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             </span>
             <ul className={`dropdown-menu ${dropdownOpen ? "open" : ""}`}>
               <li>
-                <NavLink to="/educational-service" onClick={closeDropdown}>
+                <NavLink to="/educational-service" onClick={(closeDropdown,closeMobileMenu)}>
                   Educational service
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/non-educational-service" onClick={closeDropdown}>
+                <NavLink to="/non-educational-service" onClick={(closeDropdown,closeMobileMenu)}>
                   Non-educational service
                 </NavLink>
               </li>
@@ -134,6 +134,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
           <li>
             <NavLink
               to="/blogs"
+              onClick={closeMobileMenu}
               className={activeSection === "blogs" ? "active-link" : "not-active"}
             >
               Blogs
