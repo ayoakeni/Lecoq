@@ -12,6 +12,10 @@ body {
   padding: 0;
 }
 
+img {
+  background-color: lightgray;
+}
+
 :root {
   /* Text Color */
   --primary-text-color: #FFFFFF;
