@@ -1140,10 +1140,14 @@ nav ul li {
 
 /* blogDetails */
 .blog-details-container {
-  width: 100%;
   padding: 85px 20px;
   background-color: #f9f9f9;
   font-family: 'Arial', sans-serif;
+}
+
+.blogContent{
+  width: 90%;
+  margin: auto;
 }
 
 .blog-header {
@@ -1217,6 +1221,10 @@ nav ul li {
 @media (max-width: 768px) {
   .blog-details-container {
     padding: 55px 20px 40px;
+  }
+
+  .blogContent{
+    width: 100%;
   }
 
   .blog-header {

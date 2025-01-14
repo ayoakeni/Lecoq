@@ -60,26 +60,28 @@ const BlogDetails = () => {
 
   return (
     <div className="blog-details-container">
-      <div className="blog-header">
-        <div className="titleAuthor">        
-          <h1>{blog.title}</h1>
-          <p className="meta">
-            <span>By</span>
-            <strong>{blog.author}</strong>
-            <span><i class="fa-solid fa-grip-lines-vertical"></i>{blog.date}</span>
-            <span><i class="fa-solid fa-grip-lines-vertical"></i>{blog.time}</span>
-          </p>
+      <div className="blogContent">
+        <div className="blog-header">
+          <div className="titleAuthor">        
+            <h1>{blog.title}</h1>
+            <p className="meta">
+              <span>By</span>
+              <strong>{blog.author}</strong>
+              <span><i class="fa-solid fa-grip-lines-vertical"></i>{blog.date}</span>
+              <span><i class="fa-solid fa-grip-lines-vertical"></i>{blog.time}</span>
+            </p>
+          </div>
+          {blog.image && <img src={blog.image} alt={blog.title} className="blog-image" />}
         </div>
-        {blog.image && <img src={blog.image} alt={blog.title} className="blog-image" />}
-      </div>
-      <div className="blog-content">
-        {blog.content.split("\n").map((line, index) => (
-          <p key={index}>{line.trim()}</p>
-        ))}
-      </div>
-      <button className="back-button" onClick={() => navigate(-1)}>
-      <i class="fa-solid fa-arrow-left"></i> Back
+        <div className="blog-content">
+          {blog.content.split("\n").map((line, index) => (
+            <p key={index}>{line.trim()}</p>
+          ))}
+        </div>
+        <button className="back-button" onClick={() => navigate(-1)}>
+          <i class="fa-solid fa-arrow-left"></i> Back
         </button>
+      </div>
     </div>
   );
 };
