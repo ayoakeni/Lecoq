@@ -207,7 +207,7 @@ nav ul li {
   }
 
   .dropdown-menu li{
-    border-bottom: none;
+    border-bottom: 1px solid var(--primary-color);
     background: var(--background-secondary-color);
     margin-bottom: 0;
   }
