@@ -36,7 +36,7 @@ function ScrollToTopButton() {
           className="scroll-to-top"
           aria-label="Scroll to Top"
         >
-          ↑
+         <i class="fa-solid fa-arrow-up"></i>
         </button>
       )}
     </>

@@ -75,7 +75,7 @@ const BlogDetails = () => {
         ))}
       </div>
       <button className="back-button" onClick={() => navigate(-1)}>
-          ← Back
+      <i class="fa-solid fa-arrow-left"></i> Back
         </button>
     </div>
   );
