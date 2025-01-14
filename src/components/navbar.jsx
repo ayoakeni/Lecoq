@@ -90,7 +90,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
         </button>
         <ul
           ref={mobileMenuRef}
-          className={`menu ${mobileMenuOpen ? "open" : ""}`}
+          className={`menu ${mobileMenuOpen ? "open" : "close"}`}
         >
           <li>
             <span

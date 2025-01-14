@@ -153,19 +153,14 @@ nav ul li {
   text-decoration: none;
 }
 
-.menu.open {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 @media (max-width: 768px) {
 
   nav.navbar {
     padding: 7px 0;
   }
+  
   .menu {
-    display: none;
+    display: flex;
     flex-direction: column;
     background: var(--background-secondary-color);
     position: absolute;
@@ -174,12 +169,25 @@ nav ul li {
     width: 100%;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .menu.open {
     display: flex;
-    top: 51px;
-    
+    top: 55px;
+    gap: 15px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .menu.close {
+    display: flex;
+    top: 55px;
+    gap: 15px;
+    transform: translate(-50px);
   }
 
   nav ul li {
