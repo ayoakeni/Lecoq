@@ -1571,6 +1571,10 @@ nav ul li {
     font-size: 1.5rem;
   }
 
+  .add-blog .inputbox {
+    flex-wrap: wrap;
+  }
+
   .blog-manage-Meta {
     gap: 5px;
     align-items: end;
