@@ -72,7 +72,7 @@ function RecentBlogs() {
             <strong>{blogData[0].title}</strong>
             <p>{blogData[0].excerpt}</p>
             <button onClick={() => (window.location.href = blogData[0].link)}>
-              Read
+              Read post
             </button>
           </div>
         </div>
@@ -96,7 +96,7 @@ function RecentBlogs() {
                 <strong>{blog.title}</strong>
                 <p>{blog.excerpt}</p>
                 <button onClick={() => (window.location.href = blog.link)}>
-                  Read
+                  Read post
                 </button>
               </div>
             </div>

@@ -72,7 +72,7 @@ const Blog = () => {
                 className="readButton"
                 onClick={() => navigate(`/blog/${index + 1}`)} // Navigate to BlogDetails
               >
-                Read
+                Read post
               </button>
             </div>
           </div>

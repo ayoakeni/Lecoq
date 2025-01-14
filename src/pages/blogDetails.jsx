@@ -3,8 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 // Import images
 import Gcontent from "../assets/images/Globalcontent.png";
-import Gplay from "../assets/images/Globalplayer.png";
-import Aceexam from "../assets/images/Aceexam.png";
+import img from "../assets/images/mad-designer.png";
 import Opportunities from "../assets/images/opportunities.png";
 
 const BlogDetails = () => {
@@ -55,7 +54,14 @@ const BlogDetails = () => {
   const blog = blogs.find((b) => b.id === id);
 
   if (!blog) {
-    return <div>404 - Blog Not Found</div>;
+    return  (
+      <div className="errorPage">
+        <span>
+          Page not found :<strong>404</strong> Check the address again
+        </span>
+        <img src={img} alt="error" />
+      </div>
+    );
   }
 
   return (
