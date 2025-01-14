@@ -1025,6 +1025,7 @@ nav ul li {
 .views{
   display: flex;
   align-items: center;
+  height: fit-content;
   gap: 5px;
 }
 
@@ -1542,6 +1543,7 @@ nav ul li {
 .views-manage-title{
   display: flex;
   align-items: center;
+  height: fit-content;
   gap: 5px;
 }
 
