@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 // Import images
 import Gcontent from "../assets/images/Globalcontent.png";
 import Gplay from "../assets/images/Globalplayer.png";
 import Aceexam from "../assets/images/Aceexam.png";
 import Opportunities from "../assets/images/opportunities.png";
 
-const Blog = ({  }) => {
+const Blog = () => {
+  const navigate = useNavigate();
   const blogs = [
     {
       image: Opportunities,
@@ -46,34 +49,37 @@ const Blog = ({  }) => {
   ];
   
   return (
-    <section className="blog-grid">
+    <div className="blog">
       <h2 className="title edu">Blogs</h2>
-      {blogs.map((blog, index) => (
-        <div className="blogPost" key={index}>
-          <img src={blog.image} alt={blog.title} className="blogImage" />
-          <div className="blogDetails">
-            <div className="blogMeta">
-              <li className="nameDate">
-                <span>{blog.author}</span>
-                <i class="fa-solid fa-asterisk"></i>
-                <span>{blog.date}</span>
-              </li>
-              <span className="views">
-                <i className="fa-solid fa-eye"></i>{blog.views}
-              </span>
+      <section className="blog-grid">
+        {blogs.map((blog, index) => (
+          <div className="blogPost" key={index}>
+            <img src={blog.image} alt={blog.title} className="blogImage" />
+            <div className="blogDetails">
+              <div className="blogMeta">
+                <li className="nameDate">
+                  <span>{blog.author}</span>
+                  <i className="fa-solid fa-asterisk"></i>
+                  <span>{blog.date}</span>
+                </li>
+                <span className="views">
+                  <i className="fa-solid fa-eye"></i>{blog.views}
+                </span>
+              </div>
+              <strong className="blogTitle">{blog.title}</strong>
+              <p className="blogExcerpt">{blog.excerpt}</p>
+              <button
+                className="readButton"
+                onClick={() => navigate(`/blog/${index + 1}`)} // Navigate to BlogDetails
+              >
+                Read
+              </button>
             </div>
-            <strong className="blogTitle">{blog.title}</strong>
-            <p className="blogExcerpt">{blog.excerpt}</p>
-            <button
-              className="readButton"
-              onClick={() => (window.location.href = blog.link)}
-            >
-              Read
-            </button>
           </div>
-        </div>
-      ))}
-    </section>
+        ))}
+      </section>
+
+    </div>
   );
 };
 

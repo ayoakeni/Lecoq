@@ -1034,12 +1034,15 @@ nav ul li {
 }
 
 /* General grid layout */
+.blog{
+  padding: 85px;
+  background-color: #f5f5f5;
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  padding: 170px 85px 85px;
-  background-color: #f5f5f5;
 }
 
 .blog-grid h2 {
@@ -1054,7 +1057,6 @@ nav ul li {
 /* Individual blog post */
 .blogPost {
   background-color: var(--background-secondary-color);
-  border: 1px solid var(--primary-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -1071,7 +1073,6 @@ nav ul li {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 2px solid var(--primary-color);
 }
 
 /* Blog details container */
@@ -1137,6 +1138,77 @@ nav ul li {
     font-size: 1.5rem;
   }
 }
+
+/* blogDetails */
+.blog-details-container {
+  width: 100%;
+  padding: 85px 20px;
+  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+}
+
+.blog-header {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.blog-header h1 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.blog-header .meta {
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+.blog-content {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #444444;
+}
+
+.blog-content p {
+  margin-bottom: 1rem;
+}
+
+.back-button {
+  background: #4a90e2;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.back-button:hover {
+  background: #3c7ac1;
+}
+
+@media (max-width: 768px) {
+  .blog-details-container {
+    padding: 1rem;
+  }
+
+  .blog-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .blog-content {
+    font-size: 0.9rem;
+  }
+}
+
 
 /* General Section Styles */
 .testimonials-section {
