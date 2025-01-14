@@ -39,6 +39,7 @@ const BlogDetails = () => {
       title: "Unlocking Migration Opportunities",
       author: "Busayo Akinjagunla",
       date: "Jan 12, 2025",
+      time: "9:00pm",
       image: Gcontent,
       content: `
         Learning French is not just about mastering a language; it’s about unlocking new opportunities, enriching your cultural experiences, and enhancing your cognitive abilities.
