@@ -12,6 +12,60 @@ body {
   padding: 0;
 }
 
+.errorPage{
+  display: flex;
+  align-items: center;
+  padding-top: 85px;
+  position: relative;
+}
+
+
+.errorPage span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 30px;
+  font-weight: 200;
+  position: absolute;
+  width: 100%;
+  color: var(--secondary-text-color);
+  text-align: center;
+}
+
+.errorPage span strong{
+  color: var(--tertiary-color);
+  font-weight: bold;
+  font-size: 100px;
+}
+
+.errorPage img{
+  max-width: 1000px;
+  background-color: transparent;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .errorPage{
+    padding-top: 55px;
+  }
+
+  .errorPage span{
+    font-size: 16px;
+    font-weight: 200;
+    left: 0;
+    right: 0;
+  }
+
+  .errorPage span strong{
+    font-size: 25px;
+  }
+
+  .errorPage img{
+    width: 100%;
+  }
+}
+
 img {
   background-color: lightgray;
 }

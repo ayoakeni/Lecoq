@@ -11,6 +11,8 @@ import ScrollToTopButton from "./components/scrotoTop";
 import ContactUs from "./components/contact";
 import "./App.css";
 
+import img from "./assets/images/mad-designer.png"
+
 function App() {
   const contactRef = useRef(null);
   const currentYear = new Date().getFullYear();
@@ -24,6 +26,11 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/educational-service" element={<Educational />} />
         <Route path="/non-educational-service" element={<NonEducational />} />
+        <Route path="*" element={
+          <div className="errorPage">
+            <span>Page not found :<strong>404</strong>check the address again</span>
+            <img src={img} alt="error image" />
+          </div>} />
       </Routes>
       <WhatsappChatBox />
       <ScrollToTopButton />
