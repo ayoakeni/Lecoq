@@ -1,27 +1,8 @@
-
 import React, { useState } from "react";
 import Opportunities from "../assets/images/opportunities.png";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([
-    {
-      id: "1",
-      title: "5 Sure-banker Reasons Why You Need French",
-      author: "Busayo Akinjagunla",
-      date: "Jan 10, 2025",
-      image: Opportunities,
-      views: 500,
-      excerpt: "In our increasingly interconnected world, learning a new language can open doors to countless opportunities.",
-    },
-    {
-      id: "2",
-      title: "Unlocking Migration Opportunities",
-      author: "Busayo Akinjagunla",
-      date: "Jan 12, 2025",
-      image: Opportunities,
-      views: 700,
-      excerpt: "Learning French is not just about mastering a language; it’s about unlocking new opportunities.",
-    },
     {
       id: "1",
       title: "5 Sure-banker Reasons Why You Need French",
@@ -63,6 +44,30 @@ const Admin = () => {
     }
     setBlogs([...blogs, { ...newBlog, id: `${blogs.length + 1}` }]);
     setNewBlog({ id: "", title: "", author: "", date: "", views: 0, excerpt: "" });
+  };
+
+  const [editingBlogId, setEditingBlogId] = useState(null);
+  const [editingBlog, setEditingBlog] = useState(null);
+
+  const handleEditBlog = (blog) => {
+    setEditingBlogId(blog.id);
+    setEditingBlog(blog);
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditingBlog({ ...editingBlog, [name]: value });
+  };
+
+  const handleUpdateBlog = () => {
+    setBlogs(blogs.map((blog) => (blog.id === editingBlogId ? editingBlog : blog)));
+    setEditingBlogId(null);
+    setEditingBlog(null);
+  };
+
+  const handleCloseModal = () => {
+    setEditingBlogId(null);
+    setEditingBlog(null);
   };
 
   const handleDeleteBlog = (id) => {
@@ -125,15 +130,56 @@ const Admin = () => {
                   <span>{blog.date}</span>
                 </li>
                 <span className="views-manage-title">
-                  <i className="fa-solid fa-eye"></i>{blog.views}
+                  <i className="fa-solid fa-eye"></i>
+                  {blog.views}
                 </span>
               </div>
               <p className="blogExcerpt-manage">{blog.excerpt}</p>
+              <button onClick={() => handleEditBlog(blog)}>Edit</button>
               <button onClick={() => handleDeleteBlog(blog.id)}>Delete</button>
             </div>
           </div>
         ))}
       </section>
+
+      {/* Edit Popup */}
+      {editingBlogId && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Edit Blog</h3>
+            <input
+              type="text"
+              name="title"
+              placeholder="Blog Title"
+              value={editingBlog.title}
+              onChange={handleEditChange}
+            />
+            <input
+              type="text"
+              name="author"
+              placeholder="Author Name"
+              value={editingBlog.author}
+              onChange={handleEditChange}
+            />
+            <input
+              type="date"
+              name="date"
+              value={editingBlog.date}
+              onChange={handleEditChange}
+            />
+            <textarea
+              name="excerpt"
+              placeholder="Short Excerpt"
+              value={editingBlog.excerpt}
+              onChange={handleEditChange}
+            />
+            <div className="modal-actions">
+              <button onClick={handleUpdateBlog}>Update Blog</button>
+              <button onClick={handleCloseModal}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
