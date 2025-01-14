@@ -1205,6 +1205,10 @@ nav ul li {
     margin-bottom: 20px;
   }
 
+  .blog-image {
+    height: auto;
+  }
+  
   .blog-header h1 {
     font-size: 1.5rem;
   }
