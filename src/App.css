@@ -1453,6 +1453,7 @@ nav ul li {
   border-radius: 8px;
   margin-bottom: 20px;
   outline-color: var(--primary-color);
+  resize: none;
 }
 
 .admin-page button {
