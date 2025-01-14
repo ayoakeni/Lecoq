@@ -30,7 +30,8 @@ function App() {
           <div className="errorPage">
             <span>Page not found :<strong>404</strong>check the address again</span>
             <img src={img} alt="error image" />
-          </div>} />
+          </div>} 
+        />
       </Routes>
       <WhatsappChatBox />
       <ScrollToTopButton />
