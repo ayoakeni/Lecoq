@@ -1172,7 +1172,6 @@ nav ul li {
 .blog-header h1 {
   font-size: 4rem;
   font-family: 'MyFont',sans-serif;
-  font-weight: 100 !important;
   color: var(--tertiary-color);
   margin-bottom: 2rem;
   text-align: left;
