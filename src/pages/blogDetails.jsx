@@ -18,6 +18,7 @@ const BlogDetails = () => {
       title: "5 Sure-banker Reasons Why You Need French",
       author: "Busayo Akinjagunla",
       date: "Jan 10, 2025",
+      time: "11:00am",
       image: Opportunities,
       content: `
         In our increasingly interconnected world, learning a new language can open doors to countless opportunities.
@@ -62,7 +63,10 @@ const BlogDetails = () => {
         {blog.image && <img src={blog.image} alt={blog.title} className="blog-image" />}
         <h1>{blog.title}</h1>
         <p className="meta">
-          By <strong>{blog.author}</strong> | {blog.date}
+          <span>By</span>
+          <strong>{blog.author}</strong>
+          <span><i class="fa-solid fa-grip-lines-vertical"></i>{blog.date}</span>
+          <span><i class="fa-solid fa-grip-lines-vertical"></i>{blog.time}</span>
         </p>
       </div>
       <div className="blog-content">
