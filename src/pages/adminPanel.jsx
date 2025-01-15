@@ -29,7 +29,7 @@ const Admin = () => {
   const [newBlog, setNewBlog] = useState({
     id: `${blogs.length + 1}`,
     title: "",
-    author: "Admin User",
+    author: "Busayo Akinjagunla",
     date: new Date().toISOString().split("T")[0],
     views: 0,
     excerpt: "",
