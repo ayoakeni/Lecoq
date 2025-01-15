@@ -507,11 +507,15 @@ nav ul li {
   color: var(--primary-text-color);
   width: fit-content;
   margin: 20px auto;
+  padding: 0px 20px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .contact-us{
     padding: 40px 20px;
+    flex-wrap: wrap;
+    row-gap: 10px;
   }
 
   .contact-us h2{
@@ -1464,6 +1468,7 @@ nav ul li {
   height: 50px;
   border: none;
   border-radius: 3px;
+  font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
