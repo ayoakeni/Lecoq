@@ -1641,6 +1641,10 @@ nav ul li {
   color: #333;
 }
 
+.modal-actions button:last-child:hover {
+  background-color: #adadad;
+}
+
 @media (max-width: 768px) {
   .admin-page {
     padding: 55px 20px 40px;
