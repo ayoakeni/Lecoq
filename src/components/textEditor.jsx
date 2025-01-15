@@ -8,9 +8,9 @@ const TextEditor = ({ value, onChange, placeholder }) => {
       ["bold", "italic", "underline", "strike"], // Text formatting
       [{ color: [] }, { background: [] }], // Text color and background
       [{ header: [1, 2, 3, false] }], // Headers
-      // ["blockquote", "code-block"], // Block elements
+      ["blockquote", "code-block"], // Block elements
       [{ list: "ordered" }, { list: "bullet" }], // Lists
-      // ["link", "image"], // Links and images
+      ["link", "image"], // Links and images
       ["clean"], // Remove formatting
     ],
   };
@@ -23,18 +23,18 @@ const TextEditor = ({ value, onChange, placeholder }) => {
     "color",
     "background",
     "header",
-    // "blockquote",
-    // "code-block",
+    "blockquote",
+    "code-block",
     "list",
     "bullet",
     "link",
-    // "image",
+    "image",
   ];
 
   return (
     <ReactQuill
       value={value}
-      onChange={(content) => onChange(content)}
+      onChange={onChange}
       placeholder={placeholder || "Write here..."}
       modules={modules}
       formats={formats}

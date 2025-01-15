@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 import Opportunities from "../assets/images/opportunities.png";
 import TextEditor from "../components/textEditor";
 
@@ -43,7 +44,11 @@ const Admin = () => {
       alert("Please fill in all fields");
       return;
     }
-    setBlogs([...blogs, { ...newBlog, id: `${blogs.length + 1}` }]);
+    
+    // Sanitize the excerpt before adding the blog
+    const sanitizedExcerpt = DOMPurify.sanitize(newBlog.excerpt);
+
+    setBlogs([...blogs, { ...newBlog, excerpt: sanitizedExcerpt, id: `${blogs.length + 1}` }]);
     setNewBlog({ id: "", title: "", author: "", date: "", views: 0, excerpt: "" });
   };
 
@@ -61,11 +66,16 @@ const Admin = () => {
   };
   
   const handleEditExcerptChange = (content) => {
-    setEditingBlog((prev) => ({ ...prev, excerpt: content }));
+    // Sanitize the excerpt content when edited
+    const sanitizedContent = DOMPurify.sanitize(content);
+    setEditingBlog((prev) => ({ ...prev, excerpt: sanitizedContent }));
   };
   
   const handleUpdateBlog = () => {
-    setBlogs(blogs.map((blog) => (blog.id === editingBlogId ? editingBlog : blog)));
+    // Sanitize the excerpt before updating
+    const sanitizedExcerpt = DOMPurify.sanitize(editingBlog.excerpt);
+
+    setBlogs(blogs.map((blog) => (blog.id === editingBlogId ? { ...editingBlog, excerpt: sanitizedExcerpt } : blog)));
     setEditingBlogId(null);
     setEditingBlog(null);
   };
@@ -137,7 +147,7 @@ const Admin = () => {
                   {blog.views}
                 </span>
               </div>
-              {/* Render excerpt as rich text */}
+              {/* Render sanitized excerpt as rich text */}
               <div
                 className="blogExcerpt-manage"
                 dangerouslySetInnerHTML={{ __html: blog.excerpt }}
