@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DOMPurify from "dompurify";
+// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Opportunities from "../assets/images/opportunities.png";
 import TextEditor from "../components/textEditor";
 
@@ -32,28 +33,59 @@ const Admin = () => {
     date: new Date().toISOString().split("T")[0],
     views: 0,
     excerpt: "",
+    image: null,
+    imageUrl: "",
   });
 
+  const [imagePreview, setImagePreview] = useState("");
+  const [editingBlogId, setEditingBlogId] = useState(null);
+  const [editingBlog, setEditingBlog] = useState(null);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewBlog({ ...newBlog, [name]: value });
+    const { name, value, files } = e.target;
+    if (name === "image" && files[0]) {
+      const file = files[0];
+      setNewBlog((prev) => ({ ...prev, image: file }));
+
+      // Preview the image
+      const reader = new FileReader();
+      reader.onload = () => setImagePreview(reader.result);
+      reader.readAsDataURL(file);
+    } else {
+      setNewBlog({ ...newBlog, [name]: value });
+    }
   };
 
-  const handleAddBlog = () => {
-    if (!newBlog.title || !newBlog.excerpt) {
-      alert("Please fill in the required fields: Title and Excerpt");
+  const handleAddBlog = async () => {
+    if (!newBlog.title || !newBlog.excerpt || !newBlog.image) {
+      alert("Please fill in the required fields: Title, Excerpt, and Image");
       return;
     }
 
-    // Sanitize the excerpt before adding the blog
+    // Sanitize excerpt
     const sanitizedExcerpt = DOMPurify.sanitize(newBlog.excerpt);
 
-    setBlogs([...blogs, { ...newBlog, excerpt: sanitizedExcerpt, id: `${blogs.length + 1}` }]);
-    setNewBlog({ id: "", title: "", author: "", date: "", views: 0, excerpt: "" });
-  };
+    // Upload image to Firebase Storage
+    const storage = getStorage();
+    const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
+    await uploadBytes(imageRef, newBlog.image);
 
-  const [editingBlogId, setEditingBlogId] = useState(null);
-  const [editingBlog, setEditingBlog] = useState(null);
+    const imageUrl = await getDownloadURL(imageRef);
+
+    // Add new blog
+    setBlogs([...blogs, { ...newBlog, excerpt: sanitizedExcerpt, imageUrl, id: `${blogs.length + 1}` }]);
+    setNewBlog({
+      id: `${blogs.length + 2}`,
+      title: "",
+      author: "Admin User",
+      date: new Date().toISOString().split("T")[0],
+      views: 0,
+      excerpt: "",
+      image: null,
+      imageUrl: "",
+    });
+    setImagePreview("");
+  };
 
   const handleEditBlog = (blog) => {
     setEditingBlogId(blog.id);
@@ -64,18 +96,22 @@ const Admin = () => {
     const { name, value } = e.target;
     setEditingBlog((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   const handleEditExcerptChange = (content) => {
     // Sanitize the excerpt content when edited
     const sanitizedContent = DOMPurify.sanitize(content);
     setEditingBlog((prev) => ({ ...prev, excerpt: sanitizedContent }));
   };
-  
+
   const handleUpdateBlog = () => {
     // Sanitize the excerpt before updating
     const sanitizedExcerpt = DOMPurify.sanitize(editingBlog.excerpt);
 
-    setBlogs(blogs.map((blog) => (blog.id === editingBlogId ? { ...editingBlog, excerpt: sanitizedExcerpt } : blog)));
+    setBlogs(
+      blogs.map((blog) =>
+        blog.id === editingBlogId ? { ...editingBlog, excerpt: sanitizedExcerpt } : blog
+      )
+    );
     setEditingBlogId(null);
     setEditingBlog(null);
   };
@@ -119,15 +155,20 @@ const Admin = () => {
           <input
             type="file"
             name="image"
-            value={newBlog.image}
+            accept="image/*"
             onChange={handleChange}
           />
         </div>
-        <TextEditor
-          value={newBlog.excerpt}
-          onChange={(content) => setNewBlog({ ...newBlog, excerpt: content })}
-          placeholder="Write the blog excerpt..."
-        />
+        <div className="textinputImagepreview">
+          <div className="image-previewBox">
+            {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
+          </div>
+          <TextEditor
+            value={newBlog.excerpt}
+            onChange={(content) => setNewBlog({ ...newBlog, excerpt: content })}
+            placeholder="Write the blog excerpt..."
+          />
+        </div>
         <button onClick={handleAddBlog}>Add Blog</button>
       </section>
 
@@ -135,7 +176,7 @@ const Admin = () => {
       <section className="manage-blogs">
         {blogs.map((blog) => (
           <div className="blog-item" key={blog.id}>
-            <img src={blog.image} alt={blog.title} />
+            <img src={blog.imageUrl || blog.image} alt={blog.title} />
             <div className="blog-manage-Details">
               <div className="blog-manage-Meta">
                 <li className="name-manage-Date">
@@ -148,7 +189,6 @@ const Admin = () => {
                   {blog.views}
                 </span>
               </div>
-              {/* Render sanitized excerpt as rich text */}
               <div
                 className="blogExcerpt-manage"
                 dangerouslySetInnerHTML={{ __html: blog.excerpt }}
@@ -160,7 +200,6 @@ const Admin = () => {
         ))}
       </section>
 
-      {/* Edit Popup */}
       {editingBlogId && (
         <div className="modal-overlay">
           <div className="modal-content">

@@ -1446,8 +1446,53 @@ nav ul li {
   outline-color: var(--primary-color);
 }
 
-.admin-page .quill{
+.textinputImagepreview {
+  display: flex;
+  gap: 20px;
+  height: auto;
   margin-bottom: 20px;
+}
+
+.image-previewBox {
+  width: 50%;
+  background-color: lightgray;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 295px;
+}
+
+.image-previewBox::after {
+  position: absolute;
+  content: 'Image-Preview';
+  color: var(--secondary-text-color);
+  font-weight: bold;
+}
+
+.image-preview {
+  width: 100%;
+  object-fit: cover;
+  max-height: 295px;
+  z-index: 1;
+}
+
+.admin-page .quill {
+  width: 50%;
+}
+
+.ql-toolbar {
+  background-color: var(--primary-color);
+}
+
+.ql-toolbar::-webkit-scrollbar {
+  width: 10px;
+  height: 0;
+}
+
+.admin-page .quill .ql-container{
+  height: auto;
 }
 
 .admin-page .quill button:hover{
@@ -1455,7 +1500,7 @@ nav ul li {
 }
 
 .admin-page .ql-editor {
-  max-height: 140px;
+  height: 252px;
 }
 
 .admin-page button {
@@ -1653,6 +1698,19 @@ nav ul li {
 
   .add-blog .inputbox {
     flex-wrap: wrap;
+  }
+
+  .textinputImagepreview {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .image-previewBox {
+    width: 100%;
+  }
+  
+  .admin-page .quill {
+    width: 100%;
   }
 
   .blog-manage-Meta {

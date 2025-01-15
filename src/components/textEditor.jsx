@@ -8,9 +8,9 @@ const TextEditor = ({ value, onChange, placeholder }) => {
       ["bold", "italic", "underline", "strike"], // Text formatting
       [{ color: [] }, { background: [] }], // Text color and background
       [{ header: [1, 2, 3, false] }], // Headers
+      ["link", "image"], // Links and images
       ["blockquote", "code-block"], // Block elements
       [{ list: "ordered" }, { list: "bullet" }], // Lists
-      ["link", "image"], // Links and images
       ["clean"], // Remove formatting
     ],
   };
@@ -23,12 +23,12 @@ const TextEditor = ({ value, onChange, placeholder }) => {
     "color",
     "background",
     "header",
+    "link",
+    "image",
     "blockquote",
     "code-block",
     "list",
     "bullet",
-    "link",
-    "image",
   ];
 
   return (
