@@ -1745,8 +1745,17 @@ nav ul li {
     height: fit-content;
   }
 
+  .modal-overlay {
+    align-items: normal;
+    justify-content: normal;
+  }
+
   .modal-content {
-    margin: 55px 20px 0px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    margin: 55px 0px 0px;
+    background-color: #f9f9f9;
   }
 
   .modal-content h3 {
