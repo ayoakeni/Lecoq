@@ -34,7 +34,7 @@ const TextEditor = ({ value, onChange, placeholder }) => {
   return (
     <ReactQuill
       value={value}
-      onChange={onChange}
+      onChange={(content) => onChange(content)}
       placeholder={placeholder || "Write here..."}
       modules={modules}
       formats={formats}

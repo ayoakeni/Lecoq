@@ -137,7 +137,11 @@ const Admin = () => {
                   {blog.views}
                 </span>
               </div>
-              <p className="blogExcerpt-manage">{blog.excerpt}</p>
+              {/* Render excerpt as rich text */}
+              <div
+                className="blogExcerpt-manage"
+                dangerouslySetInnerHTML={{ __html: blog.excerpt }}
+              ></div>
               <button onClick={() => handleEditBlog(blog)}>Edit</button>
               <button onClick={() => handleDeleteBlog(blog.id)}>Delete</button>
             </div>
