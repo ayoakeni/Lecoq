@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Opportunities from "../assets/images/opportunities.png";
+import TextEditor from "../components/textEditor";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([
@@ -56,9 +57,13 @@ const Admin = () => {
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    setEditingBlog({ ...editingBlog, [name]: value });
+    setEditingBlog((prev) => ({ ...prev, [name]: value }));
   };
-
+  
+  const handleEditExcerptChange = (content) => {
+    setEditingBlog((prev) => ({ ...prev, excerpt: content }));
+  };
+  
   const handleUpdateBlog = () => {
     setBlogs(blogs.map((blog) => (blog.id === editingBlogId ? editingBlog : blog)));
     setEditingBlogId(null);
@@ -108,9 +113,7 @@ const Admin = () => {
             onChange={handleChange}
           />
         </div>
-        <textarea
-          name="excerpt"
-          placeholder="Short Excerpt"
+        <TextEditor
           value={newBlog.excerpt}
           onChange={handleChange}
         />
@@ -167,11 +170,10 @@ const Admin = () => {
               value={editingBlog.date}
               onChange={handleEditChange}
             />
-            <textarea
-              name="excerpt"
-              placeholder="Short Excerpt"
+            <TextEditor
               value={editingBlog.excerpt}
-              onChange={handleEditChange}
+              onChange={handleEditExcerptChange}
+              placeholder="Edit your excerpt here..."
             />
             <div className="modal-actions">
               <button onClick={handleUpdateBlog}>Update Blog</button>

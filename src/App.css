@@ -1446,7 +1446,7 @@ nav ul li {
   outline-color: var(--primary-color);
 }
 
-.admin-page textarea {
+/* .admin-page textarea {
   display: block;
   padding: 10px;
   width: 100%;
@@ -1458,6 +1458,10 @@ nav ul li {
   margin-bottom: 20px;
   outline-color: var(--primary-color);
   resize: none;
+} */
+
+.admin-page .quill{
+  margin-bottom: 20px;
 }
 
 .admin-page button {
@@ -1590,7 +1594,7 @@ nav ul li {
   margin-top: 80px;
   border-radius: 10px;
   width: 90%;
-  max-width: 500px;
+  max-width: 700px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1010;
@@ -1602,8 +1606,7 @@ nav ul li {
   color: var(--primary-color);
 }
 
-.modal-content input,
-.modal-content textarea {
+.modal-content input {
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
