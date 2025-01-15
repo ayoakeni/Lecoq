@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import DOMPurify from "dompurify";
 // import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Opportunities from "../assets/images/opportunities.png";
-import TextEditor from "../components/textEditor";
+import TextEditor from "../components/TextEditor";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([
@@ -97,11 +97,14 @@ const Admin = () => {
     setEditingBlog((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleEditExcerptChange = (content) => {
-    // Sanitize the excerpt content when edited
-    const sanitizedContent = DOMPurify.sanitize(content);
-    setEditingBlog((prev) => ({ ...prev, excerpt: sanitizedContent }));
-  };
+  const handleEditExcerptChange = useCallback(
+    (content) => {
+      // Sanitize the excerpt content when edited
+      const sanitizedContent = DOMPurify.sanitize(content);
+      setEditingBlog((prev) => ({ ...prev, excerpt: sanitizedContent }));
+    },
+    [setEditingBlog]
+  );
 
   const handleUpdateBlog = () => {
     // Sanitize the excerpt before updating

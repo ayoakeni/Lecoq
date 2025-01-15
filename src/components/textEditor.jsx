@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { debounce } from "lodash";
 
 const TextEditor = ({ value, onChange, placeholder }) => {
   const modules = {
     toolbar: [
-      ["bold", "italic", "underline", "strike"], // Text formatting
-      [{ color: [] }, { background: [] }], // Text color and background
-      [{ header: [1, 2, 3, false] }], // Headers
-      ["link", "image"], // Links and images
-      ["blockquote", "code-block"], // Block elements
-      [{ list: "ordered" }, { list: "bullet" }], // Lists
-      ["clean"], // Remove formatting
+      ["bold", "italic", "underline", "strike"],
+      [{ color: [] }, { background: [] }],
+      [{ header: [1, 2, 3, false] }],
+      ["link", "image"],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["clean"],
     ],
   };
 
@@ -31,10 +32,13 @@ const TextEditor = ({ value, onChange, placeholder }) => {
     "bullet",
   ];
 
+  // Debounced change handler to minimize updates
+  const debouncedChange = useCallback(debounce(onChange, 300), [onChange]);
+
   return (
     <ReactQuill
       value={value}
-      onChange={onChange}
+      onChange={debouncedChange}
       placeholder={placeholder || "Write here..."}
       modules={modules}
       formats={formats}
@@ -42,4 +46,4 @@ const TextEditor = ({ value, onChange, placeholder }) => {
   );
 };
 
-export default TextEditor;
+export default React.memo(TextEditor);

@@ -1645,6 +1645,15 @@ nav ul li {
   color: var(--primary-color);
 }
 
+.modal-content .quill {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modal-content .quill .ql-editor {
+  max-height: 140px;
+}
+
 .modal-content input {
   width: 100%;
   margin-bottom: 10px;
@@ -1744,5 +1753,9 @@ nav ul li {
     font-size: 1.3rem;
     margin-bottom: 15px;
     color: var(--primary-color);
+  }
+
+  .modal-content .quill {
+    margin-bottom: 20px;
   }
 }
