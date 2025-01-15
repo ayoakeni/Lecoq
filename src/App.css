@@ -1446,22 +1446,16 @@ nav ul li {
   outline-color: var(--primary-color);
 }
 
-/* .admin-page textarea {
-  display: block;
-  padding: 10px;
-  width: 100%;
-  font-size: 16px;
-  color: var(--secondary-text-color);
-  height: 200px;
-  border: none;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  outline-color: var(--primary-color);
-  resize: none;
-} */
-
 .admin-page .quill{
   margin-bottom: 20px;
+}
+
+.admin-page .quill button:hover{
+  background-color: var(--button-primary-bg);
+}
+
+.admin-page .ql-editor {
+  max-height: 140px;
 }
 
 .admin-page button {
