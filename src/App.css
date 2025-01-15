@@ -548,7 +548,7 @@ nav ul li {
   opacity: 0;
   transform: scaleY(0.1);
   transition: transform 0.3s ease, opacity 0.3s ease, height 0s ease 0.3s;
-  z-index: 4;
+  z-index: 1000;
   height: 0;
 }
 .whatsapp-box.active {
@@ -736,7 +736,7 @@ nav ul li {
   background: var(--button-primary-bg);
   margin: 0px 20px 20px 0px;
   cursor: pointer;
-  z-index: 4;
+  z-index: 1000;
   transition: background-color 0.3s;
 }
 .whatsapp-toggle:hover{
