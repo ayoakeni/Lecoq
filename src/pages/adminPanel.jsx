@@ -9,7 +9,7 @@ const Admin = () => {
       id: "1",
       title: "5 Sure-banker Reasons Why You Need French",
       author: "Busayo Akinjagunla",
-      date: "Jan 10, 2025",
+      date: "2025-01-10",
       image: Opportunities,
       views: 500,
       excerpt: "In our increasingly interconnected world, learning a new language can open doors to countless opportunities.",
@@ -18,7 +18,7 @@ const Admin = () => {
       id: "2",
       title: "Unlocking Migration Opportunities",
       author: "Busayo Akinjagunla",
-      date: "Jan 12, 2025",
+      date: "2025-01-12",
       image: Opportunities,
       views: 700,
       excerpt: "Learning French is not just about mastering a language; it’s about unlocking new opportunities.",
@@ -26,10 +26,10 @@ const Admin = () => {
   ]);
 
   const [newBlog, setNewBlog] = useState({
-    id: "",
+    id: `${blogs.length + 1}`,
     title: "",
-    author: "",
-    date: "",
+    author: "Admin User",
+    date: new Date().toISOString().split("T")[0],
     views: 0,
     excerpt: "",
   });
@@ -40,11 +40,11 @@ const Admin = () => {
   };
 
   const handleAddBlog = () => {
-    if (!newBlog.title || !newBlog.author || !newBlog.date) {
-      alert("Please fill in all fields");
+    if (!newBlog.title || !newBlog.excerpt) {
+      alert("Please fill in the required fields: Title and Excerpt");
       return;
     }
-    
+
     // Sanitize the excerpt before adding the blog
     const sanitizedExcerpt = DOMPurify.sanitize(newBlog.excerpt);
 
@@ -116,8 +116,8 @@ const Admin = () => {
             value={newBlog.date}
             onChange={handleChange}
           />
-          <input 
-            type="file" 
+          <input
+            type="file"
             name="image"
             value={newBlog.image}
             onChange={handleChange}
@@ -125,7 +125,8 @@ const Admin = () => {
         </div>
         <TextEditor
           value={newBlog.excerpt}
-          onChange={handleChange}
+          onChange={(content) => setNewBlog({ ...newBlog, excerpt: content })}
+          placeholder="Write the blog excerpt..."
         />
         <button onClick={handleAddBlog}>Add Blog</button>
       </section>
