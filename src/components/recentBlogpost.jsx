@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebaseConfig";
 
 function RecentBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -54,7 +56,7 @@ function RecentBlogs() {
               </div>
               <strong>{blogs[0].title}</strong>
               <p dangerouslySetInnerHTML={{ __html: blogs[0].excerpt }}></p>
-              <button onClick={() => (window.location.href = blogs[0].link)}>
+              <button onClick={() => navigate(`/blog/${blogs[0].id}`)}>
                 Read post
               </button>
             </div>
@@ -79,7 +81,7 @@ function RecentBlogs() {
                 </div>
                 <strong>{blog.title}</strong>
                 <p dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
-                <button onClick={() => (window.location.href = blog.link)}>
+                <button onClick={() => navigate(`/blog/${blog.id}`)}>
                   Read post
                 </button>
               </div>

@@ -921,8 +921,12 @@ nav ul li {
 
 /* RecentBlog */
 .recentBlog {
-  padding: 85px;
+  padding: 85px 20px;
   background-color: #f9f9f9;
+}
+
+.recentBlogBody {
+  margin: auto;
 }
 
 .recentBlog h2 {
@@ -999,11 +1003,12 @@ nav ul li {
 }
 
 .recentPostGroup .recentDetails {
-  padding: 1rem;
+  padding: 1rem  1rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
+  width: 100%;
 }
 
 .recentDetails .info {
@@ -1012,6 +1017,7 @@ nav ul li {
   align-items: center;
   gap: 10px;
   justify-content: space-between;
+  flex-wrap: wrap;
   font-size: 0.9rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
@@ -1049,8 +1055,10 @@ nav ul li {
   margin-bottom: 1rem;
   line-height: 1.5;
   overflow: hidden;
+  /* width: 300px; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
   -webkit-box-orient: vertical;
 }
 
