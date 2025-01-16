@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import DOMPurify from "dompurify";
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
-import { TextEditor } from "../components/TextEditor";
+import TextEditor from "../components/TextEditor";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
@@ -15,24 +22,30 @@ const Admin = () => {
     views: 0,
     excerpt: "",
     image: null,
-    imageUrl: "",
   });
   const [imagePreview, setImagePreview] = useState("");
   const [editingBlogId, setEditingBlogId] = useState(null);
   const [editingBlog, setEditingBlog] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Fetch blogs from Firestore
-  useEffect(() => {
-    const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
+    try {
       const querySnapshot = await getDocs(collection(db, "blogs"));
       const blogsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setBlogs(blogsData);
-    };
-    fetchBlogs();
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+      alert("Failed to fetch blogs. Please try again.");
+    }
   }, []);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, [fetchBlogs]);
 
   // Handle input field changes
   const handleChange = (e) => {
@@ -42,6 +55,7 @@ const Admin = () => {
       setNewBlog((prev) => ({ ...prev, image: file }));
 
       const reader = new FileReader();
+      reader.onload = () => setImagePreview
       reader.onload = () => setImagePreview(reader.result);
       reader.readAsDataURL(file);
     } else {
@@ -52,10 +66,11 @@ const Admin = () => {
   // Add a new blog
   const handleAddBlog = async () => {
     if (!newBlog.title || !newBlog.excerpt || !newBlog.image) {
-      alert("Please fill in the required fields: Title, Excerpt, and Image");
+      alert("Please fill in the required fields.");
       return;
     }
 
+    setLoading(true);
     try {
       const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
       await uploadBytes(imageRef, newBlog.image);
@@ -79,18 +94,14 @@ const Admin = () => {
         views: 0,
         excerpt: "",
         image: null,
-        imageUrl: "",
       });
       setImagePreview("");
-      const querySnapshot = await getDocs(collection(db, "blogs"));
-      const blogsData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBlogs(blogsData);
+      fetchBlogs();
     } catch (error) {
       console.error("Error adding blog:", error);
       alert("Failed to add blog. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -117,6 +128,12 @@ const Admin = () => {
 
   // Update an edited blog
   const handleUpdateBlog = async () => {
+    if (!editingBlog.title || !editingBlog.excerpt) {
+      alert("Please fill in the required fields.");
+      return;
+    }
+
+    setLoading(true);
     try {
       const blogRef = doc(db, "blogs", editingBlogId);
       await updateDoc(blogRef, {
@@ -129,28 +146,28 @@ const Admin = () => {
       alert("Blog updated successfully!");
       setEditingBlogId(null);
       setEditingBlog(null);
-      const querySnapshot = await getDocs(collection(db, "blogs"));
-      const blogsData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBlogs(blogsData);
+      fetchBlogs();
     } catch (error) {
       console.error("Error updating blog:", error);
       alert("Failed to update blog. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   // Delete a blog
   const handleDeleteBlog = async (id) => {
+    setLoading(true);
     try {
       const blogRef = doc(db, "blogs", id);
       await deleteDoc(blogRef);
-      setBlogs(blogs.filter((blog) => blog.id !== id));
       alert("Blog deleted successfully!");
+      fetchBlogs();
     } catch (error) {
       console.error("Error deleting blog:", error);
       alert("Failed to delete blog. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -166,7 +183,7 @@ const Admin = () => {
     try {
       await signOut(auth);
       alert("You have been logged out successfully!");
-      window.location.href = "/admin/login"; // Redirect to login page
+      window.location.href = "/admin/login";
     } catch (error) {
       console.error("Error during logout:", error);
       alert("Failed to logout. Please try again.");
@@ -176,7 +193,7 @@ const Admin = () => {
   return (
     <div className="admin-page">
       <div className="admin-header">
-        <button onClick={handleLogout} className="logout-button">
+        <button onClick={handleLogout} className="logout-button" disabled={loading}>
           Logout
         </button>
       </div>
@@ -225,7 +242,9 @@ const Admin = () => {
             placeholder="Write the blog excerpt..."
           />
         </div>
-        <button onClick={handleAddBlog}>Add Blog</button>
+        <button onClick={handleAddBlog} disabled={loading}>
+          {loading ? "Adding..." : "Add Blog"}
+        </button>
       </section>
 
       <h3>Manage Blogs</h3>
@@ -250,7 +269,9 @@ const Admin = () => {
                 dangerouslySetInnerHTML={{ __html: blog.excerpt }}
               ></div>
               <button onClick={() => handleEditBlog(blog)}>Edit</button>
-              <button onClick={() => handleDeleteBlog(blog.id)}>Delete</button>
+              <button onClick={() => handleDeleteBlog(blog.id)} disabled={loading}>
+                {loading ? "Deleting..." : "Delete"}
+              </button>
             </div>
           </div>
         ))}
@@ -286,7 +307,9 @@ const Admin = () => {
               placeholder="Edit your excerpt here..."
             />
             <div className="modal-actions">
-              <button onClick={handleUpdateBlog}>Update Blog</button>
+              <button onClick={handleUpdateBlog} disabled={loading}>
+                {loading ? "Updating..." : "Update Blog"}
+              </button>
               <button onClick={handleCloseModal}>Cancel</button>
             </div>
           </div>

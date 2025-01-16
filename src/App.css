@@ -963,6 +963,19 @@ nav ul li {
   /* border-radius: 8px; */
 }
 
+.firstPost .recentDetails p {
+  font-size: 0.95rem;
+  color: var(--secondary-text-color);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  overflow: hidden;
+  height: 70px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
 .firstPost:hover {
   transform: translateY(-5px);
 }
@@ -978,14 +991,15 @@ nav ul li {
 }
 
 /* Second and Third recent Posts Styling */
-.recentPost {
+.recentPostGroup .recentPost {
   display: flex;
   transition: transform 0.3s ease;
-  height: 167px;
+  height: auto;
 }
 
 .recentPostGroup .recentPost img {
   width: 40%;
+  height: auto;
   object-fit: cover;
   /* border-radius: 8px; */
 }
@@ -1003,10 +1017,9 @@ nav ul li {
 }
 
 .recentPostGroup .recentDetails {
-  padding: 1rem  1rem 1rem;
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: left;
   width: 100%;
 }
@@ -1047,17 +1060,24 @@ nav ul li {
 .recentDetails strong {
   font-size: 18px;
   color: var(--tertiary-color);
+  margin-bottom: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  height: auto;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
 }
 
-.recentDetails p {
+.recentPostGroup .recentDetails p {
   font-size: 0.95rem;
   color: var(--secondary-text-color);
   margin-bottom: 1rem;
   line-height: 1.5;
   overflow: hidden;
-  /* width: 300px; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  height: 50px;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
 }
