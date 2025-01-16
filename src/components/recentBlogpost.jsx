@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebaseConfig";
 import SafeHtml from "./safeHtml";
+import DateTimeDisplay from "../components/timeFormat";
 
 function RecentBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -52,11 +53,11 @@ function RecentBlogs() {
                 <li className="nameDate">
                   <span>{firstPost.author}</span>
                   <i className="fa-solid fa-asterisk"></i>
-                  <span>{new Date(firstPost.date).toLocaleDateString()}</span>
+                  <DateTimeDisplay timestamp={firstPost.time} />
                 </li>
-                <span className="views">
+                {/* <span className="views">
                   <i className="fa-solid fa-eye"></i>{firstPost.views}
-                </span>
+                </span> */}
               </div>
               <strong>{firstPost.title}</strong>
               <p><SafeHtml htmlContent={firstPost.excerpt} fallback="No excerpt provided." /></p>
@@ -77,11 +78,8 @@ function RecentBlogs() {
                   <li className="nameDate">
                     <span>{blog.author}</span>
                     <i className="fa-solid fa-asterisk"></i>
-                    <span>{new Date(blog.date).toLocaleDateString()}</span>
+                    <DateTimeDisplay timestamp={blog.time} />
                   </li>
-                  <span className="views">
-                    <i className="fa-solid fa-eye"></i>{blog.views}
-                  </span>
                 </div>
                 <strong>{blog.title}</strong>
                 <p><SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /></p>

@@ -5,6 +5,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../utils/firebaseConfig";
 import imgg from "../assets/images/mad-designer.png";
 import SafeHtml from "../components/safeHtml";
+import DateTimeDisplay from "../components/timeFormat";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -35,9 +36,15 @@ const BlogDetails = () => {
 
   if (!blog) {
     return (
-      <div className="loaderBox">
-        <span className="loader"></span>
+      <div className="errorPage">
+        <span>
+          Page not found: <strong>404</strong>. Check the address again.
+        </span>
+        <img src={imgg} alt="error" />
       </div>
+      // <div className="loaderBox">
+      //   <span className="loader"></span>
+      // </div>
     );
   }
 
@@ -48,15 +55,15 @@ const BlogDetails = () => {
           <div className="titleAuthor">
             <h1>{blog.title}</h1>
             <p className="meta">
-              <span>By</span>
-              <strong>{blog.author}</strong>
-              <span>
-                <i className="fa-solid fa-grip-lines-vertical"></i>
-                {blog.date}
-              </span>
-              <span>
-                <i className="fa-solid fa-grip-lines-vertical"></i>
-                {blog.time}
+              <li className="name-manage-Date">
+                <span>By</span>
+                <strong>{blog.author}</strong>
+              </li>
+              <i className="fa-solid fa-asterisk"></i>
+              <DateTimeDisplay timestamp={blog.time} />
+              <span className="views">
+                <i className="fa-solid fa-eye"></i>
+                {blog.views}
               </span>
             </p>
           </div>

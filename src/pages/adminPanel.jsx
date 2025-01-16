@@ -5,6 +5,7 @@ import {
   getDocs,
   updateDoc,
   deleteDoc,
+  serverTimestamp,
   doc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -12,6 +13,8 @@ import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
 import TextEditor from "../components/TextEditor";
 import SafeHtml from "../components/safeHtml"
+import DateTimeDisplay from "../components/timeFormat";
+import DOMPurify from "dompurify";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
@@ -80,6 +83,7 @@ const Admin = () => {
         title: newBlog.title,
         author: newBlog.author,
         date: newBlog.date,
+        time: serverTimestamp(),
         views: 0,
         excerpt: DOMPurify.sanitize(newBlog.excerpt),
         imageUrl,
@@ -218,12 +222,6 @@ const Admin = () => {
         </div>
         <div className="inputbox">
           <input
-            type="date"
-            name="date"
-            value={newBlog.date}
-            onChange={handleChange}
-          />
-          <input
             type="file"
             name="image"
             accept="image/*"
@@ -254,15 +252,14 @@ const Admin = () => {
             <img src={blog.imageUrl || blog.image} alt={blog.title} />
             <div className="blog-manage-Details">
               <div className="blog-manage-Meta">
-                <li className="name-manage-Date">
-                  <span className="blog-manage-title">{blog.title}</span>
-                  <i className="fa-solid fa-asterisk"></i>
-                  <span>{blog.date}</span>
-                </li>
-                <span className="views-manage-title">
-                  <i className="fa-solid fa-eye"></i>
-                  {blog.views}
-                </span>
+                <span className="blog-manage-title">{blog.title}</span>
+                <div className="blog-view-date">
+                  <DateTimeDisplay timestamp={blog.time} />
+                  <span className="views">
+                    <i className="fa-solid fa-eye"></i>
+                    {blog.views}
+                  </span>
+                </div>
               </div>
               <div className="blogExcerpt-manage">
                 <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />

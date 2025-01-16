@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
 import SafeHtml from "../components/safeHtml";
+import DateTimeDisplay from "../components/timeFormat";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -68,11 +69,11 @@ const Blog = () => {
                 <li className="nameDate">
                   <span>{blog.author}</span>
                   <i className="fa-solid fa-asterisk"></i>
-                  <span>{blog.date}</span>
+                  <DateTimeDisplay timestamp={blog.time} />
                 </li>
-                <span className="views">
+                {/* <span className="views">
                   <i className="fa-solid fa-eye"></i>{blog.views}
-                </span>
+                </span> */}
               </div>
               <strong className="blogTitle">{blog.title}</strong>
               <p className="blogExcerpt">

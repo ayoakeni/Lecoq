@@ -1037,14 +1037,15 @@ nav ul li {
   margin-bottom: 0.5rem;
 }
 
-.nameDate{
+.nameDate, .date-time-display{
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
-.nameDate i{
+.fa-asterisk {
   font-size: 8px;
+  color: var(--tertiary-color) !important;
 }
 
 .views{
@@ -1054,7 +1055,7 @@ nav ul li {
   gap: 5px;
 }
 
-.views i{
+i{
   color: lightgray;
 }
 
@@ -1284,8 +1285,10 @@ nav ul li {
 
 .blog-header .meta {
   display: flex;
-  gap: 5px;
+  align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
+  width: fit-content;
   font-size: 0.9rem;
   color: var(--primary-color);
 }
@@ -1565,7 +1568,7 @@ nav ul li {
 
 /* Individual blog post */
 .blog-item {
-  padding: 15px 15px 0;
+  padding: 15px 15px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: fit-content;
@@ -1594,15 +1597,13 @@ nav ul li {
 /* Blog meta information */
 .blog-manage-Meta {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 0;
-  row-gap: 5px;
+  gap: 5px;
   font-size: 0.9rem;
   color: var(--primary-color);
-  flex-wrap: wrap;
 }
 
 /* Blog title */
@@ -1610,32 +1611,15 @@ nav ul li {
   font-size: 18px;
   color: var(--tertiary-color);
   font-weight: bold;
-  max-width: 275px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.name-manage-Date{
+.blog-view-date {
   display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.name-manage-Date i{
-  font-size: 8px;
-}
-
-.views-manage-title{
-  display: flex;
-  align-items: center;
-  height: fit-content;
-  gap: 5px;
-}
-
-.views-manage-title i{
-  color: lightgray;
+  justify-content: space-between;
 }
 
 /* Blog excerpt */
@@ -1758,20 +1742,10 @@ nav ul li {
   .admin-page .quill {
     width: 100%;
   }
-
-  .blog-manage-Meta {
-    gap: 5px;
-    align-items: end;
-    flex-wrap: nowrap;
-  }
-
-  .name-manage-Date {
-    flex-wrap: wrap;
-  }
-
+  
   .blog-manage-title {
     font-size: 15px;
-    max-width: 300px;
+    width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
