@@ -4,12 +4,15 @@ import Navbar from "./components/navbar";
 import LandingPage from "./pages/LandingPage";
 import Blog from "./pages/Blog";
 import Admin from "./pages/adminPanel";
+import AdminLogin from "./pages/adminLogin";
 import BlogDetails from "./pages/blogDetails";
 import Educational from "./pages/EducationalService";
 import NonEducational from "./pages/NonEducationalService";
 import WhatsappChatBox from "./components/whatsapp";
 import ScrollToTopButton from "./components/scrotoTop";
 import ContactUs from "./components/contact";
+import PrivateRoute from "./utils/privateRoute";
+import { db } from "./utils/firebaseConfig"; 
 import "./App.css";
 
 import img from "./assets/images/mad-designer.png";
@@ -36,8 +39,16 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/blog/:id" element={<BlogDetails />} />
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <Admin />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/blog/:id" element={<BlogDetails db={db} />} />
           <Route path="/educational-service" element={<Educational />} />
           <Route path="/non-educational-service" element={<NonEducational />} />
           <Route

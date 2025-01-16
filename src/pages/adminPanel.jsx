@@ -1,33 +1,14 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import DOMPurify from "dompurify";
-// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import Opportunities from "../assets/images/opportunities.png";
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getAuth, signOut } from "firebase/auth";
+import { db, storage } from "../utils/firebaseConfig";
 import TextEditor from "../components/TextEditor";
 
 const Admin = () => {
-  const [blogs, setBlogs] = useState([
-    {
-      id: "1",
-      title: "5 Sure-banker Reasons Why You Need French",
-      author: "Busayo Akinjagunla",
-      date: "2025-01-10",
-      image: Opportunities,
-      views: 500,
-      excerpt: "In our increasingly interconnected world, learning a new language can open doors to countless opportunities.",
-    },
-    {
-      id: "2",
-      title: "Unlocking Migration Opportunities",
-      author: "Busayo Akinjagunla",
-      date: "2025-01-12",
-      image: Opportunities,
-      views: 700,
-      excerpt: "Learning French is not just about mastering a language; it’s about unlocking new opportunities.",
-    },
-  ]);
-
+  const [blogs, setBlogs] = useState([]);
   const [newBlog, setNewBlog] = useState({
-    id: `${blogs.length + 1}`,
     title: "",
     author: "Busayo Akinjagunla",
     date: new Date().toISOString().split("T")[0],
@@ -36,18 +17,30 @@ const Admin = () => {
     image: null,
     imageUrl: "",
   });
-
   const [imagePreview, setImagePreview] = useState("");
   const [editingBlogId, setEditingBlogId] = useState(null);
   const [editingBlog, setEditingBlog] = useState(null);
 
+  // Fetch blogs from Firestore
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const blogsData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBlogs(blogsData);
+    };
+    fetchBlogs();
+  }, []);
+
+  // Handle input field changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image" && files[0]) {
       const file = files[0];
       setNewBlog((prev) => ({ ...prev, image: file }));
 
-      // Preview the image
       const reader = new FileReader();
       reader.onload = () => setImagePreview(reader.result);
       reader.readAsDataURL(file);
@@ -56,80 +49,138 @@ const Admin = () => {
     }
   };
 
+  // Add a new blog
   const handleAddBlog = async () => {
     if (!newBlog.title || !newBlog.excerpt || !newBlog.image) {
       alert("Please fill in the required fields: Title, Excerpt, and Image");
       return;
     }
 
-    // Sanitize excerpt
-    const sanitizedExcerpt = DOMPurify.sanitize(newBlog.excerpt);
+    try {
+      const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
+      await uploadBytes(imageRef, newBlog.image);
+      const imageUrl = await getDownloadURL(imageRef);
 
-    // Upload image to Firebase Storage
-    const storage = getStorage();
-    const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
-    await uploadBytes(imageRef, newBlog.image);
+      const blogDoc = {
+        title: newBlog.title,
+        author: newBlog.author,
+        date: newBlog.date,
+        views: 0,
+        excerpt: DOMPurify.sanitize(newBlog.excerpt),
+        imageUrl,
+      };
+      await addDoc(collection(db, "blogs"), blogDoc);
 
-    const imageUrl = await getDownloadURL(imageRef);
-
-    // Add new blog
-    setBlogs([...blogs, { ...newBlog, excerpt: sanitizedExcerpt, imageUrl, id: `${blogs.length + 1}` }]);
-    setNewBlog({
-      id: `${blogs.length + 2}`,
-      title: "",
-      author: "Admin User",
-      date: new Date().toISOString().split("T")[0],
-      views: 0,
-      excerpt: "",
-      image: null,
-      imageUrl: "",
-    });
-    setImagePreview("");
+      alert("Blog added successfully!");
+      setNewBlog({
+        title: "",
+        author: "Busayo Akinjagunla",
+        date: new Date().toISOString().split("T")[0],
+        views: 0,
+        excerpt: "",
+        image: null,
+        imageUrl: "",
+      });
+      setImagePreview("");
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const blogsData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBlogs(blogsData);
+    } catch (error) {
+      console.error("Error adding blog:", error);
+      alert("Failed to add blog. Please try again.");
+    }
   };
 
+  // Edit an existing blog
   const handleEditBlog = (blog) => {
     setEditingBlogId(blog.id);
     setEditingBlog(blog);
   };
 
+  // Handle changes in the blog being edited
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditingBlog((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle changes in the excerpt (using TextEditor)
   const handleEditExcerptChange = useCallback(
     (content) => {
-      // Sanitize the excerpt content when edited
       const sanitizedContent = DOMPurify.sanitize(content);
       setEditingBlog((prev) => ({ ...prev, excerpt: sanitizedContent }));
     },
     [setEditingBlog]
   );
 
-  const handleUpdateBlog = () => {
-    // Sanitize the excerpt before updating
-    const sanitizedExcerpt = DOMPurify.sanitize(editingBlog.excerpt);
+  // Update an edited blog
+  const handleUpdateBlog = async () => {
+    try {
+      const blogRef = doc(db, "blogs", editingBlogId);
+      await updateDoc(blogRef, {
+        title: editingBlog.title,
+        author: editingBlog.author,
+        date: editingBlog.date,
+        excerpt: DOMPurify.sanitize(editingBlog.excerpt),
+      });
 
-    setBlogs(
-      blogs.map((blog) =>
-        blog.id === editingBlogId ? { ...editingBlog, excerpt: sanitizedExcerpt } : blog
-      )
-    );
-    setEditingBlogId(null);
-    setEditingBlog(null);
+      alert("Blog updated successfully!");
+      setEditingBlogId(null);
+      setEditingBlog(null);
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const blogsData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBlogs(blogsData);
+    } catch (error) {
+      console.error("Error updating blog:", error);
+      alert("Failed to update blog. Please try again.");
+    }
   };
 
+  // Delete a blog
+  const handleDeleteBlog = async (id) => {
+    try {
+      const blogRef = doc(db, "blogs", id);
+      await deleteDoc(blogRef);
+      setBlogs(blogs.filter((blog) => blog.id !== id));
+      alert("Blog deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      alert("Failed to delete blog. Please try again.");
+    }
+  };
+
+  // Close the edit modal
   const handleCloseModal = () => {
     setEditingBlogId(null);
     setEditingBlog(null);
   };
 
-  const handleDeleteBlog = (id) => {
-    setBlogs(blogs.filter((blog) => blog.id !== id));
+  // Logout functionality
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      alert("You have been logged out successfully!");
+      window.location.href = "/admin/login"; // Redirect to login page
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Failed to logout. Please try again.");
+    }
   };
 
   return (
     <div className="admin-page">
+      <div className="admin-header">
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      </div>
+
       <section className="add-blog">
         <h3>Add a New Blog</h3>
         <div className="inputbox">
@@ -164,7 +215,9 @@ const Admin = () => {
         </div>
         <div className="textinputImagepreview">
           <div className="image-previewBox">
-            {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
+            {imagePreview && (
+              <img src={imagePreview} alt="Preview" className="image-preview" />
+            )}
           </div>
           <TextEditor
             value={newBlog.excerpt}

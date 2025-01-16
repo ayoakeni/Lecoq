@@ -1,60 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// Import images
-import Gcontent from "../assets/images/Globalcontent.png";
-import Gplay from "../assets/images/Globalplayer.png";
-import Aceexam from "../assets/images/Aceexam.png";
-import Opportunities from "../assets/images/opportunities.png";
-
+import { collection, getDocs } from "firebase/firestore";
+import { db, storage } from "../utils/firebaseConfig";
+import { getDownloadURL, ref } from "firebase/storage";
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
   const navigate = useNavigate();
-  const blogs = [
-    {
-      image: Opportunities,
-      author: "Busayo Akinjagunla",
-      date: "Jan 10, 2025",
-      views: "500",
-      title: "5 Sure-banker reasons why you need French",
-      excerpt: "In our increasingly interconnected world, learning a new language can open doors to countless opportunities. Among the many languages you could choose to study, French stands out as a particularly valuable option. Here are five compelling reasons why learning French is important.",
-      link: "/blog-post-1",
-    },
-    {
-      image: Aceexam,
-      author: "Busayo Akinjagunla",
-      date: "Jan 12, 2025",
-      views: "700",
-      title: "Unlocking Migration Opportunities",
-      excerpt: "Learning French is not just about mastering a language; it’s about unlocking new opportunities, enriching your cultural experiences, and enhancing your cognitive abilities. Whether you’re looking to advance your career, travel the world, or simply appreciate the beauty of a new language, French offers countless benefits that make it a worthwhile endeavor. So, why not take the plunge and start your journey into the French language today?",
-      link: "/blog-post-2",
-    },
-    {
-      image: Gplay,
-      author: "Busayo Akinjagunla",
-      date: "Jan 14, 2025",
-      views: "500",
-      title: "5 Sure-banker reasons why you need French",
-      excerpt: "In our increasingly interconnected world, learning a new language can open doors to countless opportunities. Among the many languages you could choose to study, French stands out as a particularly valuable option. Here are five compelling reasons why learning French is important.",
-      link: "/blog-post-3",
-    },
-    {
-      image: Gcontent,
-      author: "Busayo Akinjagunla",
-      date: "Jan 16, 2025",
-      views: "3000",
-      title: "Unlocking Migration Opportunities",
-      excerpt: "Learning French is not just about mastering a language; it’s about unlocking new opportunities, enriching your cultural experiences, and enhancing your cognitive abilities. Whether you’re looking to advance your career, travel the world, or simply appreciate the beauty of a new language, French offers countless benefits that make it a worthwhile endeavor. So, why not take the plunge and start your journey into the French language today?",
-      link: "/blog-post-4",
-    },
-  ];
-  
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "blogs"));
+        const blogsData = await Promise.all(
+          querySnapshot.docs.map(async (doc) => {
+            const blogData = doc.data();
+            if (blogData.image) {
+              const imageUrl = await getImageURL(blogData.image);
+              return {
+                id: doc.id,
+                ...blogData,
+                image: imageUrl,
+              };
+            }
+            return {
+              id: doc.id,
+              ...blogData,
+            };
+          })
+        );
+        setBlogs(blogsData);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Function to fetch image URL from Firebase Storage
+  const getImageURL = async (imagePath) => {
+    try {
+      const imageRef = ref(storage, imagePath);
+      const imageUrl = await getDownloadURL(imageRef);
+      console.log("Image URL: ", imageUrl);
+      return imageUrl;
+    } catch (error) {
+      console.error("Error fetching image URL:", error);
+      return null;
+    }
+  };
+
   return (
     <div className="blog">
       <h2 className="title edu">Blogs</h2>
       <section className="blog-grid">
-        {blogs.map((blog, index) => (
-          <div className="blogPost" key={index}>
-            <img src={blog.image} alt={blog.title} className="blogImage" />
+        {blogs.map((blog) => (
+          <div className="blogPost" key={blog.id}>
+            {blog.image ? (
+              <img src={blog.image} alt={blog.title} className="blogImage" /> // Display image if URL is available
+            ) : (
+              <div className="no-image">No Image Available</div>
+            )}
             <div className="blogDetails">
               <div className="blogMeta">
                 <li className="nameDate">
@@ -67,10 +73,10 @@ const Blog = () => {
                 </span>
               </div>
               <strong className="blogTitle">{blog.title}</strong>
-              <p className="blogExcerpt">{blog.excerpt}</p>
+              <p className="blogExcerpt" dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
               <button
                 className="readButton"
-                onClick={() => navigate(`/blog/${index + 1}`)} // Navigate to BlogDetails
+                onClick={() => navigate(`/blog/${blog.id}`)}
               >
                 Read post
               </button>
@@ -78,7 +84,6 @@ const Blog = () => {
           </div>
         ))}
       </section>
-
     </div>
   );
 };
