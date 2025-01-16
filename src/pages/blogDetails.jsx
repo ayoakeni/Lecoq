@@ -35,11 +35,8 @@ const BlogDetails = () => {
 
   if (!blog) {
     return (
-      <div className="errorPage">
-        <span>
-          Page not found: <strong>404</strong>. Check the address again.
-        </span>
-        <img src={imgg} alt="error" />
+      <div className="loaderBox">
+        <span className="loader"></span>
       </div>
     );
   }
