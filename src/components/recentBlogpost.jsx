@@ -12,7 +12,7 @@ function RecentBlogs() {
     const fetchBlogs = async () => {
       try {
         const blogsCollection = collection(db, "blogs");
-        const blogsQuery = query(blogsCollection, orderBy("date", "desc"), limit(3));
+        const blogsQuery = query(blogsCollection, orderBy("date", "desc"), limit(4)); // Fetch the latest 4 blogs
         const querySnapshot = await getDocs(blogsQuery);
 
         const fetchedBlogs = querySnapshot.docs.map((doc) => ({
@@ -35,37 +35,40 @@ function RecentBlogs() {
     return <div>Loading...</div>;
   }
 
+  // Separate the first blog post and the next three
+  const [firstPost, ...otherPosts] = blogs;
+
   return (
     <section className="recentBlog">
       <h2>Recent Blog Posts</h2>
       <div className="recentBlogBody">
         {/* First post */}
-        {blogs[0] && (
+        {firstPost && (
           <div className="recentPost firstPost">
-            <img src={blogs[0].imageUrl} alt={blogs[0].title} />
+            <img src={firstPost.imageUrl} alt={firstPost.title} />
             <div className="recentDetails">
               <div className="info">
                 <li className="nameDate">
-                  <span>{blogs[0].author}</span>
+                  <span>{firstPost.author}</span>
                   <i className="fa-solid fa-asterisk"></i>
-                  <span>{new Date(blogs[0].date).toLocaleDateString()}</span>
+                  <span>{new Date(firstPost.date).toLocaleDateString()}</span>
                 </li>
                 <span className="views">
-                  <i className="fa-solid fa-eye"></i>{blogs[0].views}
+                  <i className="fa-solid fa-eye"></i>{firstPost.views}
                 </span>
               </div>
-              <strong>{blogs[0].title}</strong>
-              <p dangerouslySetInnerHTML={{ __html: blogs[0].excerpt }}></p>
-              <button onClick={() => navigate(`/blog/${blogs[0].id}`)}>
+              <strong>{firstPost.title}</strong>
+              <p dangerouslySetInnerHTML={{ __html: firstPost.excerpt }}></p>
+              <button onClick={() => navigate(`/blog/${firstPost.id}`)}>
                 Read post
               </button>
             </div>
           </div>
         )}
 
-        {/* Second and third posts */}
+        {/* Second to fourth posts */}
         <div className="recentPostGroup">
-          {blogs.slice(0, 3).map((blog, index) => (
+          {otherPosts.map((blog) => (
             <div className="recentPost" key={blog.id}>
               <img src={blog.imageUrl} alt={blog.title} />
               <div className="recentDetails">

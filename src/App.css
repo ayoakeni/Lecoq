@@ -1584,7 +1584,7 @@ nav ul li {
 
 /* Blog details container */
 .blog-manage-Details {
-  padding: 15px 0;
+  padding: 5px 0 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1593,6 +1593,7 @@ nav ul li {
 /* Blog meta information */
 .blog-manage-Meta {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   list-style: none;
   padding: 0;
