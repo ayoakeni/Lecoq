@@ -11,7 +11,7 @@ import {
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
-import TextEditor from "../components/TextEditor";
+import MemoizedTextEditor from "../components/TextEditor";
 import SafeHtml from "../components/safeHtml"
 import DateTimeDisplay from "../components/timeFormat";
 import DOMPurify from "dompurify";
@@ -234,7 +234,7 @@ const Admin = () => {
               <img src={imagePreview} alt="Preview" className="image-preview" />
             )}
           </div>
-          <TextEditor
+          <MemoizedTextEditor
             value={newBlog.excerpt}
             onChange={(content) => setNewBlog({ ...newBlog, excerpt: content })}
             placeholder="Write the blog excerpt..."
@@ -297,7 +297,7 @@ const Admin = () => {
               value={editingBlog.date}
               onChange={handleEditChange}
             />
-            <TextEditor
+            <MemoizedTextEditor
               value={editingBlog.excerpt}
               onChange={handleEditExcerptChange}
               placeholder="Edit your excerpt here..."

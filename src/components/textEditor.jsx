@@ -45,5 +45,5 @@ const TextEditor = ({ value, onChange, placeholder }) => {
     />
   );
 };
-
-export default React.memo(TextEditor);
+const MemoizedTextEditor = React.memo(TextEditor);
+export default MemoizedTextEditor;
