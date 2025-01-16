@@ -4,7 +4,7 @@ import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
-import TextEditor from "../components/TextEditor";
+import { TextEditor } from "../components/TextEditor";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
