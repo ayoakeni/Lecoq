@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
+import { ref, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../utils/firebaseConfig";
 import imgg from "../assets/images/mad-designer.png";
 
-const BlogDetails = ({ db }) => {
+const BlogDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [blog, setBlog] = useState(null);
@@ -13,7 +15,13 @@ const BlogDetails = ({ db }) => {
       try {
         const blogDoc = await getDoc(doc(db, "blogs", id));
         if (blogDoc.exists()) {
-          setBlog(blogDoc.data());
+          const blogData = blogDoc.data();
+          if (blogData.image) {
+            const imageUrl = await getDownloadURL(ref(storage, blogData.image));
+            setBlog({ ...blogData, imageUrl });
+          } else {
+            setBlog(blogData);
+          }
         } else {
           console.error("No such blog!");
         }
@@ -22,7 +30,7 @@ const BlogDetails = ({ db }) => {
       }
     };
     fetchBlog();
-  }, [id, db]);
+  }, [id]);
 
   if (!blog) {
     return (
@@ -61,9 +69,13 @@ const BlogDetails = ({ db }) => {
           )}
         </div>
         <div className="blog-content">
-          {blog.content.split("\n").map((line, index) => (
+        {blog?.content ? (
+          blog.content.split("\n").map((line, index) => (
             <p key={index}>{line.trim()}</p>
-          ))}
+          ))
+        ) : (
+          <p>Content is not available for this blog.</p>
+        )}
         </div>
         <button className="back-button" onClick={() => navigate(-1)}>
           <i className="fa-solid fa-arrow-left"></i> Back
