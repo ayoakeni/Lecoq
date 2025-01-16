@@ -56,8 +56,8 @@ const Blog = () => {
       <section className="blog-grid">
         {blogs.map((blog) => (
           <div className="blogPost" key={blog.id}>
-            {blog.image ? (
-              <img src={blog.image} alt={blog.title} className="blogImage" /> // Display image if URL is available
+            {blog.imageUrl ? (
+              <img src={blog.imageUrl} alt={blog.title} className="blogImage" /> // Display image if URL is available
             ) : (
               <div className="no-image">No Image Available</div>
             )}

@@ -40,7 +40,7 @@ function RecentBlogs() {
         {/* First post */}
         {blogs[0] && (
           <div className="recentPost firstPost">
-            <img src={blogs[0].imageURL} alt={blogs[0].title} />
+            <img src={blogs[0].imageUrl} alt={blogs[0].title} />
             <div className="recentDetails">
               <div className="info">
                 <li className="nameDate">
@@ -65,7 +65,7 @@ function RecentBlogs() {
         <div className="recentPostGroup">
           {blogs.slice(1, 3).map((blog, index) => (
             <div className="recentPost" key={blog.id}>
-              <img src={blog.imageURL} alt={blog.title} />
+              <img src={blog.imageUrl} alt={blog.title} />
               <div className="recentDetails">
                 <div className="info">
                   <li className="nameDate">
