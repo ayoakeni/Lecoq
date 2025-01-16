@@ -55,7 +55,7 @@ const BlogDetails = () => {
           <div className="titleAuthor">
             <h1>{blog.title}</h1>
             <p className="meta">
-              <li className="name-manage-Date">
+              <li className="meta-name-Date">
                 <span>By</span>
                 <strong>{blog.author}</strong>
               </li>
