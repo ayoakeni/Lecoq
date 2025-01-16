@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../utils/firebaseConfig";
 import imgg from "../assets/images/mad-designer.png";
+import SafeHtml from "../components/safeHtml";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -69,13 +70,7 @@ const BlogDetails = () => {
           )}
         </div>
         <div className="blog-content">
-        {blog?.content ? (
-          blog.content.split("\n").map((line, index) => (
-            <p key={index}>{line.trim()}</p>
-          ))
-        ) : (
-          <p>Content is not available for this blog.</p>
-        )}
+          <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
         </div>
         <button className="back-button" onClick={() => navigate(-1)}>
           <i className="fa-solid fa-arrow-left"></i> Back

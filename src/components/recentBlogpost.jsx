@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebaseConfig";
+import SafeHtml from "./safeHtml";
 
 function RecentBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -58,7 +59,7 @@ function RecentBlogs() {
                 </span>
               </div>
               <strong>{firstPost.title}</strong>
-              <p dangerouslySetInnerHTML={{ __html: firstPost.excerpt }}></p>
+              <p><SafeHtml htmlContent={firstPost.excerpt} fallback="No excerpt provided." /></p>
               <button onClick={() => navigate(`/blog/${firstPost.id}`)}>
                 Read post
               </button>
@@ -83,7 +84,7 @@ function RecentBlogs() {
                   </span>
                 </div>
                 <strong>{blog.title}</strong>
-                <p dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
+                <p><SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /></p>
                 <button onClick={() => navigate(`/blog/${blog.id}`)}>
                   Read post
                 </button>

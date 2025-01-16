@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import DOMPurify from "dompurify";
 import {
   collection,
   addDoc,
@@ -12,6 +11,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
 import TextEditor from "../components/TextEditor";
+import SafeHtml from "../components/safeHtml"
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
@@ -264,10 +264,9 @@ const Admin = () => {
                   {blog.views}
                 </span>
               </div>
-              <div
-                className="blogExcerpt-manage"
-                dangerouslySetInnerHTML={{ __html: blog.excerpt }}
-              ></div>
+              <div className="blogExcerpt-manage">
+                <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
+              </div>
               <button onClick={() => handleEditBlog(blog)}>Edit</button>
               <button onClick={() => handleDeleteBlog(blog.id)} disabled={loading}>
                 {loading ? "Deleting..." : "Delete"}

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
+import SafeHtml from "../components/safeHtml";
+
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const navigate = useNavigate();
@@ -73,7 +75,9 @@ const Blog = () => {
                 </span>
               </div>
               <strong className="blogTitle">{blog.title}</strong>
-              <p className="blogExcerpt" dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
+              <p className="blogExcerpt">
+                <SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /> 
+              </p>
               <button
                 className="readButton"
                 onClick={() => navigate(`/blog/${blog.id}`)}
