@@ -143,7 +143,6 @@ const Admin = () => {
       await updateDoc(blogRef, {
         title: editingBlog.title,
         author: editingBlog.author,
-        date: editingBlog.date,
         excerpt: DOMPurify.sanitize(editingBlog.excerpt),
       });
 
