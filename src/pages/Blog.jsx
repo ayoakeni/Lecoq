@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
@@ -8,7 +7,6 @@ import DateTimeDisplay from "../components/timeFormat";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -71,9 +69,6 @@ const Blog = () => {
                   <i className="fa-solid fa-asterisk"></i>
                   <DateTimeDisplay timestamp={blog.time} showTime={false} />
                 </li>
-                {/* <span className="views">
-                  <i className="fa-solid fa-eye"></i>{blog.views}
-                </span> */}
               </div>
               <strong className="blogTitle">{blog.title}</strong>
               <p className="blogExcerpt">
