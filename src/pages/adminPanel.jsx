@@ -93,7 +93,6 @@ const Admin = () => {
       setNewBlog({
         title: "",
         author: "Busayo Akinjagunla",
-        date: new Date().toISOString().split("T")[0],
         views: 0,
         excerpt: "",
         image: null,

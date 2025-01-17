@@ -14,7 +14,7 @@ function RecentBlogs() {
     const fetchBlogs = async () => {
       try {
         const blogsCollection = collection(db, "blogs");
-        const blogsQuery = query(blogsCollection, orderBy("date", "desc"), limit(4)); // Fetch the latest 4 blogs
+        const blogsQuery = query(blogsCollection, orderBy("time", "desc"), limit(4)); // Fetch the latest 4 blogs
         const querySnapshot = await getDocs(blogsQuery);
 
         const fetchedBlogs = querySnapshot.docs.map((doc) => ({
