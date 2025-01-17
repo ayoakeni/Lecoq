@@ -1135,7 +1135,7 @@ nav ul li {
   gap: 5px;
 }
 
-i{
+.blog-header .meta i, .nameDate i{
   color: lightgray;
 }
 
@@ -1377,10 +1377,6 @@ i{
   display: flex;
   align-items: center; 
   gap: 5px;
-}
-
-.blog-header .meta i{
-  color: lightgray;
 }
 
 .blog-content {
