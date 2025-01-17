@@ -12,7 +12,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
 import TextEditor from "../components/textEditor";
-import SafeHtml from "../components/safeHtml"
+import SafeHtml from "../components/safeHtml";
 import DateTimeDisplay from "../components/timeFormat";
 import DOMPurify from "dompurify";
 
@@ -21,7 +21,6 @@ const Admin = () => {
   const [newBlog, setNewBlog] = useState({
     title: "",
     author: "Busayo Akinjagunla",
-    date: new Date().toISOString().split("T")[0],
     views: 0,
     excerpt: "",
     image: null,
@@ -58,7 +57,6 @@ const Admin = () => {
       setNewBlog((prev) => ({ ...prev, image: file }));
 
       const reader = new FileReader();
-      reader.onload = () => setImagePreview
       reader.onload = () => setImagePreview(reader.result);
       reader.readAsDataURL(file);
     } else {
@@ -82,15 +80,16 @@ const Admin = () => {
       const blogDoc = {
         title: newBlog.title,
         author: newBlog.author,
-        date: newBlog.date,
         time: serverTimestamp(),
-        views: 0,
+        views: newBlog.views,
         excerpt: DOMPurify.sanitize(newBlog.excerpt),
         imageUrl,
       };
+
       await addDoc(collection(db, "blogs"), blogDoc);
 
       alert("Blog added successfully!");
+
       setNewBlog({
         title: "",
         author: "Busayo Akinjagunla",
@@ -100,6 +99,7 @@ const Admin = () => {
         image: null,
       });
       setImagePreview("");
+      document.querySelector('input[name="image"]').value = "";
       fetchBlogs();
     } catch (error) {
       console.error("Error adding blog:", error);
@@ -198,7 +198,7 @@ const Admin = () => {
     <div className="admin-page">
       <div className="admin-header">
         <button onClick={handleLogout} className="logout-button" disabled={loading}>
-          <i class="fa-solid fa-power-off"></i>
+          <i className="fa-solid fa-power-off"></i>
         </button>
       </div>
 
