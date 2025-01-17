@@ -198,7 +198,7 @@ const Admin = () => {
     <div className="admin-page">
       <div className="admin-header">
         <button onClick={handleLogout} className="logout-button" disabled={loading}>
-          Logout
+          <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
 
@@ -289,12 +289,6 @@ const Admin = () => {
               name="author"
               placeholder="Author Name"
               value={editingBlog.author}
-              onChange={handleEditChange}
-            />
-            <input
-              type="date"
-              name="date"
-              value={editingBlog.date}
               onChange={handleEditChange}
             />
             <TextEditor

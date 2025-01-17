@@ -791,7 +791,7 @@ nav ul li {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 999;
   transition: background-color 0.3s ease;
 }
 
@@ -1135,7 +1135,8 @@ nav ul li {
   gap: 5px;
 }
 
-.blog-header .meta i, .nameDate i{
+.blog-header .meta i, .nameDate i, 
+.blog-view-date i {
   color: lightgray;
 }
 
@@ -1668,7 +1669,7 @@ nav ul li {
 }
 
 .modal-content .quill .ql-editor {
-  max-height: 140px;
+  max-height: 200px;
 }
 
 .modal-content input {
@@ -1758,6 +1759,7 @@ nav ul li {
   }
 
   .modal-content {
+    overflow: auto;
     width: 100%;
     max-width: 100%;
     border-radius: 0;
@@ -1773,6 +1775,10 @@ nav ul li {
 
   .modal-content .quill {
     margin-bottom: 20px;
+  }
+
+  .modal-content .quill .ql-editor {
+    max-height: 260px;
   }
 }
 
@@ -1909,16 +1915,27 @@ nav ul li {
 } 
 
 .logout-button {
-  width: 200px !important;
+  position: fixed;
+  top: 95px;
+  right: 20px;
+  width: fit-content !important;
   background-color: #ff4d4f !important;
   color: var(--button-primary-text);
   border: none;
-  padding: 10px 15px;
+  height: auto !important;
+  padding: 8px 10px !important;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  z-index: 1;
 }
 
 .logout-button:hover {
   background-color: #d9363e !important;
+}
+
+@media (max-width: 768px) {
+  .logout-button {
+    top: 65px;
+  }
 }
