@@ -258,16 +258,17 @@ const Admin = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="inputbox">
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleChange}
-          />
-        </div>
         <div className="textinputImagepreview">
           <div className="image-previewBox">
+            <div className="image-input">
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleChange}
+              />
+            </div>
+            <i className="fa-solid fa-square-plus"></i>
             {imagePreview && (
               <img src={imagePreview} alt="Preview" className="image-preview" />
             )}

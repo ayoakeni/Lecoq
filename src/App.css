@@ -1546,58 +1546,76 @@ nav ul li {
 .textinputImagepreview {
   display: flex;
   gap: 20px;
-  height: auto;
+  height: 295px;
   margin-bottom: 20px;
 }
 
 .image-previewBox {
   width: 50%;
-  background-color: lightgray;
+  background: url(./assets/images/mad-designer.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  min-height: 295px;
+  border: 2px solid var(--primary-color);
+  height: 295px;
+  border-radius: 8px;
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.image-previewBox::after {
+.image-previewBox:hover {
+  transform: scale(1.02);
+  border: 1px solid var(--tertiary-color);
+}
+
+.image-previewBox .image-input {
   position: absolute;
-  content: 'Image-Preview';
-  color: var(--secondary-text-color);
-  font-weight: bold;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+
+.image-previewBox input {
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
 }
 
 .image-preview {
   width: 100%;
   object-fit: cover;
-  max-height: 295px;
+  /* max-height: 295px; */
+}
+
+.image-previewBox i {
+  position: absolute;
+  font-size: 35px;
+  color: lightgray;
   z-index: 1;
 }
 
 .admin-page .quill {
   width: 50%;
+  height: auto;
 }
 
 .ql-toolbar {
   background-color: var(--primary-color);
 }
 
-.ql-toolbar::-webkit-scrollbar {
-  width: 10px;
-  height: 0;
-}
-
 .admin-page .quill .ql-container{
-  height: auto;
+  height: 86%;
 }
 
 .admin-page .quill button:hover{
   background-color: var(--button-primary-bg);
-}
-
-.admin-page .ql-editor {
-  height: 252px;
 }
 
 .admin-page button {
@@ -1823,6 +1841,31 @@ nav ul li {
   background-color: #adadad;
 }
 
+@media (max-width: 1290px) {
+  .admin-page .quill .ql-container {
+    height: 78%;
+  }
+}
+
+@media (max-width: 775px) {
+  .textinputImagepreview {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  
+  .image-previewBox {
+    width: 100%;
+  }
+  
+  .admin-page .quill {
+    width: 100%;
+  }
+
+  .admin-page .quill .ql-container {
+    height: 253px;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-page {
     padding: 55px 20px 40px;
@@ -1836,19 +1879,6 @@ nav ul li {
     flex-wrap: wrap;
   }
 
-  .textinputImagepreview {
-    flex-wrap: wrap;
-    height: auto;
-  }
-
-  .image-previewBox {
-    width: 100%;
-  }
-  
-  .admin-page .quill {
-    width: 100%;
-  }
-  
   .blog-manage-title {
     font-size: 15px;
     width: 100%;
@@ -1896,6 +1926,9 @@ nav ul li {
 }
 
 @media (max-width: 364px) {
+  .image-previewBox {
+    height: auto;
+  }
   .manage-blogs {
     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   }
