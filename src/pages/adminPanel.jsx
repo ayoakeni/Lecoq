@@ -309,6 +309,12 @@ const Admin = () => {
               value={editingBlog.author}
               onChange={handleEditChange}
             />
+            <div className="modal-image-previewBox">
+              <i class="fa-solid fa-square-plus"></i>
+              {imagePreview && (
+                <img src={imagePreview} alt="Preview" className="modal-image-preview" />
+              )}
+            </div>
             <TextEditor
               value={editingBlog.excerpt}
               onChange={handleEditExcerptChange}

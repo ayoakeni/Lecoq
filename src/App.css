@@ -1719,15 +1719,6 @@ nav ul li {
   color: var(--primary-color);
 }
 
-.modal-content .quill {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.modal-content .quill .ql-editor {
-  max-height: 200px;
-}
-
 .modal-content input {
   width: 100%;
   margin-bottom: 10px;
@@ -1735,6 +1726,48 @@ nav ul li {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+}
+
+.modal-image-previewBox {
+  position: absolute;
+  top: 7.5px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 50px;
+  height: auto;
+  overflow: hidden;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.modal-image-previewBox:hover {
+  transform: scale(1.07);
+}
+
+.modal-image-previewBox i {
+  position: absolute;
+  color: var(--primary-color);
+}
+
+.modal-image-previewBox .modal-image-preview {
+  width: 100%;
+  object-fit: cover;
+}
+
+.modal-content .quill {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modal-content .quill .ql-editor {
+  max-height: 200px;
 }
 
 .modal-actions {
@@ -1829,6 +1862,10 @@ nav ul li {
     color: var(--primary-color);
   }
 
+  .modal-image-previewBox {
+    top: 3.05px;
+  }
+  
   .modal-content .quill {
     margin-bottom: 20px;
   }
