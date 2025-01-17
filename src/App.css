@@ -1552,7 +1552,7 @@ nav ul li {
 
 .image-previewBox {
   width: 50%;
-  background: url(./assets/images/mad-designer.png);
+  background: url(./assets/images/lecoq.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1575,30 +1575,29 @@ nav ul li {
 
 .image-previewBox .image-input {
   position: absolute;
-  top: 0;
+  top: -35px;
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  z-index: 1;
 }
 
 .image-previewBox input {
+
   height: 100%;
-  opacity: 0;
-  z-index: 2;
+  opacity: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 
 .image-preview {
   width: 100%;
   object-fit: cover;
-  /* max-height: 295px; */
 }
 
 .image-previewBox i {
   position: absolute;
   font-size: 35px;
   color: lightgray;
-  z-index: 1;
 }
 
 .admin-page .quill {
