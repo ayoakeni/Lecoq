@@ -1736,16 +1736,14 @@ nav ul li {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  width: 50px;
   color: var(--primary-text-color);
-  height: auto;
-  overflow: hidden;
+  width: 50px;
+  height: 50px;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
   z-index: 1;
-  transition: all 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
 }
 
 .modal-image-previewBox:hover {
@@ -1754,20 +1752,28 @@ nav ul li {
   border: 1px solid var(--tertiary-color);
 }
 
-.modal-image-previewBox i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-image-previewBox .image-input {
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   left: 0;
-  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+
+.modal-image-previewBox input {
+  position: relative;
+  opacity: 0;
+  z-index: 1;
+}
+
+.modal-image-previewBox i {
+  position: absolute;
 }
 
 .modal-image-previewBox .modal-image-preview {
   width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
