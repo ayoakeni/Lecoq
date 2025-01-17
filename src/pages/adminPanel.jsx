@@ -310,9 +310,9 @@ const Admin = () => {
               onChange={handleEditChange}
             />
             <div className="modal-image-previewBox">
-              <i class="fa-solid fa-square-plus"></i>
-              {imagePreview && (
-                <img src={imagePreview} alt="Preview" className="modal-image-preview" />
+              <i class="fa-regular fa-square-plus"></i>
+              {editingBlog && (
+                <img src={editingBlog.imageUrl || editingBlog.image} alt={editingBlog.title} className="modal-image-preview" />
               )}
             </div>
             <TextEditor
