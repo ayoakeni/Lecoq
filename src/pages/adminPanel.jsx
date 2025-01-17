@@ -131,10 +131,18 @@ const Admin = () => {
 
   // Update an edited blog
   const handleUpdateBlog = async () => {
-    if (!editingBlog.title || !editingBlog.author || !editingBlog.excerpt) {
-      alert("Please fill in the required fields.");
+    if (!editingBlog.title.trim()) {
+      alert("Please provide a title.");
       return;
     }
+    if (!editingBlog.author.trim()) {
+      alert("Please provide an author name.");
+      return;
+    }
+    if (!editingBlog.excerpt.trim()) {
+      alert("Please provide an excerpt.");
+      return;
+    }    
 
     setLoading(true);
     try {
