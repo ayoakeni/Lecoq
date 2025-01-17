@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebaseConfig";
 import SafeHtml from "./safeHtml";
@@ -8,7 +7,6 @@ import DateTimeDisplay from "../components/timeFormat";
 function RecentBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -65,7 +63,7 @@ function RecentBlogs() {
               </div>
               <strong>{firstPost.title}</strong>
               <p><SafeHtml htmlContent={firstPost.excerpt} fallback="No excerpt provided." /></p>
-              <button onClick={() => navigate(`/blog/${firstPost.id}`)}>
+              <button onClick={() => window.open(`/blog/${firstPost.id}`, "_blank")}>
                 Read post
               </button>
             </div>
@@ -87,7 +85,7 @@ function RecentBlogs() {
                 </div>
                 <strong>{blog.title}</strong>
                 <p><SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /></p>
-                <button onClick={() => navigate(`/blog/${blog.id}`)}>
+                <button onClick={() => window.open(`/blog/${blog.id}`, "_blank")}>
                   Read post
                 </button>
               </div>

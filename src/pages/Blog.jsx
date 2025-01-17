@@ -79,10 +79,7 @@ const Blog = () => {
               <p className="blogExcerpt">
                 <SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /> 
               </p>
-              <button
-                className="readButton"
-                onClick={() => navigate(`/blog/${blog.id}`)}
-              >
+              <button className="readButton" onClick={() => window.open(`/blog/${blog.id}`, "_blank")}>
                 Read post
               </button>
             </div>
