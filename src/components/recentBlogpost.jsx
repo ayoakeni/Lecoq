@@ -34,7 +34,11 @@ function RecentBlogs() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="recentBlog">Loading...</div>;
+  }
+
+  if (!blogs.length) {
+    return <div className="recentBlog">No blogs found.</div>;
   }
 
   // Separate the first blog post and the next three
