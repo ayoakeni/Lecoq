@@ -69,7 +69,7 @@ const Blog = () => {
                 <li className="nameDate">
                   <span>{blog.author}</span>
                   <i className="fa-solid fa-asterisk"></i>
-                  <DateTimeDisplay timestamp={blog.time} />
+                  <DateTimeDisplay timestamp={blog.time} showTime={false} />
                 </li>
                 {/* <span className="views">
                   <i className="fa-solid fa-eye"></i>{blog.views}

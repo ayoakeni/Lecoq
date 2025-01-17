@@ -293,7 +293,7 @@ const Admin = () => {
               <div className="blog-manage-Meta">
                 <span className="blog-manage-title">{blog.title}</span>
                 <div className="blog-view-date">
-                  <DateTimeDisplay timestamp={blog.time} />
+                  <DateTimeDisplay timestamp={blog.time} showTime={true} />
                   <span className="views">
                     <i className="fa-solid fa-eye"></i>
                     {blog.views}

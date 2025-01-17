@@ -1,6 +1,6 @@
 import React from "react";
 
-const DateTimeDisplay = ({ timestamp }) => {
+const DateTimeDisplay = ({ timestamp, showTime = true }) => {
   const formatDate = (timestamp) => {
     const date = new Date(timestamp.seconds * 1000);
     const day = date.getDate();
@@ -26,7 +26,11 @@ const DateTimeDisplay = ({ timestamp }) => {
 
   const formatTime = (timestamp) => {
     const date = new Date(timestamp.seconds * 1000);
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   return (
@@ -34,9 +38,11 @@ const DateTimeDisplay = ({ timestamp }) => {
       <span>
         <i className="fa-solid fa-calendar"></i> {formatDate(timestamp)}
       </span>
-      {/* <span>
-        <i className="fa-solid fa-clock"></i> {formatTime(timestamp)}
-      </span> */}
+      {showTime && (
+        <span>
+          <i className="fa-solid fa-clock"></i> {formatTime(timestamp)}
+        </span>
+      )}
     </div>
   );
 };

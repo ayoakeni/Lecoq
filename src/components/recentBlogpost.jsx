@@ -55,7 +55,7 @@ function RecentBlogs() {
                 <li className="nameDate">
                   <span>{firstPost.author}</span>
                   <i className="fa-solid fa-asterisk"></i>
-                  <DateTimeDisplay timestamp={firstPost.time} />
+                  <DateTimeDisplay timestamp={firstPost.time} showTime={false} />
                 </li>
                 {/* <span className="views">
                   <i className="fa-solid fa-eye"></i>{firstPost.views}
@@ -80,7 +80,7 @@ function RecentBlogs() {
                   <li className="nameDate">
                     <span>{blog.author}</span>
                     <i className="fa-solid fa-asterisk"></i>
-                    <DateTimeDisplay timestamp={blog.time} />
+                    <DateTimeDisplay timestamp={blog.time} showTime={false} />
                   </li>
                 </div>
                 <strong>{blog.title}</strong>

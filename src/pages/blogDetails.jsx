@@ -60,7 +60,7 @@ const BlogDetails = () => {
                 <strong>{blog.author}</strong>
               </li>
               <i className="fa-solid fa-asterisk"></i>
-              <DateTimeDisplay timestamp={blog.time} />
+              <DateTimeDisplay timestamp={blog.time} showTime={true} />
               <span className="views">
                 <i className="fa-solid fa-eye"></i>
                 {blog.views}
