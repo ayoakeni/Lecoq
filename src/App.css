@@ -1145,6 +1145,7 @@ nav ul li {
 .blog-header .meta i, .nameDate i, 
 .blog-view-date i {
   color: lightgray;
+  height: 16px;
 }
 
 .recentDetails strong {
@@ -1377,6 +1378,7 @@ nav ul li {
 .blog-header {
   display: flex;
   align-items: center;
+  column-gap: 10px;
   margin: 2rem 0;
 }
 
@@ -1445,11 +1447,25 @@ nav ul li {
 .back-button:hover {
   background: var(--button-secondary-bg);
 }
+
+@media (max-width: 980px) {
+  .blog-image {
+    height: 300px;
+    margin-bottom: 0;
+  }
+  
+  .blog-header h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
 @media (max-width: 930px) {
   .blog-content .safeHtml img {
     width: 100%;
   }
 }
+
 @media (max-width: 768px) {
   .blog-details-container {
     padding: 55px 20px 40px;
@@ -1469,15 +1485,14 @@ nav ul li {
     width: 100%;
     margin-bottom: 10px;
   }
-
-  .blog-image {
-    height: auto;
-    margin-bottom: 0;
-  }
   
   .blog-header h1 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+  }
+
+  .blog-image {
+    height: auto;
   }
 
   .blog-content {
