@@ -128,8 +128,18 @@ const Admin = () => {
 
   // Handle changes in the blog being edited
   const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setEditingBlog((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target;
+  
+    if (name === "image" && files[0]) {
+      const file = files[0];
+      setEditingBlog((prev) => ({ ...prev, image: file }));
+  
+      const reader = new FileReader();
+      reader.onload = () => setEditingBlog((prev) => ({ ...prev, imageUrl: reader.result }));
+      reader.readAsDataURL(file);
+    } else {
+      setEditingBlog((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   // Handle changes in the excerpt (using TextEditor)
@@ -154,17 +164,27 @@ const Admin = () => {
     if (!editingBlog.excerpt.trim()) {
       alert("Please provide an excerpt.");
       return;
-    }    
-
+    }
+  
     setLoading(true);
     try {
+      let imageUrl = editingBlog.imageUrl;
+  
+      // Upload new image if it exists
+      if (editingBlog.image instanceof File) {
+        const imageRef = ref(storage, `blogs/${editingBlog.image.name}`);
+        await uploadBytes(imageRef, editingBlog.image);
+        imageUrl = await getDownloadURL(imageRef);
+      }
+  
       const blogRef = doc(db, "blogs", editingBlogId);
       await updateDoc(blogRef, {
         title: editingBlog.title,
         author: editingBlog.author,
+        imageUrl,
         excerpt: DOMPurify.sanitize(editingBlog.excerpt),
       });
-
+  
       alert("Blog updated successfully!");
       setEditingBlogId(null);
       setEditingBlog(null);
@@ -175,7 +195,7 @@ const Admin = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   // Delete a blog
   const handleDeleteBlog = async (id) => {
@@ -315,7 +335,7 @@ const Admin = () => {
                   type="file"
                   name="image"
                   accept="image/*"
-                  onChange={handleChange}
+                  onChange={handleEditChange}
                 />
               </div>
               <i className="fa-regular fa-square-plus"></i>
