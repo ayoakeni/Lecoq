@@ -1747,7 +1747,6 @@ nav ul li {
 }
 
 .modal-image-previewBox:hover {
-  color: var(--tertiary-color);
   transform: scale(1.07);
   border: 1px solid var(--tertiary-color);
 }

@@ -338,7 +338,7 @@ const Admin = () => {
                   onChange={handleEditChange}
                 />
               </div>
-              <i className="fa-regular fa-square-plus"></i>
+              <i className="fa-solid fa-square-plus"></i>
               {editingBlog && (
                 <img
                   src={editingBlog.imageUrl || editingBlog.image}
