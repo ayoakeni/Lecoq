@@ -42,7 +42,7 @@ function RecentBlogs() {
 
   return (
     <section className="recentBlog">
-      <h2>Recent Blog Posts</h2>
+      <h2>Latest Posts</h2>
       <div className="recentBlogBody">
         {/* First post */}
         {firstPost && (
