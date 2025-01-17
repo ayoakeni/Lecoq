@@ -34,9 +34,9 @@ const DateTimeDisplay = ({ timestamp }) => {
       <span>
         <i className="fa-solid fa-calendar"></i> {formatDate(timestamp)}
       </span>
-      <span>
+      {/* <span>
         <i className="fa-solid fa-clock"></i> {formatTime(timestamp)}
-      </span>
+      </span> */}
     </div>
   );
 };
