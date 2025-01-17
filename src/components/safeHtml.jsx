@@ -7,7 +7,7 @@ const SafeHtml = ({ htmlContent, fallback = "Content is not available." }) => {
   }
 
   const sanitizedContent = DOMPurify.sanitize(htmlContent);
-  return <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />;
+  return <div className="safeHtml" dangerouslySetInnerHTML={{ __html: sanitizedContent }} />;
 };
 
 export default SafeHtml;

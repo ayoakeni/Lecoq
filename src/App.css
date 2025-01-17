@@ -1418,6 +1418,13 @@ nav ul li {
   color: var(--secondary-text-color);
 }
 
+.blog-content .safeHtml img {
+  display: flex;
+  width: 70%;
+  border-radius: 8px;
+  margin: auto;
+}
+
 .blog-content p {
   margin-bottom: 1rem;
 }
@@ -1438,7 +1445,11 @@ nav ul li {
 .back-button:hover {
   background: var(--button-secondary-bg);
 }
-
+@media (max-width: 930px) {
+  .blog-content .safeHtml img {
+    width: 100%;
+  }
+}
 @media (max-width: 768px) {
   .blog-details-container {
     padding: 55px 20px 40px;
