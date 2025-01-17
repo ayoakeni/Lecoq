@@ -66,10 +66,22 @@ const Admin = () => {
 
   // Add a new blog
   const handleAddBlog = async () => {
-    if (!newBlog.title || !newBlog.excerpt || !newBlog.image) {
-      alert("Please fill in the required fields.");
+    if (!newBlog.title.trim()) {
+      alert("Please provide a title.");
       return;
     }
+    if (!newBlog.author) {
+      alert("Please provide an author name");
+      return;
+    }
+    if (!newBlog.image) {
+      alert("Please provide an image");
+      return;
+    }
+    if (!newBlog.excerpt.trim()) {
+      alert("Please provide an excerpt.");
+      return;
+    }    
 
     setLoading(true);
     try {
