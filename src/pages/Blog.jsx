@@ -67,8 +67,8 @@ const Blog = () => {
     <div className="blog">
       <Helmet>
         <title>Blogs</title>
-        <meta property="og:description" content="See what we got for you." />
-        <meta property="og:title" content="Blogs" />
+        <meta property="description" content="See what we got for you." />
+        <meta property="title" content="Blogs" />
         <meta property="og:type" content="website" />
       </Helmet>
       <h2 className="title edu">Blogs</h2>
