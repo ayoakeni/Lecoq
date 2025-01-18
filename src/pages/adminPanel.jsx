@@ -116,7 +116,7 @@ const Admin = () => {
         image: null,
       });
       setImagePreview("");
-      // document.querySelector('input[name="image"]').value = "";
+      document.querySelector('input[name="image"]').value = "";
       fetchBlogs();
     } catch (error) {
       console.error("Error adding blog:", error);
