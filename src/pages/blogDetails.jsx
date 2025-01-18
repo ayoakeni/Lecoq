@@ -69,7 +69,7 @@ const BlogDetails = () => {
       <Helmet>
         <title>{blog.title || "Lecoq French School"}</title>
         <meta property="og:title" content={blog.title} />
-        <meta property="og:description" content="Le Coq is a one-stop shop for all your French proficiency needs." />
+        <meta property="og:description" content={blog.excerpt} />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="blogContent">

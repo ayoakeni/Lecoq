@@ -12,7 +12,6 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { user } = useAuth()
 
-  // Redirect the user to admin page if already logged in
   if (user) {
     return <Navigate to="/admin" replace />;
   }
@@ -25,10 +24,10 @@ const AdminLogin = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setLoading(false);
-      navigate("/admin"); // Redirect to the admin page
+      navigate("/admin");
     } catch (error) {
       setLoading(false);
-      setError(error.message); // Display error message if login fails
+      setError(error.message);
     }
   };
 
@@ -36,8 +35,8 @@ const AdminLogin = () => {
     <div className="login-container">
       <Helmet>
         <title>Admin Login</title>
-        <meta property="og:title" content="login in to take control of your blogs" />
-        <meta property="og:description" content="Le Coq is a one-stop shop for all your French proficiency needs." />
+        <meta property="og:title" content="Admin Login" />
+        <meta property="og:description" content="login in to take control of your blogs" />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="login-form">
