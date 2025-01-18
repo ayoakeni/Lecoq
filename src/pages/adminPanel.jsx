@@ -71,60 +71,60 @@ const Admin = () => {
   };
 
   // Add a new blog
-const handleAddBlog = async () => {
-  if (!newBlog.title.trim()) {
-    alert("Please provide a title.");
-    return;
-  }
-  if (!newBlog.author) {
-    alert("Please provide an author name");
-    return;
-  }
-  if (!newBlog.image) {
-    alert("Please provide an image");
-    return;
-  }
-  if (!newBlog.excerpt.trim()) {
-    alert("Please provide content.");
-    return;
-  }
+  const handleAddBlog = async () => {
+    if (!newBlog.title.trim()) {
+      alert("Please provide a title.");
+      return;
+    }
+    if (!newBlog.author) {
+      alert("Please provide an author name");
+      return;
+    }
+    if (!newBlog.image) {
+      alert("Please provide an image");
+      return;
+    }
+    if (!newBlog.excerpt.trim()) {
+      alert("Please provide content.");
+      return;
+    }
 
-  setAddLoading(true);
-  try {
-    const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
-    await uploadBytes(imageRef, newBlog.image);
-    const imageUrl = await getDownloadURL(imageRef);
+    setAddLoading(true);
+    try {
+      const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
+      await uploadBytes(imageRef, newBlog.image);
+      const imageUrl = await getDownloadURL(imageRef);
 
-    const blogDoc = {
-      title: newBlog.title,
-      author: newBlog.author,
-      time: serverTimestamp(),
-      views: 0,
-      excerpt: DOMPurify.sanitize(newBlog.excerpt),
-      imageUrl,
-    };
+      const blogDoc = {
+        title: newBlog.title,
+        author: newBlog.author,
+        time: serverTimestamp(),
+        views: 0,
+        excerpt: DOMPurify.sanitize(newBlog.excerpt),
+        imageUrl,
+      };
 
-    await addDoc(collection(db, "blogs"), blogDoc);
+      await addDoc(collection(db, "blogs"), blogDoc);
 
-    alert("Blog added successfully!");
+      alert("Blog added successfully!");
 
-    setNewBlog({
-      title: "",
-      author: "Busayo Akinjagunla",
-      views: 0,
-      excerpt: "",
-      image: null,
-    });
-    setImagePreview("");
-    document.querySelector('input[name="image"]').value = "";
-    fetchBlogs();
-  } catch (error) {
-    console.error("Error adding blog:", error);
-    alert("Failed to add blog. Please try again.");
-  } finally {
-    setAddLoading(false);
-  }
-};
+      setNewBlog({
+        title: "",
+        author: "Busayo Akinjagunla",
+        views: 0,
+        excerpt: "",
+        image: null,
+      });
+      setImagePreview("");
+      document.querySelector('input[name="image"]').value = "";
+      fetchBlogs();
+    } catch (error) {
+      console.error("Error adding blog:", error);
+      alert("Failed to add blog. Please try again.");
+    } finally {
+      setAddLoading(false);
+    }
+  };
 
   // Edit an existing blog
   const handleEditBlog = (blog) => {
