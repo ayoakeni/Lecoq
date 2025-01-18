@@ -19,7 +19,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     const auth = getAuth();
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -27,6 +27,7 @@ const AdminLogin = () => {
       navigate("/admin");
     } catch (error) {
       setLoading(false);
+
       const errorMessages = {
         "auth/invalid-email": "The email address is not valid.",
         "auth/user-disabled": "This account has been disabled.",
@@ -34,10 +35,11 @@ const AdminLogin = () => {
         "auth/wrong-password": "Incorrect password. Please try again.",
         "auth/too-many-requests": "Too many attempts. Please try again later.",
       };
+  
       const userFriendlyMessage = errorMessages[error.code] || "An unexpected error occurred. Please try again.";
       setError(userFriendlyMessage);
     }
-  };
+  };  
 
   return (
     <div className="login-container">
