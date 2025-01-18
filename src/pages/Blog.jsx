@@ -65,12 +65,12 @@ const Blog = () => {
 
   return (
     <div className="blog">
-      <Head>
+      <Helmet>
         <title>Blogs</title>
-        <meta property="og:description" content="See what we got for you." />
-        <meta property="og:title" content="Blogs" />
-        <meta property="og:type" content="website" />
-      </Head>
+        <meta property="description" content="See what we got for you." />
+        <meta property="title" content="Blogs" />
+        <meta property="type" content="website" />
+      </Helmet>
       <h2 className="title edu">Blogs</h2>
       <section className="blog-grid">
         {blogs.map((blog) => (
