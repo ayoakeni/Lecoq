@@ -3,6 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import useAuth from "../utils/useAuth";
 import { Helmet } from "react-helmet";
+import displayImage from "../assets/images/mad-designer.png"
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -45,8 +46,9 @@ const AdminLogin = () => {
     <div className="login-container">
       <Helmet>
         <title>Admin Login</title>
-        <meta property="og:description" content="login in to take control of your blogs" />
         <meta property="og:title" content="Admin Login" />
+        <meta property="og:description" content="login in to take control of your blogs" />
+        <meta property="og:image" content={displayImage} />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="login-form">

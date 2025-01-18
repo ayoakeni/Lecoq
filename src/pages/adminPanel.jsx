@@ -16,6 +16,7 @@ import TextEditor from "../components/textEditor";
 import SafeHtml from "../components/safeHtml";
 import DateTimeDisplay from "../components/timeFormat";
 import DOMPurify from "dompurify";
+import displayImage from "../assets/images/mad-designer.png"
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
@@ -29,6 +30,8 @@ const Admin = () => {
   const [imagePreview, setImagePreview] = useState("");
   const [editingBlogId, setEditingBlogId] = useState(null);
   const [editingBlog, setEditingBlog] = useState(null);
+  const [addLoading, setAddLoading] = useState(false);
+  const [deletingBlogId, setDeletingBlogId] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Fetch blogs from Firestore
@@ -68,60 +71,60 @@ const Admin = () => {
   };
 
   // Add a new blog
-  const handleAddBlog = async () => {
-    if (!newBlog.title.trim()) {
-      alert("Please provide a title.");
-      return;
-    }
-    if (!newBlog.author) {
-      alert("Please provide an author name");
-      return;
-    }
-    if (!newBlog.image) {
-      alert("Please provide an image");
-      return;
-    }
-    if (!newBlog.excerpt.trim()) {
-      alert("Please provide a content.");
-      return;
-    }
-  
-    setLoading(true);
-    try {
-      const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
-      await uploadBytes(imageRef, newBlog.image);
-      const imageUrl = await getDownloadURL(imageRef);
-  
-      const blogDoc = {
-        title: newBlog.title,
-        author: newBlog.author,
-        time: serverTimestamp(),
-        views: 0,
-        excerpt: DOMPurify.sanitize(newBlog.excerpt),
-        imageUrl,
-      };
-  
-      await addDoc(collection(db, "blogs"), blogDoc);
-  
-      alert("Blog added successfully!");
-  
-      setNewBlog({
-        title: "",
-        author: "Busayo Akinjagunla",
-        views: 0,
-        excerpt: "",
-        image: null,
-      });
-      setImagePreview("");
-      document.querySelector('input[name="image"]').value = "";
-      fetchBlogs();
-    } catch (error) {
-      console.error("Error adding blog:", error);
-      alert("Failed to add blog. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };  
+const handleAddBlog = async () => {
+  if (!newBlog.title.trim()) {
+    alert("Please provide a title.");
+    return;
+  }
+  if (!newBlog.author) {
+    alert("Please provide an author name");
+    return;
+  }
+  if (!newBlog.image) {
+    alert("Please provide an image");
+    return;
+  }
+  if (!newBlog.excerpt.trim()) {
+    alert("Please provide content.");
+    return;
+  }
+
+  setAddLoading(true);
+  try {
+    const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
+    await uploadBytes(imageRef, newBlog.image);
+    const imageUrl = await getDownloadURL(imageRef);
+
+    const blogDoc = {
+      title: newBlog.title,
+      author: newBlog.author,
+      time: serverTimestamp(),
+      views: 0,
+      excerpt: DOMPurify.sanitize(newBlog.excerpt),
+      imageUrl,
+    };
+
+    await addDoc(collection(db, "blogs"), blogDoc);
+
+    alert("Blog added successfully!");
+
+    setNewBlog({
+      title: "",
+      author: "Busayo Akinjagunla",
+      views: 0,
+      excerpt: "",
+      image: null,
+    });
+    setImagePreview("");
+    document.querySelector('input[name="image"]').value = "";
+    fetchBlogs();
+  } catch (error) {
+    console.error("Error adding blog:", error);
+    alert("Failed to add blog. Please try again.");
+  } finally {
+    setAddLoading(false);
+  }
+};
 
   // Edit an existing blog
   const handleEditBlog = (blog) => {
@@ -200,21 +203,21 @@ const Admin = () => {
     }
   };  
 
-  // Delete a blog
-  const handleDeleteBlog = async (id) => {
-    setLoading(true);
-    try {
-      const blogRef = doc(db, "blogs", id);
-      await deleteDoc(blogRef);
-      alert("Blog deleted successfully!");
-      fetchBlogs();
-    } catch (error) {
-      console.error("Error deleting blog:", error);
-      alert("Failed to delete blog. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+// Delete a blog
+const handleDeleteBlog = async (id) => {
+  setDeletingBlogId(id); // Set the ID of the blog being deleted
+  try {
+    const blogRef = doc(db, "blogs", id);
+    await deleteDoc(blogRef);
+    alert("Blog deleted successfully!");
+    fetchBlogs();
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+    alert("Failed to delete blog. Please try again.");
+  } finally {
+    setDeletingBlogId(null); // Clear the deletingBlogId state
+  }
+};
 
   // Close the edit modal
   const handleCloseModal = () => {
@@ -239,8 +242,9 @@ const Admin = () => {
     <div className="admin-page">
       <Helmet>
         <title>Admin Panel</title>
-        <meta property="og:description" content="Modify, Upload your blogs" />
         <meta property="og:title" content="Admin Panel" />
+        <meta property="og:description" content="Modify, Upload your blogs" />
+        <meta property="og:image" content={displayImage} />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="admin-header">
@@ -288,8 +292,8 @@ const Admin = () => {
             placeholder="Write the blog excerpt..."
           />
         </div>
-        <button onClick={handleAddBlog} disabled={loading}>
-          {loading ? "Adding..." : "Add Blog"}
+        <button onClick={handleAddBlog} disabled={addLoading}>
+          {addLoading ? "Adding..." : "Add Blog"}
         </button>
       </section>
 
@@ -318,8 +322,11 @@ const Admin = () => {
                   <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
                 </div>
                 <button onClick={() => handleEditBlog(blog)}>Edit</button>
-                <button onClick={() => handleDeleteBlog(blog.id)} disabled={loading}>
-                  {loading ? "Deleting..." : "Delete"}
+                <button
+                  onClick={() => handleDeleteBlog(blog.id)}
+                  disabled={deletingBlogId === blog.id}
+                >
+                  {deletingBlogId === blog.id ? "Deleting..." : "Delete"}
                 </button>
               </div>
             </div>
