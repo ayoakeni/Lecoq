@@ -13,6 +13,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -45,23 +46,22 @@ const BlogDetails = () => {
         }
       } catch (error) {
         console.error("Error fetching blog:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchBlog();
   }, [id]);
 
-  if (!blog) {
+  if (loading) {
     return (
-      <div className="errorPage">
-        <span>
-          Page not found: <strong>404</strong>. Check the address again.
-        </span>
-        <img src={imgg} alt="error" />
-      </div>
-      // <div className="loaderBox">
-      //   <span className="loader"></span>
-      // </div>
-    );
+    <div className="loaderBox">
+      <span className="loader"></span>
+    </div>);
+  }
+
+  if (!blog) {
+    return <div className="recentBlog">No blogs found.</div>;
   }
 
   return (
