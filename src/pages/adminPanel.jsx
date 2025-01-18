@@ -42,6 +42,8 @@ const Admin = () => {
     } catch (error) {
       console.error("Error fetching blogs:", error);
       alert("Failed to fetch blogs. Please refresh the page.");
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -286,30 +288,36 @@ const Admin = () => {
 
       <h3>Manage Blogs</h3>
       <section className="manage-blogs">
-        {blogs.map((blog) => (
-          <div className="blog-item" key={blog.id}>
-            <img src={blog.imageUrl || blog.image} alt={blog.title} />
-            <div className="blog-manage-Details">
-              <div className="blog-manage-Meta">
-                <span className="blog-manage-title">{blog.title}</span>
-                <div className="blog-view-date">
-                  <DateTimeDisplay timestamp={blog.time} showTime={true} />
-                  <span className="views">
-                    <i className="fa-solid fa-eye"></i>
-                    {blog.views}
-                  </span>
+        {loading ? (
+          <div className="recentBlog">Loading...</div>
+        ) : blogs.length === 0 ? (
+          <div className="recentBlog">No blogs found.</div>
+        ) : (
+          blogs.map((blog) => (
+            <div className="blog-item" key={blog.id}>
+              <img src={blog.imageUrl || blog.image} alt={blog.title} />
+              <div className="blog-manage-Details">
+                <div className="blog-manage-Meta">
+                  <span className="blog-manage-title">{blog.title}</span>
+                  <div className="blog-view-date">
+                    <DateTimeDisplay timestamp={blog.time} showTime={true} />
+                    <span className="views">
+                      <i className="fa-solid fa-eye"></i>
+                      {blog.views}
+                    </span>
+                  </div>
                 </div>
+                <div className="blogExcerpt-manage">
+                  <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
+                </div>
+                <button onClick={() => handleEditBlog(blog)}>Edit</button>
+                <button onClick={() => handleDeleteBlog(blog.id)} disabled={loading}>
+                  {loading ? "Deleting..." : "Delete"}
+                </button>
               </div>
-              <div className="blogExcerpt-manage">
-                <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
-              </div>
-              <button onClick={() => handleEditBlog(blog)}>Edit</button>
-              <button onClick={() => handleDeleteBlog(blog.id)} disabled={loading}>
-                {loading ? "Deleting..." : "Delete"}
-              </button>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </section>
 
       {editingBlogId && (
