@@ -81,27 +81,27 @@ const Admin = () => {
     if (!newBlog.excerpt.trim()) {
       alert("Please provide an excerpt.");
       return;
-    }    
-
+    }
+  
     setLoading(true);
     try {
       const imageRef = ref(storage, `blogs/${newBlog.image.name}`);
       await uploadBytes(imageRef, newBlog.image);
       const imageUrl = await getDownloadURL(imageRef);
-
+  
       const blogDoc = {
         title: newBlog.title,
         author: newBlog.author,
         time: serverTimestamp(),
-        views: newBlog.views,
+        views: 0,
         excerpt: DOMPurify.sanitize(newBlog.excerpt),
         imageUrl,
       };
-
+  
       await addDoc(collection(db, "blogs"), blogDoc);
-
+  
       alert("Blog added successfully!");
-
+  
       setNewBlog({
         title: "",
         author: "Busayo Akinjagunla",
@@ -118,7 +118,7 @@ const Admin = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   // Edit an existing blog
   const handleEditBlog = (blog) => {

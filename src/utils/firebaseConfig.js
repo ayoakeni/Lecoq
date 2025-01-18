@@ -2,13 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDQHIQ4dYvXUHf3lm3_1YOfgvJWYfsYDwE",
-  authDomain: "database-9e197.firebaseapp.com",
-  projectId: "database-9e197",
-  storageBucket: "database-9e197.appspot.com",
-  messagingSenderId: "1054187190513",
-  appId: "1:1054187190513:web:ce6c3f37e41f6469dfd150",
+  apiKey: "AIzaSyCfm_5ez5MFioIZ3A2aEHcWUB-lcp5s5Fk",
+  authDomain: "lecoqfrench-e8982.firebaseapp.com",
+  projectId: "lecoqfrench-e8982",
+  storageBucket: "lecoqfrench-e8982.firebasestorage.app",
+  messagingSenderId: "993059747578",
+  appId: "1:993059747578:web:a8945efcf1b1cf49213b43"
 };
 
 // Initialize Firebase
