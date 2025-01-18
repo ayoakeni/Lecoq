@@ -68,8 +68,8 @@ const BlogDetails = () => {
     <div className="blog-details-container">
       <Helmet>
         <title>{blog.title || "Lecoq French School"}</title>
-        <meta property="og:title" content={blog.title} />
         <meta property="og:description" content={blog.excerpt} />
+        <meta property="og:title" content={blog.title} />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="blogContent">

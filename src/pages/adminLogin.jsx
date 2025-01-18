@@ -35,8 +35,8 @@ const AdminLogin = () => {
     <div className="login-container">
       <Helmet>
         <title>Admin Login</title>
-        <meta property="og:title" content="Admin Login" />
         <meta property="og:description" content="login in to take control of your blogs" />
+        <meta property="og:title" content="Admin Login" />
         <meta property="og:type" content="website" />
       </Helmet>
       <div className="login-form">

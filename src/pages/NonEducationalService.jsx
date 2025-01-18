@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/navbar";
+import { Helmet } from "react-helmet";
 
 // Import images
 import Gcontent from "../assets/images/Globalcontent.png";
@@ -46,7 +46,12 @@ function NonEducational() {
 
   return (
     <div className="non-educational-services">
-      <Navbar />
+      <Helmet>
+        <title>Programs - Non-Educational Service</title>
+        <meta property="og:description" content="Course programs we are offering." />
+        <meta property="og:title" content="Programs - Non-Educational Service" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="container">
         <h2 className="title non">Non-Educational Services</h2>
         <div className="grid">
