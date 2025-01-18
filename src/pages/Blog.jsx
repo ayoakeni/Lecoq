@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
 import SafeHtml from "../components/safeHtml";
+import { Helmet } from "react-helmet";
 import DateTimeDisplay from "../components/timeFormat";
 
 const Blog = () => {
@@ -64,12 +65,18 @@ const Blog = () => {
 
   return (
     <div className="blog">
+      <Helmet>
+        <title>Blogs</title>
+        <meta property="og:title" content="Blogs" />
+        <meta property="og:description" content="See what we got for you." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <h2 className="title edu">Blogs</h2>
       <section className="blog-grid">
         {blogs.map((blog) => (
           <div className="blogPost" key={blog.id}>
             {blog.imageUrl ? (
-              <img src={blog.imageUrl} alt={blog.title} className="blogImage" /> // Display image if URL is available
+              <img src={blog.imageUrl} alt={blog.title} className="blogImage" />
             ) : (
               <div className="no-image">No Image Available</div>
             )}
