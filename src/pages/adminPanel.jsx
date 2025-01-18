@@ -66,7 +66,7 @@ const Admin = () => {
       reader.onload = () => setImagePreview(reader.result);
       reader.readAsDataURL(file);
     } else {
-      setNewBlog({ ...newBlog, [name]: value });
+      setNewBlog((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -116,7 +116,7 @@ const Admin = () => {
         image: null,
       });
       setImagePreview("");
-      document.querySelector('input[name="image"]').value = "";
+      // document.querySelector('input[name="image"]').value = "";
       fetchBlogs();
     } catch (error) {
       console.error("Error adding blog:", error);
@@ -126,7 +126,7 @@ const Admin = () => {
     }
   };
 
-  // Edit an existing blog
+  // Handle editing blog
   const handleEditBlog = (blog) => {
     setEditingBlogId(blog.id);
     setEditingBlog(blog);
@@ -288,7 +288,7 @@ const handleDeleteBlog = async (id) => {
           </div>
           <TextEditor
             value={newBlog.excerpt}
-            onChange={(content) => setNewBlog({ ...newBlog, excerpt: content })}
+            onChange={(content) => setNewBlog((prev) => ({ ...prev, excerpt: content }))}
             placeholder="Write the blog excerpt..."
           />
         </div>
