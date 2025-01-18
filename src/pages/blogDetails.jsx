@@ -91,8 +91,8 @@ const BlogDetails = () => {
         <div className="blog-content">
           <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
         </div>
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-left"></i> Back
+        <button className="back-button" onClick={() => navigate("/blogs")}>
+          Go to blogs <i className="fa-solid fa-arrow-right"></i> 
         </button>
       </div>
     </div>
