@@ -41,7 +41,7 @@ const Admin = () => {
       setBlogs(blogsData);
     } catch (error) {
       console.error("Error fetching blogs:", error);
-      alert("Failed to fetch blogs. Please try again.");
+      alert("Failed to fetch blogs. Please refresh the page.");
     }
   }, []);
 
@@ -79,7 +79,7 @@ const Admin = () => {
       return;
     }
     if (!newBlog.excerpt.trim()) {
-      alert("Please provide an excerpt.");
+      alert("Please provide a content.");
       return;
     }
   
@@ -162,7 +162,7 @@ const Admin = () => {
       return;
     }
     if (!editingBlog.excerpt.trim()) {
-      alert("Please provide an excerpt.");
+      alert("Please provide a content.");
       return;
     }
   
