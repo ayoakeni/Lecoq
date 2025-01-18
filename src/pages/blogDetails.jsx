@@ -45,7 +45,6 @@ const BlogDetails = () => {
           console.error("No such blog!");
         }
       } catch (error) {
-        console.error("Error fetching blog:", error);
       } finally {
         setLoading(false);
       }

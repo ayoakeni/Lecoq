@@ -34,7 +34,6 @@ const Blog = () => {
         );
         setBlogs(blogsData);
       } catch (error) {
-        console.error("Error fetching blogs:", error);
       } finally {
         setLoading(false);
       }
@@ -51,7 +50,6 @@ const Blog = () => {
       console.log("Image URL: ", imageUrl);
       return imageUrl;
     } catch (error) {
-      console.error("Error fetching image URL:", error);
       return null;
     }
   };

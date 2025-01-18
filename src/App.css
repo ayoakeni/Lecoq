@@ -2105,7 +2105,7 @@ nav ul li {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   gap: 8px;
   animation: slide-in 0.3s ease-out;
-  z-index: 1;
+  z-index: 110000;
 }
 
 @keyframes slide-in {

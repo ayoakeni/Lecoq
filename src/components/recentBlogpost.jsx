@@ -22,7 +22,6 @@ function RecentBlogs() {
 
         setBlogs(fetchedBlogs);
       } catch (error) {
-        console.error("Error fetching blogs: ", error);
       } finally {
         setLoading(false);
       }
