@@ -11,6 +11,7 @@ import {
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
+import { Helmet } from "react-helmet";
 import TextEditor from "../components/textEditor";
 import SafeHtml from "../components/safeHtml";
 import DateTimeDisplay from "../components/timeFormat";
@@ -236,6 +237,12 @@ const Admin = () => {
 
   return (
     <div className="admin-page">
+      <Helmet>
+        <title>Admin Login</title>
+        <meta property="og:title" content="login in to take control of your blogs" />
+        <meta property="og:description" content="Le Coq is a one-stop shop for all your French proficiency needs." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="admin-header">
         <button onClick={handleLogout} className="logout-button" disabled={loading}>
           <i className="fa-solid fa-power-off"></i>
