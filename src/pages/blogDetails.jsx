@@ -3,6 +3,8 @@ import { doc, getDoc, updateDoc, increment } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../utils/firebaseConfig";
+// import useAuth from "../utils/useAuth";
+import { Helmet } from 'react-helmet';
 import imgg from "../assets/images/mad-designer.png";
 import SafeHtml from "../components/safeHtml";
 import DateTimeDisplay from "../components/timeFormat";
@@ -65,6 +67,12 @@ const BlogDetails = () => {
 
   return (
     <div className="blog-details-container">
+      <Helmet>
+        <title>{blog.title || "Lecoq French School"}</title>
+        <meta property="og:title" content={`Start the journey with us! - Le Coq French School`} />
+        <meta property="og:description" content="Le Coq is a one-stop shop for all your French proficiency needs." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="blogContent">
         <div className="blog-header">
           <div className="titleAuthor">
