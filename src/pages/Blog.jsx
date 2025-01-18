@@ -7,6 +7,7 @@ import DateTimeDisplay from "../components/timeFormat";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -32,6 +33,8 @@ const Blog = () => {
         setBlogs(blogsData);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -50,6 +53,14 @@ const Blog = () => {
       return null;
     }
   };
+
+  if (loading) {
+    return <div className="recentBlog">Loading...</div>;
+  }
+
+  if (!blogs.length) {
+    return <div className="recentBlog">No blogs found.</div>;
+  }
 
   return (
     <div className="blog">
