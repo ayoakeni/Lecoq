@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import LandingPage from "./pages/LandingPage";
-import Blog from "./pages/Blog";
+import Blog from "./pages/blog";
 import Admin from "./pages/adminPanel";
 import AdminLogin from "./pages/adminLogin";
 import BlogDetails from "./pages/blogDetails";
