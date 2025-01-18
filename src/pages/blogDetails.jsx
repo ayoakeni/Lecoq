@@ -10,7 +10,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const BlogDetails = () => {
   const { id } = useParams();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
@@ -91,9 +91,9 @@ const BlogDetails = () => {
         <div className="blog-content">
           <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
         </div>
-        {/* <button className="back-button" onClick={() => navigate(-1)}>
+        <button className="back-button" onClick={() => navigate(-1)}>
           <i className="fa-solid fa-arrow-left"></i> Back
-        </button> */}
+        </button>
       </div>
     </div>
   );
