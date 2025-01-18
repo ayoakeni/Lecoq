@@ -34,12 +34,12 @@ const AdminLogin = () => {
         "auth/user-not-found": "No account found with this email.",
         "auth/wrong-password": "Incorrect password. Please try again.",
         "auth/too-many-requests": "Too many attempts. Please try again later.",
+        "auth/invalid-credential": "Invalid credentials. Please check your email and password.",
       };
-  
       const userFriendlyMessage = errorMessages[error.code] || "An unexpected error occurred. Please try again.";
       setError(userFriendlyMessage);
     }
-  };  
+  };
 
   return (
     <div className="login-container">
