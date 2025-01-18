@@ -2,10 +2,12 @@ import React, { useRef } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import LandingPage from "./pages/LandingPage";
-import Blog from "./pages/Blog";
-import Admin from "./pages/adminPanel";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Blog from "./pages/blog.page";
+import BlogDetails from "./pages/blog/[id].page"; // Updated for dynamic route
+import Admin from "./pages/adminPanel.page.";
 import AdminLogin from "./pages/adminLogin";
-import BlogDetails from "./pages/blogDetails";
+
 import Educational from "./pages/EducationalService";
 import NonEducational from "./pages/NonEducationalService";
 import WhatsappChatBox from "./components/whatsapp";
@@ -36,6 +38,7 @@ function App() {
     <div>
       <Navbar />
       <NormalizePath>
+        <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/blogs" element={<Blog />} />
@@ -62,7 +65,7 @@ function App() {
               </div>
             }
           />
-        </Routes>
+        </Routes></Router>
       </NormalizePath>
       <WhatsappChatBox />
       <ScrollToTopButton />

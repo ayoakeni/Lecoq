@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc, increment } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL } from "firebase/storage";
-import { db, storage } from "../utils/firebaseConfig";
-import { Helmet } from 'react-helmet';
-import imgg from "../assets/images/mad-designer.png";
-import SafeHtml from "../components/safeHtml";
-import DateTimeDisplay from "../components/timeFormat";
+import { db, storage } from "../../utils/firebaseConfig";
+import { Helmet } from "react-helmet";
+import imgg from "../../assets/images/mad-designer.png";
+import SafeHtml from "../../components/safeHtml";
+import DateTimeDisplay from "../../components/timeFormat";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
-const BlogDetails = () => {
+export { Page, onBeforeRender };
+
+function Page({ blog }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [blog, setBlog] = useState(null);
@@ -61,7 +63,7 @@ const BlogDetails = () => {
   }
 
   if (!blog) {
-    return <div className="recentBlog">No blog found.</div>;
+    return <div>No blog found for ID: {id}</div>;
   }
 
   return (
@@ -100,11 +102,26 @@ const BlogDetails = () => {
           <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
         </div>
         <button className="back-button" onClick={() => navigate("/blogs")}>
-          Go to blogs <i className="fa-solid fa-arrow-right"></i> 
+          Go to blogs <i className="fa-solid fa-arrow-right"></i>
         </button>
       </div>
     </div>
   );
-};
+}
 
-export default BlogDetails;
+async function onBeforeRender(pageContext) {
+  const { id } = pageContext.routeParams;
+
+  const docRef = doc(db, "blogs", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return { pageContext: { blog: null } };
+  }
+
+  return {
+    pageContext: {
+      blog: docSnap.data(),
+    },
+  };
+}
