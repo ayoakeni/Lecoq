@@ -27,7 +27,15 @@ const AdminLogin = () => {
       navigate("/admin");
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+      const errorMessages = {
+        "auth/invalid-email": "The email address is not valid.",
+        "auth/user-disabled": "This account has been disabled.",
+        "auth/user-not-found": "No account found with this email.",
+        "auth/wrong-password": "Incorrect password. Please try again.",
+        "auth/too-many-requests": "Too many attempts. Please try again later.",
+      };
+      const userFriendlyMessage = errorMessages[error.code] || "An unexpected error occurred. Please try again.";
+      setError(userFriendlyMessage);
     }
   };
 
