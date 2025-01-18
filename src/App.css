@@ -2121,7 +2121,7 @@ nav ul li {
 
 .alert-content {
   position: relative;
-  padding: 15px 15px 0;
+  padding: 15px 18px 0 15px;
 }
 
 .alert-content span {
