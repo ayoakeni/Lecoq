@@ -3,7 +3,6 @@ import { doc, getDoc, updateDoc, increment } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../utils/firebaseConfig";
-// import useAuth from "../utils/useAuth";
 import { Helmet } from 'react-helmet';
 import imgg from "../assets/images/mad-designer.png";
 import SafeHtml from "../components/safeHtml";
