@@ -2090,3 +2090,91 @@ nav ul li {
     top: 65px;
   }
 }
+
+.alert-popup {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 86px;
+  right: 20px;
+  max-width: 271px;
+  width: fit-content;
+  background-color: var(--secondary-text-color);
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  gap: 8px;
+  animation: slide-in 0.3s ease-out;
+  z-index: 1;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.alert-content {
+  position: relative;
+  padding: 15px 15px 0;
+}
+
+.alert-content span {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+
+.alert-content .close-alert {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: none;
+  font-size: 14px;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  padding: 2px 5px;
+  background-color: var(--button-primary-bg);
+  transition: background-color 0.3s;
+}
+
+.close-alert:hover {
+  background-color: var(--accent-color);
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: var(--tertiary-color);
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .alert-popup {
+    top: 65px;
+  }
+}
+
+@media (max-width: 568px) {
+  .alert-popup {
+    max-width: 260px;
+  }
+
+  .alert-content span {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .alert-popup {
+    right: 10px;
+  }
+
+  .alert-content span {
+    font-size: 15px;
+  }
+}

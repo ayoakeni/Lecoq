@@ -17,6 +17,7 @@ import SafeHtml from "../components/safeHtml";
 import DateTimeDisplay from "../components/timeFormat";
 import DOMPurify from "dompurify";
 import displayImage from "../assets/images/mad-designer.png"
+import AlertPopup from "../components/alertPopup"
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
@@ -33,6 +34,9 @@ const Admin = () => {
   const [addLoading, setAddLoading] = useState(false);
   const [deletingBlogId, setDeletingBlogId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
 
   // Fetch blogs from Firestore
   const fetchBlogs = useCallback(async () => {
@@ -44,8 +48,8 @@ const Admin = () => {
       }));
       setBlogs(blogsData);
     } catch (error) {
-      console.error("Error fetching blogs:", error);
-      alert("Failed to fetch blogs. Please refresh the page.");
+      setAlertMessage("Failed to fetch blogs. Please refresh the page.");
+      setShowAlert(true);   
     } finally {
       setLoading(false);
     }
@@ -73,19 +77,23 @@ const Admin = () => {
   // Add a new blog
   const handleAddBlog = async () => {
     if (!newBlog.title.trim()) {
-      alert("Please provide a title.");
+      setAlertMessage("Please provide a title.");
+      setShowAlert(true);   
       return;
     }
     if (!newBlog.author) {
-      alert("Please provide an author name");
+      setAlertMessage("Please provide an author name");
+      setShowAlert(true);   
       return;
     }
     if (!newBlog.image) {
-      alert("Please provide an image");
+      setAlertMessage("Please provide an image.");
+      setShowAlert(true);   
       return;
     }
     if (!newBlog.excerpt.trim()) {
-      alert("Please provide content.");
+      setAlertMessage("Please provide content.");
+      setShowAlert(true);   
       return;
     }
 
@@ -106,7 +114,8 @@ const Admin = () => {
 
       await addDoc(collection(db, "blogs"), blogDoc);
 
-      alert("Blog added successfully!");
+      setAlertMessage("Blog added successfully!");
+      setShowAlert(true);      
 
       setNewBlog({
         title: "",
@@ -119,8 +128,8 @@ const Admin = () => {
       document.querySelector('input[name="image"]').value = "";
       fetchBlogs();
     } catch (error) {
-      console.error("Error adding blog:", error);
-      alert("Failed to add blog. Please try again.");
+      setAlertMessage("Failed to add blog. Please try again.");
+      setShowAlert(true);
     } finally {
       setAddLoading(false);
     }
@@ -160,15 +169,18 @@ const Admin = () => {
   // Update an edited blog
   const handleUpdateBlog = async () => {
     if (!editingBlog.title.trim()) {
-      alert("Please provide a title.");
+      setAlertMessage("Please provide a title.");
+      setShowAlert(true); 
       return;
     }
     if (!editingBlog.author.trim()) {
-      alert("Please provide an author name.");
+      setAlertMessage("Please provide an author name.");
+      setShowAlert(true); 
       return;
     }
     if (!editingBlog.excerpt.trim()) {
-      alert("Please provide a content.");
+      setAlertMessage("Please provide a content.");
+      setShowAlert(true); 
       return;
     }
   
@@ -190,14 +202,16 @@ const Admin = () => {
         imageUrl,
         excerpt: DOMPurify.sanitize(editingBlog.excerpt),
       });
-  
-      alert("Blog updated successfully!");
+
+      setAlertMessage("Blog updated successfully!");
+      setShowAlert(true); 
+
       setEditingBlogId(null);
       setEditingBlog(null);
       fetchBlogs();
     } catch (error) {
-      console.error("Error updating blog:", error);
-      alert("Failed to update blog. Please try again.");
+      setAlertMessage("Failed to update blog. Please try again.");
+      setShowAlert(true); 
     } finally {
       setLoading(false);
     }
@@ -209,13 +223,16 @@ const handleDeleteBlog = async (id) => {
   try {
     const blogRef = doc(db, "blogs", id);
     await deleteDoc(blogRef);
-    alert("Blog deleted successfully!");
+
+    setAlertMessage("Blog deleted successfully!");
+    setShowAlert(true); 
+
     fetchBlogs();
   } catch (error) {
-    console.error("Error deleting blog:", error);
-    alert("Failed to delete blog. Please try again.");
+    setAlertMessage("Failed to delete blog. Please try again.");
+    setShowAlert(true); 
   } finally {
-    setDeletingBlogId(null); // Clear the deletingBlogId state
+    setDeletingBlogId(null);
   }
 };
 
@@ -230,11 +247,14 @@ const handleDeleteBlog = async (id) => {
     const auth = getAuth();
     try {
       await signOut(auth);
-      alert("You have been logged out successfully!");
+
+      setAlertMessage("You have been logged out successfully!");
+      setShowAlert(true); 
+      
       window.location.href = "/admin/login";
     } catch (error) {
-      console.error("Error during logout:", error);
-      alert("Failed to logout. Please try again.");
+      setAlertMessage("Failed to logout. Please try again.");
+      setShowAlert(true); 
     }
   };
 
@@ -252,6 +272,14 @@ const handleDeleteBlog = async (id) => {
           <i className="fa-solid fa-power-off"></i>
         </button>
       </div>
+
+      {showAlert && (
+        <AlertPopup
+          message={alertMessage}
+          duration={5000}
+          onClose={() => setShowAlert(false)}
+        />
+      )}
 
       <section className="add-blog">
         <h3>Add a New Blog</h3>
