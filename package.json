@@ -18,8 +18,7 @@
     "react-helmet": "^6.1.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.1.1",
-    "swiper": "^11.2.1",
-    "vite-plugin-ssr": "^0.4.142"
+    "swiper": "^11.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

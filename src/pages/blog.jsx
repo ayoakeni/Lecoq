@@ -5,13 +5,8 @@ import { getDownloadURL, ref } from "firebase/storage";
 import SafeHtml from "../components/safeHtml";
 import { Helmet } from "react-helmet";
 import DateTimeDisplay from "../components/timeFormat";
-import { Link } from "react-router-dom"; // For linking to blog details
-import ReactDOMServer from "react-dom/server"; // Import ReactDOMServer for SSR rendering
 
-// Define the render function for SSR
-export { render };
-
-function Page() {
+const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -52,6 +47,7 @@ function Page() {
     try {
       const imageRef = ref(storage, imagePath);
       const imageUrl = await getDownloadURL(imageRef);
+      console.log("Image URL: ", imageUrl);
       return imageUrl;
     } catch (error) {
       console.error("Error fetching image URL:", error);
@@ -71,7 +67,7 @@ function Page() {
     <div className="blog">
       <Helmet>
         <title>Blogs</title>
-        <meta property="og:image" content={blogs[0]?.image} />
+        <meta property="og:image" content={displayImage} />
         <meta property="title" content="Blogs" />
         <meta property="description" content="See what we got for you." />
         <meta property="type" content="website" />
@@ -80,8 +76,8 @@ function Page() {
       <section className="blog-grid">
         {blogs.map((blog) => (
           <div className="blogPost" key={blog.id}>
-            {blog.image ? (
-              <img src={blog.image} alt={blog.title} className="blogImage" />
+            {blog.imageUrl ? (
+              <img src={blog.imageUrl} alt={blog.title} className="blogImage" />
             ) : (
               <div className="no-image">No Image Available</div>
             )}
@@ -95,25 +91,17 @@ function Page() {
               </div>
               <strong className="blogTitle">{blog.title}</strong>
               <p className="blogExcerpt">
-                <SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." />
+                <SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /> 
               </p>
-              <Link to={`/blog/${blog.id}`} className="readButton">
+              <button className="readButton" onClick={() => window.open(`/blog/${blog.id}`, "_blank")}>
                 Read post
-              </Link>
+              </button>
             </div>
           </div>
         ))}
       </section>
     </div>
   );
-}
+};
 
-// The render function that will be used for SSR
-function render(pageContext) {
-  const pageHtml = ReactDOMServer.renderToString(<Page />);
-
-  return {
-    documentHtml: pageHtml, // Pass rendered HTML as documentHtml
-    pageContext: { someKey: "value" }, // Optional, can be used for additional context if needed
-  };
-}
+export default Blog; 
