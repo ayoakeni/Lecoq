@@ -177,7 +177,7 @@ nav ul li {
   position: absolute;
   top: 170%;
   left: -65px;
-  width: 253px;
+  width: 253.5px;
   background: var(--background-secondary-color);
   border: 2px solid var(--primary-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -2000,7 +2000,7 @@ nav ul li {
 }
 
 .error-message {
-  color: red;
+  color: var(--error-color);
   font-size: 14px;
   margin-bottom: 10px;
 }
