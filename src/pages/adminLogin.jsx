@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import useAuth from "../utils/useAuth";
+import { Helmet } from "react-helmet";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +34,12 @@ const AdminLogin = () => {
 
   return (
     <div className="login-container">
+      <Helmet>
+        <title>Admin Login</title>
+        <meta property="og:title" content="login in to take control of your blogs" />
+        <meta property="og:description" content="Le Coq is a one-stop shop for all your French proficiency needs." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="login-form">
         <h2 className="login-title">Admin Login</h2>
         <form onSubmit={handleSubmit}>

@@ -238,8 +238,8 @@ const Admin = () => {
   return (
     <div className="admin-page">
       <Helmet>
-        <title>Admin Login</title>
-        <meta property="og:title" content="login in to take control of your blogs" />
+        <title>Admin Panel</title>
+        <meta property="og:title" content="Modify, Upload your blogs" />
         <meta property="og:description" content="Le Coq is a one-stop shop for all your French proficiency needs." />
         <meta property="og:type" content="website" />
       </Helmet>
