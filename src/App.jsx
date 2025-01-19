@@ -16,7 +16,6 @@ import { db } from "./utils/firebaseConfig";
 import "./App.css";
 
 import img from "./assets/images/mad-designer.png";
-import AlertPopup from "./components/alertPopup"; // Import the AlertPopup component
 
 // NormalizePath component to clean up URLs with double slashes
 const NormalizePath = ({ children }) => {
@@ -30,20 +29,7 @@ const NormalizePath = ({ children }) => {
 };
 
 function App() {
-  const [showAlert, setShowAlert] = useState(false); // State to control the alert visibility
-  const [alertMessage, setAlertMessage] = useState(""); // State to store the alert message
-
-  const contactRef = useRef(null);
   const currentYear = new Date().getFullYear();
-
-  // Function to show alert
-  const showAlertMessage = (message) => {
-    setAlertMessage(message);
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 5000); // Hide after 5 seconds
-  };
 
   return (
     <div>
@@ -77,10 +63,9 @@ function App() {
           />
         </Routes>
       </NormalizePath>
-      {showAlert && <AlertPopup message={alertMessage} onClose={() => setShowAlert(false)} />}
       <WhatsappChatBox />
       <ScrollToTopButton />
-      <section ref={contactRef} id="contact">
+      <section id="contact">
         <ContactUs />
       </section>
       <footer className="footer">
