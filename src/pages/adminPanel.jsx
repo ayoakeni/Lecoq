@@ -34,6 +34,7 @@ const Admin = () => {
   const [addLoading, setAddLoading] = useState(false);
   const [deletingBlogId, setDeletingBlogId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(null);
   const [alertMessage, setAlertMessage] = useState("");
 
   const showAlertMessage = (message) => {
@@ -213,17 +214,25 @@ const Admin = () => {
   // Delete a blog
   const handleDeleteBlog = async (id) => {
     setDeletingBlogId(id); // Set the ID of the blog being deleted
-  try {
-    const blogRef = doc(db, "blogs", id);
-    await deleteDoc(blogRef);
+    try {
+      const blogRef = doc(db, "blogs", id);
+      await deleteDoc(blogRef);
 
-    showAlertMessage("Blog deleted successfully!");
-    fetchBlogs();
-  } catch (error) {
-    showAlertMessage("Failed to delete blog. Please try again.");
-  }
+      showAlertMessage("Blog deleted successfully!");
+      fetchBlogs();
+      setConfirmDelete(null);
+    } catch (error) {
+      showAlertMessage("Failed to delete blog. Please try again.");
+    }
+  };
 
-};
+  const handleConfirmDelete = (id) => {
+    setConfirmDelete(id); // Set the blog ID to confirm deletion
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmDelete(null); // Close the confirmation modal
+  };
 
   // Close the edit modal
   const handleCloseModal = () => {
@@ -269,7 +278,7 @@ const Admin = () => {
       )}
 
       <section className="add-blog">
-        <h3>Add a New Blog</h3>
+        <h3 className="ad-header">Add a New Blog</h3>
         <div className="inputbox">
           <input
             type="text"
@@ -307,12 +316,12 @@ const Admin = () => {
             placeholder="Write the blog excerpt..."
           />
         </div>
-        <button onClick={handleAddBlog} disabled={addLoading}>
+        <button className="add-button" onClick={handleAddBlog} disabled={addLoading}>
           {addLoading ? "Adding..." : "Add Blog"}
         </button>
       </section>
 
-      <h3>Manage Blogs</h3>
+      <h3 className="m-h3">Manage Blogs</h3>
       <section className="manage-blogs">
         {loading ? (
           <div className="recentBlog">Loading...</div>
@@ -336,9 +345,10 @@ const Admin = () => {
                 <div className="blogExcerpt-manage">
                   <SafeHtml htmlContent={blog.excerpt} fallback="Content is not available for this blog." />
                 </div>
-                <button onClick={() => handleEditBlog(blog)}>Edit</button>
+                <button className="edit-button" onClick={() => handleEditBlog(blog)}>Edit</button>
                 <button
-                  onClick={() => handleDeleteBlog(blog.id)}
+                  className="delete-button"
+                  onClick={() => handleConfirmDelete(blog.id)}
                   disabled={deletingBlogId === blog.id}
                 >
                   {deletingBlogId === blog.id ? "Deleting..." : "Delete"}
@@ -349,10 +359,32 @@ const Admin = () => {
         )}
       </section>
 
+      {confirmDelete && (
+        <div className="modal-overlay-delete">
+          <div className="modal-content-delete">
+            <h3>Are you sure you want to delete this blog?</h3>
+            <div className="modal-actions-delete">
+              <button
+                onClick={() => handleDeleteBlog(confirmDelete)}
+                className="confirm-button"
+              >
+                Yes
+              </button>
+              <button
+                onClick={handleCancelDelete}
+                className="cancel-button"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {editingBlogId && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Edit Blog</h3>
+            <h3 className="c-h3">Edit Blog</h3>
             <input
               type="text"
               name="title"

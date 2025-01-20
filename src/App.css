@@ -1522,11 +1522,10 @@ nav ul li {
   margin-bottom: 30px;
 }
 
-.admin-page h3 {
+.admin-page .ad-header, .m-h3 {
   font-size: 2rem;
   color: var(--primary-color);
   border-bottom: 3px solid var(--tertiary-color);
-  /* margin: auto; */
   position: relative;
   width: fit-content;
   margin-bottom: 10px;
@@ -1625,7 +1624,7 @@ nav ul li {
   background-color: var(--button-primary-bg);
 }
 
-.admin-page button {
+.admin-page .add-button, .edit-button, .delete-button {
   background-color: var(--button-primary-bg);
   color: var(--button-primary-text);
   padding: 10px;
@@ -1639,7 +1638,7 @@ nav ul li {
   transition: background-color 0.3s ease;
 }
 
-.admin-page button:hover {
+.admin-page .add-button:hover, .edit-button:hover, .delete-button:hover {
   background-color: var(--button-secondary-bg);
 }
 
@@ -1743,10 +1742,12 @@ nav ul li {
   z-index: 1010;
 }
 
-.modal-content h3 {
+.modal-content .c-h3 {
   font-size: 1.5rem;
+  width: fit-content;
   margin-bottom: 15px;
   color: var(--primary-color);
+  border-bottom: 3px solid var(--tertiary-color);
 }
 
 .modal-content input {
@@ -1848,6 +1849,74 @@ nav ul li {
   background-color: #adadad;
 }
 
+.modal-overlay-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content-delete {
+  padding: 20px;
+  margin-top: 80px;
+  border-radius: 10px;
+  /* width: 90%;
+  max-width: 700px; */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+  z-index: 1010;
+  width: 300px;
+  background-color: var(--secondary-text-color);
+}
+
+.modal-content-delete h3 {
+  color: var(--primary-text-color);
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-actions-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.confirm-button, .cancel-button {
+  color: var(--primary-text-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button {
+  background-color: var(--button-primary-bg);
+}
+
+.confirm-button:hover {
+  background-color: var(--button-secondary-bg);
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #adadad;
+}
+
 @media (max-width: 1290px) {
   .admin-page .quill .ql-container {
     height: 78%;
@@ -1878,7 +1947,7 @@ nav ul li {
     padding: 55px 20px 40px;
   }
 
-  .admin-page h3 {
+  .admin-page .add-blog .ad-header, .m-h3 {
     font-size: 1.5rem;
   }
 
@@ -1913,7 +1982,7 @@ nav ul li {
     background-color: #f9f9f9;
   }
 
-  .modal-content h3 {
+  .modal-content .c-h3 {
     font-size: 1.3rem;
     margin-bottom: 15px;
     color: var(--primary-color);
