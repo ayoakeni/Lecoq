@@ -55,7 +55,10 @@ const Blog = () => {
   };
 
   if (loading) {
-    return <div className="recentBlog">Loading...</div>;
+    return (
+      <div className="loaderBox">
+        <span className="loader"></span>
+      </div>);
   }
 
   if (!blogs.length) {
