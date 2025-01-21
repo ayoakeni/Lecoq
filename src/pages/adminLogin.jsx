@@ -3,15 +3,16 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import useAuth from "../utils/useAuth";
 import { Helmet } from "react-helmet";
-import displayImage from "../assets/images/mad-designer.png"
+import displayImage from "../assets/images/mad-designer.png";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   if (user) {
     return <Navigate to="/admin" replace />;
@@ -20,7 +21,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     const auth = getAuth();
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -47,7 +48,7 @@ const AdminLogin = () => {
       <Helmet>
         <title>Admin Login</title>
         <meta property="og:title" content="Admin Login" />
-        <meta property="og:description" content="login in to take control of your blogs" />
+        <meta property="og:description" content="Login to take control of your blogs" />
         <meta property="og:image" content={displayImage} />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -57,7 +58,7 @@ const AdminLogin = () => {
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <div className="email">
-              <i class="fa-regular fa-envelope"></i>
+              <i className="fa-regular fa-envelope"></i>
               <input
                 type="email"
                 id="email"
@@ -72,18 +73,22 @@ const AdminLogin = () => {
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <div className="password">
-              <i class="fa-solid fa-lock"></i>
+              <i className="fa-solid fa-lock"></i>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                autoComplete="password"
+                autoComplete="current-password"
                 required
               />
-              <i class="fa-regular fa-eye"></i>
-              <i class="fa-regular fa-eye-slash"></i>
+              <i
+                className={`fa-regular ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+                onClick={() => setShowPassword((prev) => !prev)}
+                style={{ cursor: "pointer" }}
+                title={showPassword ? "Hide password" : "Show password"}
+              ></i>
             </div>
           </div>
           {error && <p className="error-message">{error}</p>}
