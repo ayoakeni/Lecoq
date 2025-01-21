@@ -8,7 +8,7 @@ import displayImage from "../assets/images/mad-designer.png";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -30,6 +30,8 @@ const AdminLogin = () => {
     } catch (error) {
       setLoading(false);
 
+      // console.log("Error Message:", error.message);
+
       const errorMessages = {
         "auth/invalid-email": "The email address is not valid.",
         "auth/user-disabled": "This account has been disabled.",
@@ -37,6 +39,7 @@ const AdminLogin = () => {
         "auth/wrong-password": "Incorrect password. Please try again.",
         "auth/too-many-requests": "Too many attempts. Please try again later.",
         "auth/invalid-credential": "Invalid credentials. Please check your email and password.",
+        "auth/network-request-failed": "Please check your internent and try again."
       };
       const userFriendlyMessage = errorMessages[error.code] || "An unexpected error occurred. Please try again.";
       setError(userFriendlyMessage);
@@ -93,7 +96,13 @@ const AdminLogin = () => {
           </div>
           {error && <p className="error-message">{error}</p>}
           <button type="submit" disabled={loading} className="submit-button">
-            {loading ? "Logging in..." : "Login"}
+            {loading ? (
+              <>
+                Logging in... <span className="loader"></span>
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
       </div>

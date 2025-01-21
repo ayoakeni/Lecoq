@@ -2219,6 +2219,10 @@ nav ul li {
 }
 
 .submit-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
   background-color: var(--button-primary-bg);
   color: var(--primary-text-color);
   padding: 12px 20px;
@@ -2237,6 +2241,37 @@ nav ul li {
 .submit-button:disabled {
   background-color: #cccccc;
 }
+
+.submit-button .loader {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.submit-button .loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  background: var(--tertiary-color);
+  width: 2px;
+  height: 10px;
+  transform: translateX(-50%);
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
 
 .error-message {
   color: var(--error-color);
