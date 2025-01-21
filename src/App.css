@@ -2186,13 +2186,36 @@ nav ul li {
   display: block;
 }
 
-.input-group input {
-  width: 100%;
+.email, .password {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  outline-color: var(--primary-color);
-  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.email:focus-within, .password:focus-within{
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
+.input-group input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.email i, .password i {
+  color: var(--primary-color);
+  height: 17px;
+}
+
+.password i {
+  cursor: pointer;
 }
 
 .submit-button {

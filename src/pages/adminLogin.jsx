@@ -56,27 +56,35 @@ const AdminLogin = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              autoComplete="email"
-              required
-            />
+            <div className="email">
+              <i class="fa-regular fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                autoComplete="email"
+                required
+              />
+            </div>
           </div>
           <div className="input-group">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              autoComplete="password"
-              required
-            />
+            <div className="password">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                autoComplete="password"
+                required
+              />
+              <i class="fa-regular fa-eye"></i>
+              <i class="fa-regular fa-eye-slash"></i>
+            </div>
           </div>
           {error && <p className="error-message">{error}</p>}
           <button type="submit" disabled={loading} className="submit-button">
