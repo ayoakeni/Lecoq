@@ -202,11 +202,6 @@ nav ul li {
   margin: 5px 0;
 }
 
-.dropdown-menu li a{
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
 @media (max-width: 768px) {
 
   nav.navbar {

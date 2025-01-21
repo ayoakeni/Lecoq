@@ -120,12 +120,20 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             </span>
             <ul className={`dropdown-menu ${dropdownOpen ? "open" : ""}`}>
               <li>
-                <NavLink to="/educational-service" onClick={(closeDropdown,closeMobileMenu)}>
+                <NavLink to="/educational-service" onClick={(closeDropdown,closeMobileMenu)}
+                  className={({ isActive }) =>
+                    isActive ? "active-link" : "not-active"
+                  }
+                  >
                   Educational services
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/non-educational-service" onClick={(closeDropdown,closeMobileMenu)}>
+                <NavLink to="/non-educational-service" onClick={(closeDropdown,closeMobileMenu)}
+                  className={({ isActive }) =>
+                    isActive ? "active-link" : "not-active"
+                  }
+                  >
                   Non-educational services
                 </NavLink>
               </li>
