@@ -377,7 +377,6 @@ nav ul li {
 .about {
   background-color: var(--background-secondary-color);
   padding: 100px 0px;
-  /* text-align: center; */
 }
 
 .about h2 {
@@ -457,11 +456,12 @@ nav ul li {
   }
 }
 
+/* Programs-Home */
 .programs-home-display {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 40px 20px;
+  padding: 85px 20px;
   background-color: var(--primary-color);
 }
 
@@ -568,6 +568,32 @@ nav ul li {
   height: 50px;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
+}
+
+@media (max-width: 768px) {
+  .programs-home-display {
+    padding-top: 40px;
+  }
+
+  .programs-home-display .intPro {
+    font-size: 24px;
+  }
+
+  .subProgram {
+    row-gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+
+  .subProgram span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 364px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
 }
 
 .contact-us {
