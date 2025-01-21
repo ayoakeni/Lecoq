@@ -135,7 +135,9 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             <NavLink
               to="/blogs"
               onClick={closeMobileMenu}
-              className={activeSection === "blogs" ? "active-link" : "not-active"}
+              className={({ isActive }) =>
+                isActive ? "active-link" : "not-active"
+              }
             >
               Blogs
             </NavLink>
