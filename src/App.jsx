@@ -65,9 +65,7 @@ function App() {
       </NormalizePath>
       <WhatsappChatBox />
       <ScrollToTopButton />
-      <section id="contact">
-        <ContactUs />
-      </section>
+      <ContactUs />
       <footer className="footer">
         &copy; {currentYear} Le Coq French School. All rights reserved.
       </footer>

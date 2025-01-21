@@ -14,7 +14,7 @@ function ContactUs(onHomeClick) {
   };
 
   return (
-    <div className="contact-us">
+    <div className="contact-us" id="contact">
       <span onClick={() => navigateToSection("/#home", onHomeClick)}>
         <img className="logo" src={Logo} alt="logo" />
       </span>
