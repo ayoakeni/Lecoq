@@ -145,7 +145,7 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
               onClick={() => navigateToSection("/#contact", onContactClick)}
               className={activeSection === "contact" ? "active-link" : "not-active"}
             >
-              contact
+              Contact
             </span>
           </li>
         </ul>

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
@@ -16,6 +17,7 @@ import Opportunities from "../assets/images/opportunities.png";
 
 function LandingPage() {
   const [isEnglish, setIsEnglish] = useState(true);
+  const navigate = useNavigate();
 
   // Refs for sections
   const aboutRef = useRef(null);
@@ -24,6 +26,49 @@ function LandingPage() {
   const toggleLanguage = () => {
     setIsEnglish((prev) => !prev);
   };
+
+    const programsEdu = [
+       {
+        //Educational
+        titleEdu: "The Fresh Beginner Program (FBP)",
+        contentEdu:
+          "This program caters to fresh/new beginners to the French language. These set have no prior knowledge of French. This program runs for 4 months. The goal of this program is to take students from no level to intermediate level. Students are meant to have virtual contact with the tutor at least 4 times in a week for 3 hours.",
+        imageEdu: Gcontent,
+      },
+      {
+        titleEdu: "The Intermediate Program",
+        contentEdu:
+          "This program caters to intermediate level students who have average knowledge of the French Language. However, a short test will be written to ascertain students level. This program runs for 4 months. The goal of this program is to take students from intermediate level to professional level. Students are meant to have virtual contact with tutor at least 3 times in a week for 3 hours.",
+        imageEdu: Gplay,
+      },
+      {
+        titleEdu: "The Exam Preparatory Program",
+        contentEdu:
+          "This program caters for people who have an exam to write in the near future. For instance French proficiency exam such as TEF, TCF or DALF. This program guarantees success in the exam in one sitting. Students are meant to have virtual contact with tutor at least 4 times in a week for 3 hours.",
+        imageEdu:Kid,
+       },
+    ];
+
+    const programsNon = [
+      //Non educational
+     {  titleNon: "Translation Service",
+       contentNon:
+         "We offer translation services to both corporates and individuals. Translation of documents, books, manuals, guides, videos, audios, etc., from English to French or vice versa.",
+       imageNon: Gplay,
+     },
+     {
+       titleNon: "Subtitling Services",
+       contentNon:
+         "We offer subtitling services for your audio or visual content in French. Subtitling of documentaries, guides, corporate videos, skits, movies, music videos, etc.",
+       imageNon: Opportunities,
+     },
+     {
+       titleNon: "Interpretation Services",
+       contentNon:
+         "Interpretation services are available for those with speaking engagements or meetings.",
+       imageNon: Gcontent,
+     },
+   ];
 
   return (
     <div className="contBody">
@@ -77,6 +122,68 @@ function LandingPage() {
               {isEnglish ? "Translate to French" : "Translate to English"}
             </button>
           </article>
+        </div>
+      </section>
+
+      {/* Programs */}
+      <section className="programs-home-display">
+        <h2 className="intPro">Programs</h2>
+        <div className="programBox">
+          <div className="subProgram">
+            <span>Educational Services</span>          
+            <button
+              onClick={() => navigate("/educational-service")}
+              className="edu-button"
+            >
+              See more
+            </button>
+          </div>
+          <div className="grid-program">
+            {programsEdu.map((programEdu, index) => (
+              <a href="/educational-service" key={index} className="edu-card">
+                <img
+                  src={programEdu.imageEdu}
+                  alt={programEdu.titleEdu}
+                  className="edu-image"
+                />
+                <div className="edu-content">
+                  <h2 className="edu-title">{programEdu.titleEdu}</h2>
+                  <p className="edu-description">
+                    {programEdu.contentEdu}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+        {/* Non educational */}
+        <div className="programBox">
+          <div className="subProgram">
+            <span>Non-Educational Services</span>          
+            <button
+              onClick={() => navigate("/non-educational-service")}
+              className="edu-button"
+            >
+              See more
+            </button>
+          </div>
+          <div className="grid-program">
+            {programsNon.map((programNon, index) => (
+              <a href="/non-educational-service" key={index} className="edu-card">
+                <img
+                  src={programNon.imageNon}
+                  alt={programNon.titleNon}
+                  className="edu-image"
+                />
+                <div className="edu-content">
+                  <h2 className="edu-title">{programNon.titleNon}</h2>
+                  <p className="edu-description">
+                    {programNon.contentNon}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
       {/* Recent Blogs */}
