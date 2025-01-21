@@ -564,7 +564,7 @@ nav ul li {
   line-height: 1.5;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   height: 50px;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
@@ -572,7 +572,7 @@ nav ul li {
 
 @media (max-width: 768px) {
   .programs-home-display {
-    padding-top: 40px;
+    padding: 40px 20px;
   }
 
   .programs-home-display .intPro {
@@ -591,7 +591,7 @@ nav ul li {
 }
 
 @media (max-width: 364px) {
-  .grid {
+  .programBox .grid-program {
     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   }
 }
