@@ -121,12 +121,12 @@ function Navbar({ onHomeClick, onAboutClick, onContactClick }) {
             <ul className={`dropdown-menu ${dropdownOpen ? "open" : ""}`}>
               <li>
                 <NavLink to="/educational-service" onClick={(closeDropdown,closeMobileMenu)}>
-                  Educational service
+                  Educational services
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/non-educational-service" onClick={(closeDropdown,closeMobileMenu)}>
-                  Non-educational service
+                  Non-educational services
                 </NavLink>
               </li>
             </ul>
