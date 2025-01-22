@@ -291,8 +291,10 @@ nav ul li {
 }
 
 .heroText {
+  display: flex;
+  flex-direction: column;
   width: 50%;
-  text-align: center;
+  margin: auto;
 }
 
 .heroText h1 {
@@ -300,6 +302,7 @@ nav ul li {
   line-height: 1.2;
   color: var(--primary-text-color);
   margin-bottom: 20px;
+  max-width: 550px;
 }
 
 .heroText h1 strong {
@@ -312,6 +315,7 @@ nav ul li {
   background-color: var(--button-primary-bg);
   border-radius: 30px;
   border: none;
+  width: fit-content;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -357,10 +361,13 @@ nav ul li {
 
   .heroText {
     width: 100%;
+    align-items: center;
   }
   
   .heroText h1 {
     font-size: 36px;
+    max-width: 100%;
+    text-align: center;
   }
 
   .heroText .heroButton {
