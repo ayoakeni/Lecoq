@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
 // Import images
-import Gcontent from "../assets/images/Globalcontent.png";
-import Gplay from "../assets/images/Globalplayer.png";
-import Opportunities from "../assets/images/opportunities.png";
+import ed1 from "../assets/images/translate.jpg";
+import ed2 from "../assets/images/nmbf.jpg";
+import ed3 from "../assets/images/it.jpg";
 
 function NonEducational() {
   const services = [
@@ -14,7 +14,7 @@ function NonEducational() {
         "We offer translation services to both corporates and individuals. Translation of documents, books, manuals, guides, videos, audios, etc., from English to French or vice versa.",
       frenchDescription:
         "Nous proposons des services de traduction pour les entreprises et les particuliers. Traduction de documents, livres, manuels, guides, vidéos, audios, etc., de l'anglais vers le français ou vice versa.",
-      image: Gplay,
+      image: ed1,
     },
     {
       title: "Subtitling Services",
@@ -22,7 +22,7 @@ function NonEducational() {
         "We offer subtitling services for your audio or visual content in French. Subtitling of documentaries, guides, corporate videos, skits, movies, music videos, etc.",
       frenchDescription:
         "Nous proposons des services de sous-titrage pour votre contenu audio ou visuel en français. Sous-titrage de documentaires, guides, vidéos d'entreprise, sketches, films, clips musicaux, etc.",
-      image: Opportunities,
+      image: ed2,
     },
     {
       title: "Interpretation Services",
@@ -30,7 +30,7 @@ function NonEducational() {
         "Interpretation services are available for those with speaking engagements or meetings.",
       frenchDescription:
         "Des services d'interprétation sont disponibles pour ceux qui ont des interventions orales ou des réunions.",
-      image: Gcontent,
+      image: ed3,
     },
   ];
 

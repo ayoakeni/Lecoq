@@ -284,6 +284,10 @@ nav ul li {
   flex-wrap: wrap;
   padding: 85px 20px 0px;
   height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(./assets/images/oo.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .heroText {
@@ -296,6 +300,10 @@ nav ul li {
   line-height: 1.2;
   color: var(--primary-text-color);
   margin-bottom: 20px;
+}
+
+.heroText h1 strong {
+  color: var(--accent-color);
 }
 
 .heroText .heroButton {

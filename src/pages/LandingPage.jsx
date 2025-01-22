@@ -15,8 +15,10 @@ import Aceexam from "../assets/images/Aceexam.png";
 import Kid from "../assets/images/kid.png";
 import Opportunities from "../assets/images/opportunities.png";
 
+import girl from "../assets/images/gh.jpg";
+
 import ed1 from "../assets/images/teach.jpg";
-import ed2 from "../assets/images/twos.jpg";
+import ed2 from "../assets/images/writing.jpg";
 import ed3 from "../assets/images/loo.jpg";
 import ed4 from "../assets/images/translate.jpg";
 import ed5 from "../assets/images/nmbf.jpg";
@@ -82,7 +84,7 @@ function LandingPage() {
       {/* Hero Section */}
       <section className="heropage" ref={heroRef} id="home">
         <div className="heroText">
-          <h1>Open Up To Global Opportunities with French</h1>
+          <h1>Open Up To Global <strong>Opportunities</strong> with French</h1>
           <button
             className="heroButton"
             onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
@@ -115,7 +117,7 @@ function LandingPage() {
         <h2>About</h2>
         <div className="aboutContent">
           <img
-            src={Kid}
+            src={girl}
             alt="About us"
             className="aboutImage"
           />
@@ -142,7 +144,7 @@ function LandingPage() {
               onClick={() => navigate("/educational-service")}
               className="edu-button"
             >
-              See more
+              See more <i className="fa-solid fa-arrow-right"></i>
             </button>
           </div>
           <div className="grid-program">
@@ -171,7 +173,7 @@ function LandingPage() {
               onClick={() => navigate("/non-educational-service")}
               className="edu-button"
             >
-              See more
+              See more <i className="fa-solid fa-arrow-right"></i>
             </button>
           </div>
           <div className="grid-program">
