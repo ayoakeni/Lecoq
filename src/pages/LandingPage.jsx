@@ -15,6 +15,13 @@ import Aceexam from "../assets/images/Aceexam.png";
 import Kid from "../assets/images/kid.png";
 import Opportunities from "../assets/images/opportunities.png";
 
+import ed1 from "../assets/images/teach.jpg";
+import ed2 from "../assets/images/twos.jpg";
+import ed3 from "../assets/images/loo.jpg";
+import ed4 from "../assets/images/translate.jpg";
+import ed5 from "../assets/images/nmbf.jpg";
+import ed6 from "../assets/images/it.jpg";
+
 function LandingPage() {
   const [isEnglish, setIsEnglish] = useState(true);
   const navigate = useNavigate();
@@ -33,19 +40,19 @@ function LandingPage() {
         titleEdu: "The Fresh Beginner Program (FBP)",
         contentEdu:
           "This program caters to fresh/new beginners to the French language. These set have no prior knowledge of French. This program runs for 4 months. The goal of this program is to take students from no level to intermediate level. Students are meant to have virtual contact with the tutor at least 4 times in a week for 3 hours.",
-        imageEdu: Gcontent,
+        imageEdu: ed1,
       },
       {
         titleEdu: "The Intermediate Program",
         contentEdu:
           "This program caters to intermediate level students who have average knowledge of the French Language. However, a short test will be written to ascertain students level. This program runs for 4 months. The goal of this program is to take students from intermediate level to professional level. Students are meant to have virtual contact with tutor at least 3 times in a week for 3 hours.",
-        imageEdu: Gplay,
+        imageEdu: ed2,
       },
       {
         titleEdu: "The Exam Preparatory Program",
         contentEdu:
           "This program caters for people who have an exam to write in the near future. For instance French proficiency exam such as TEF, TCF or DALF. This program guarantees success in the exam in one sitting. Students are meant to have virtual contact with tutor at least 4 times in a week for 3 hours.",
-        imageEdu:Kid,
+        imageEdu:ed3,
        },
     ];
 
@@ -54,19 +61,19 @@ function LandingPage() {
      {  titleNon: "Translation Service",
        contentNon:
          "We offer translation services to both corporates and individuals. Translation of documents, books, manuals, guides, videos, audios, etc., from English to French or vice versa.",
-       imageNon: Gplay,
+       imageNon: ed4,
      },
      {
        titleNon: "Subtitling Services",
        contentNon:
          "We offer subtitling services for your audio or visual content in French. Subtitling of documentaries, guides, corporate videos, skits, movies, music videos, etc.",
-       imageNon: Opportunities,
+       imageNon: ed5,
      },
      {
        titleNon: "Interpretation Services",
        contentNon:
          "Interpretation services are available for those with speaking engagements or meetings.",
-       imageNon: Gcontent,
+       imageNon: ed6,
      },
    ];
 
