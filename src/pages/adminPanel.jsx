@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   collection,
   addDoc,
@@ -7,6 +7,10 @@ import {
   deleteDoc,
   serverTimestamp,
   doc,
+  query,
+  orderBy,
+  startAfter,
+  limit,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
@@ -18,6 +22,7 @@ import DateTimeDisplay from "../components/timeFormat";
 import DOMPurify from "dompurify";
 import displayImage from "../assets/images/mad-designer.png"
 import AlertPopup from "../components/alertPopup"
+import debounce from "lodash.debounce";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
@@ -36,33 +41,83 @@ const Admin = () => {
   const [loading, setLoading] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const [alertMessage, setAlertMessage] = useState("");
+  const isFetchingMore = useState(false);
+  const lastVisibleRef = useRef(null);
+  const isFetchingMoreRef = useRef(false);
+  const [hasMoreBlogs, setHasMoreBlogs] = useState(true);
 
   const showAlertMessage = (message) => {
     setAlertMessage(false);
-    setTimeout(() => {
-      setAlertMessage(message);
-    }, 50);
+    setTimeout(() => setAlertMessage(message), 50);
   };
-  
-  // Fetch blogs from Firestore
-  const fetchBlogs = useCallback(async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "blogs"));
-      const blogsData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBlogs(blogsData);
-    } catch (error) {
-      showAlertMessage("Failed to fetch blogs. Please refresh the page."); 
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
+  // Fetch blogs with lazy loading from firestore
+  const fetchBlogs = useCallback(async (loadMore = false) => {
+  if ((loadMore && !hasMoreBlogs) || isFetchingMoreRef.current) return;
+
+  try {
+    if (loadMore) isFetchingMoreRef.current = true;
+
+    const blogsQuery = loadMore
+      ? query(
+          collection(db, "blogs"),
+          orderBy("time", "desc"),
+          startAfter(lastVisibleRef.current),
+          limit(5)
+        )
+      : query(collection(db, "blogs"), orderBy("time", "desc"), limit(2));
+
+    const querySnapshot = await getDocs(blogsQuery);
+
+    if (querySnapshot.empty) {
+      setHasMoreBlogs(false);
+      return;
+    }
+
+    const fetchedBlogs = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // Remove duplicate blogs based on ID
+    setBlogs((prevBlogs) => {
+      const newBlogs = fetchedBlogs.filter(
+        (newBlog) => !prevBlogs.some((prevBlog) => prevBlog.id === newBlog.id)
+      );
+      return [...prevBlogs, ...newBlogs];
+    });
+
+    lastVisibleRef.current = querySnapshot.docs[querySnapshot.docs.length - 1];
+  } catch (error) {
+    showAlertMessage("Failed to fetch blogs. Please try again.");
+  } finally {
+    setLoading(false);
+    isFetchingMoreRef.current = false;
+  }
+}, [hasMoreBlogs]);
+
+  
+  // Lazy load on scroll
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 200
+      ) {
+        fetchBlogs(true);
+      }
+    }, 300),
+    [fetchBlogs]
+  );
+  
   useEffect(() => {
     fetchBlogs();
   }, [fetchBlogs]);
+  
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   // Handle input field changes
   const handleChange = (e) => {
@@ -143,11 +198,11 @@ const Admin = () => {
   // Handle changes in the blog being edited
   const handleEditChange = (e) => {
     const { name, value, files } = e.target;
-  
+
     if (name === "image" && files[0]) {
       const file = files[0];
       setEditingBlog((prev) => ({ ...prev, image: file }));
-  
+
       const reader = new FileReader();
       reader.onload = () => setEditingBlog((prev) => ({ ...prev, imageUrl: reader.result }));
       reader.readAsDataURL(file);
@@ -179,18 +234,18 @@ const Admin = () => {
       showAlertMessage("Please provide a content.");
       return;
     }
-  
+
     setLoading(true);
     try {
       let imageUrl = editingBlog.imageUrl;
-  
+
       // Upload new image if it exists
       if (editingBlog.image instanceof File) {
         const imageRef = ref(storage, `blogs/${editingBlog.image.name}`);
         await uploadBytes(imageRef, editingBlog.image);
         imageUrl = await getDownloadURL(imageRef);
       }
-  
+
       const blogRef = doc(db, "blogs", editingBlogId);
       await updateDoc(blogRef, {
         title: editingBlog.title,
@@ -253,6 +308,10 @@ const Admin = () => {
       showAlertMessage("Failed to logout. Please try again.");
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="admin-page">
@@ -431,6 +490,11 @@ const Admin = () => {
           </div>
         </div>
       )}
+      {isFetchingMore && hasMoreBlogs && (
+        <div className="lazyLoad">Loading more<i className="fa-solid fa-chevron-down"></i></div>
+      )}
+
+      {!hasMoreBlogs && <div className="endOfBlogs">No more blogs to display.</div>}
     </div>
   );
 };
