@@ -65,7 +65,7 @@ const Admin = () => {
           startAfter(lastVisibleRef.current),
           limit(5)
         )
-      : query(collection(db, "blogs"), orderBy("time", "desc"), limit(2));
+      : query(collection(db, "blogs"), orderBy("time", "desc"), limit(3));
 
     const querySnapshot = await getDocs(blogsQuery);
 
