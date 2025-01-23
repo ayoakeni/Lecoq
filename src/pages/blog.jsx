@@ -1,55 +1,95 @@
-import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState, useCallback } from "react";
+import { collection, query, orderBy, startAfter, limit, getDocs } from "firebase/firestore";
 import { db, storage } from "../utils/firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
 import SafeHtml from "../components/safeHtml";
 import { Helmet } from "react-helmet";
 import DateTimeDisplay from "../components/timeFormat";
-import displayImage from "../assets/images/mad-designer.png"
+import displayImage from "../assets/images/mad-designer.png";
+import debounce from "lodash.debounce";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lastVisible, setLastVisible] = useState(null);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [hasMoreBlogs, setHasMoreBlogs] = useState(true);
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(
+    async (loadMore = false) => {
+      if ((loadMore && !hasMoreBlogs) || isFetchingMore) return;
+
       try {
-        const querySnapshot = await getDocs(collection(db, "blogs"));
-        const blogsData = await Promise.all(
+        if (loadMore) setIsFetchingMore(true);
+
+        const blogsQuery = loadMore
+          ? query(
+              collection(db, "blogs"),
+              orderBy("time", "desc"),
+              startAfter(lastVisible),
+              limit(5)
+            )
+          : query(collection(db, "blogs"), orderBy("time", "desc"), limit(6));
+
+        const querySnapshot = await getDocs(blogsQuery);
+
+        if (querySnapshot.empty) {
+          setHasMoreBlogs(false);
+          return;
+        }
+
+        const fetchedBlogs = await Promise.all(
           querySnapshot.docs.map(async (doc) => {
             const blogData = doc.data();
-            if (blogData.image) {
-              const imageUrl = await getImageURL(blogData.image);
-              return {
-                id: doc.id,
-                ...blogData,
-                image: imageUrl,
-              };
-            }
+            const imageUrl = blogData.image ? await getImageURL(blogData.image) : null;
             return {
               id: doc.id,
               ...blogData,
+              image: imageUrl,
             };
           })
         );
-        setBlogs(blogsData);
+
+        setBlogs((prevBlogs) => [
+          ...prevBlogs,
+          ...fetchedBlogs.filter((blog) => !prevBlogs.some((b) => b.id === blog.id)),
+        ]);
+
+        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
       } catch (error) {
+        console.error("Error fetching blogs:", error);
       } finally {
         setLoading(false);
+        setIsFetchingMore(false);
       }
-    };
+    },
+    [lastVisible, isFetchingMore, hasMoreBlogs]
+  );
 
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 200
+      ) {
+        fetchBlogs(true);
+      }
+    }, 300),
+    [fetchBlogs]
+  );
+
+  useEffect(() => {
     fetchBlogs();
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [fetchBlogs, handleScroll]);
 
-  // Function to fetch image URL from Firebase Storage
   const getImageURL = async (imagePath) => {
     try {
       const imageRef = ref(storage, imagePath);
-      const imageUrl = await getDownloadURL(imageRef);
-      console.log("Image URL: ", imageUrl);
-      return imageUrl;
+      return await getDownloadURL(imageRef);
     } catch (error) {
+      console.error("Error fetching image URL:", error);
       return null;
     }
   };
@@ -58,7 +98,8 @@ const Blog = () => {
     return (
       <div className="loaderBox">
         <span className="loader"></span>
-      </div>);
+      </div>
+    );
   }
 
   if (!blogs.length) {
@@ -93,17 +134,26 @@ const Blog = () => {
               </div>
               <strong className="blogTitle">{blog.title}</strong>
               <p className="blogExcerpt">
-                <SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." /> 
+                <SafeHtml htmlContent={blog.excerpt} fallback="No excerpt provided." />
               </p>
-              <button className="readButton" onClick={() => window.open(`/blog/${blog.id}`, "_blank")}>
+              <button
+                className="readButton"
+                onClick={() => window.open(`/blog/${blog.id}`, "_blank")}
+              >
                 Read post
               </button>
             </div>
           </div>
         ))}
       </section>
+      {isFetchingMore && (
+        <div className="lazyLoad">
+          Loading more <i className="fa-solid fa-chevron-down"></i>
+        </div>
+      )}
+      {!hasMoreBlogs && <div className="endOfBlogs">No more blogs to display.</div>}
     </div>
   );
 };
 
-export default Blog; 
+export default Blog;

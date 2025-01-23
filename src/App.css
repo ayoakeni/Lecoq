@@ -1500,6 +1500,17 @@ nav ul li {
   background-color: var(--button-secondary-bg);
 }
 
+.lazyLoad, .endOfBlogs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  color: var(--tertiary-color);
+}
+
 @media (max-width: 768px) {
   .blog{
     padding: 55px 20px 40px;
