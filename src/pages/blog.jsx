@@ -148,7 +148,7 @@ const Blog = () => {
       </section>
       {isFetchingMore && (
         <div className="lazyLoad">
-          Loading more blogs <i className="fa-solid fa-chevron-down"></i>
+          Loading more blogs...
         </div>
       )}
       {!hasMoreBlogs && <div className="endOfBlogs">No more blogs to display.</div>}

@@ -1688,7 +1688,7 @@ nav ul li {
   border-bottom: 3px solid var(--tertiary-color);
   position: relative;
   width: fit-content;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .add-blog .inputbox {

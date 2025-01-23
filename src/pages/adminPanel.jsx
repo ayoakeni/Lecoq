@@ -273,8 +273,10 @@ const Admin = () => {
       const blogRef = doc(db, "blogs", id);
       await deleteDoc(blogRef);
 
+      // Remove the deleted blog from the state
+      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
+
       showAlertMessage("Blog deleted successfully!");
-      fetchBlogs();
       setConfirmDelete(null);
     } catch (error) {
       showAlertMessage("Failed to delete blog. Please try again.");
@@ -491,7 +493,7 @@ const Admin = () => {
         </div>
       )}
       {isFetchingMore && hasMoreBlogs && (
-        <div className="lazyLoad">Loading more<i className="fa-solid fa-chevron-down"></i></div>
+        <div className="lazyLoad">Loading more...</div>
       )}
 
       {!hasMoreBlogs && <div className="endOfBlogs">No more blogs to display.</div>}
