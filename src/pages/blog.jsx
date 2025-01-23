@@ -151,7 +151,7 @@ const Blog = () => {
           Loading more blogs...
         </div>
       )}
-      {!hasMoreBlogs && <div className="endOfBlogs">No more blogs to display.</div>}
+      {!hasMoreBlogs && <div className="endOfBlogs">You have reached the end line.</div>}
     </div>
   );
 };
