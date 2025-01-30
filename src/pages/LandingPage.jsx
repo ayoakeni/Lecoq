@@ -103,7 +103,7 @@ function LandingPage() {
             disableOnInteraction: false,
           }}
           modules={[Scrollbar, Autoplay]}
-          className="mySwiper"
+          className="mySwiper-hero"
         >
           {[Gcontent, Gplay, Aceexam, Kid, Opportunities].map((image, index) => (
             <SwiperSlide key={index}>
