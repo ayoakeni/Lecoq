@@ -91,6 +91,7 @@ function LandingPage() {
           >
             Get Started
           </button>
+          <span>Enjoy 14 days free trial on our Educational programs</span>
         </div>
 
         {/* Swiper */}
