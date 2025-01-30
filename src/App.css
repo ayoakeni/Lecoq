@@ -341,7 +341,7 @@ nav ul li {
   max-width: 500px;
   height: auto;
   border-radius: 10px;
-  opacity: 70%;
+  /* opacity: 70%; */
   overflow: hidden;
 }
 
