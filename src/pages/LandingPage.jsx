@@ -7,6 +7,7 @@ import "swiper/css/autoplay";
 import { Scrollbar, Autoplay } from "swiper/modules";
 import RecentBlogs from "../components/recentBlogpost";
 import Testimonials from "../components/testimonial";
+import { Helmet } from "react-helmet";
 
 // Import images
 import Gcontent from "../assets/images/Globalcontent.png";
@@ -81,6 +82,9 @@ function LandingPage() {
 
   return (
     <div className="contBody">
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       {/* Hero Section */}
       <section className="heropage" ref={heroRef} id="home">
         <div className="heroText">
