@@ -294,15 +294,50 @@ nav ul li {
   display: flex;
   flex-direction: column;
   width: 50%;
+  gap: 20px;
   margin: auto;
 }
 
+.heroText .txt {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 230px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--tertiary-color) 100%);
+  overflow: hidden;
+  border-radius: 48% 52% 50% 55% / 50% 45% 55% 50%; /* Uneven circle */
+  animation: wavyMutation 3s infinite ease-in-out;
+}
+
+/* Keyframes for Wavy Mutation */
+@keyframes wavyMutation {
+  0% {
+    border-radius: 48% 52% 50% 55% / 50% 45% 55% 50%;
+  }
+  25% {
+    border-radius: 50% 48% 55% 50% / 52% 50% 48% 55%;
+  }
+  50% {
+    border-radius: 52% 50% 48% 55% / 50% 55% 50% 45%;
+  }
+  75% {
+    border-radius: 50% 55% 50% 48% / 48% 50% 55% 52%;
+  }
+  100% {
+    border-radius: 48% 52% 50% 55% / 50% 45% 55% 50%; /* Back to start */
+  }
+}
+
 .heroText h1 {
-  font-size: 60px;
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  animation: wave 2s infinite ease-in-out;
   line-height: 1.2;
   color: var(--primary-text-color);
-  margin-bottom: 20px;
-  max-width: 550px;
 }
 
 .heroText h1 strong {

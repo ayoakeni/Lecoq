@@ -88,7 +88,9 @@ function LandingPage() {
       {/* Hero Section */}
       <section className="heropage" ref={heroRef} id="home">
         <div className="heroText">
-          <h1>Open Up To Global <strong>Opportunities</strong> with French</h1>
+          <div className="txt">
+            <h1>Open Up To Global <strong>Opportunities</strong> with French</h1>
+          </div>
           <button
             className="heroButton"
             onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
