@@ -3,6 +3,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   updateDoc,
   deleteDoc,
   serverTimestamp,
@@ -12,7 +13,7 @@ import {
   startAfter,
   limit,
 } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { getAuth, signOut } from "firebase/auth";
 import { db, storage } from "../utils/firebaseConfig";
 import { Helmet } from "react-helmet";
@@ -266,22 +267,35 @@ const Admin = () => {
     }
   };  
 
-  // Delete a blog
-  const handleDeleteBlog = async (id) => {
-    setDeletingBlogId(id); // Set the ID of the blog being deleted
-    try {
-      const blogRef = doc(db, "blogs", id);
-      await deleteDoc(blogRef);
-
-      // Remove the deleted blog from the state
-      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
-
-      showAlertMessage("Blog deleted successfully!");
-      setConfirmDelete(null);
-    } catch (error) {
-      showAlertMessage("Failed to delete blog. Please try again.");
+// Delete a blog
+const handleDeleteBlog = async (id) => {
+  setDeletingBlogId(id); // Set the ID of the blog being deleted
+  try {
+    const blogRef = doc(db, "blogs", id);
+    const blogSnapshot = await getDoc(blogRef);
+    
+    if (blogSnapshot.exists()) {
+      const blogData = blogSnapshot.data();
+      const imageUrl = blogData.imageUrl;
+      
+      // If image exists, delete it from storage
+      if (imageUrl) {
+        const imageRef = ref(storage, imageUrl);
+        await deleteObject(imageRef);
+      }
     }
-  };
+
+    // Remove the deleted blog from the state
+    await deleteDoc(blogRef);
+
+    setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
+
+    showAlertMessage("Blog deleted successfully!");
+    setConfirmDelete(null);
+  } catch (error) {
+    showAlertMessage("Failed to delete blog. Please try again.");
+  }
+};
 
   const handleConfirmDelete = (id) => {
     setConfirmDelete(id); // Set the blog ID to confirm deletion
