@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import LandingPage from "./pages/LandingPage";
@@ -14,10 +14,8 @@ import ContactUs from "./components/contact";
 import PrivateRoute from "./utils/privateRoute";
 import { db } from "./utils/firebaseConfig"; 
 import "./App.css";
-
 import img from "./assets/images/mad-designer.png";
 
-// NormalizePath component to clean up URLs with double slashes
 const NormalizePath = ({ children }) => {
   const location = useLocation();
   const normalizedPath = location.pathname.replace(/\/{2,}/g, "/");
@@ -29,7 +27,11 @@ const NormalizePath = ({ children }) => {
 };
 
 function App() {
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
+
+  // Check if the user is on ANY admin-related page
+  const isAdminPage = location.pathname.startsWith("/admin");
 
   return (
     <div>
@@ -65,10 +67,14 @@ function App() {
       </NormalizePath>
       <WhatsappChatBox />
       <ScrollToTopButton />
-      <ContactUs />
-      <footer className="footer">
-        &copy; {currentYear} Le Coq French School. All rights reserved.
-      </footer>
+      {!isAdminPage && (
+        <ContactUs />
+      )}
+      {!isAdminPage && (
+        <footer className="footer">
+          &copy; {currentYear} Le Coq French School. All rights reserved.
+        </footer>
+      )}
     </div>
   );
 }
