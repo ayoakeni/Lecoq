@@ -1238,6 +1238,8 @@ nav ul li {
 /* RecentBlog */
 .recentBlog {
   padding: 85px 20px;
+  text-align: center;
+  color: var(--tertiary-color);
   background-color: #f9f9f9;
 }
 
