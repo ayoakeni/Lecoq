@@ -303,8 +303,8 @@ nav ul li {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 230px;
+  width: 500px;
+  height: 330px;
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--tertiary-color) 100%);
   overflow: hidden;
   border-radius: 48% 52% 50% 55% / 50% 45% 55% 50%; /* Uneven circle */
@@ -333,7 +333,8 @@ nav ul li {
 .heroText h1 {
   position: absolute;
   color: white;
-  font-size: 30px;
+  font-size: 32px;
+  width: 300px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
   animation: wave 2s infinite ease-in-out;
@@ -368,7 +369,6 @@ nav ul li {
   border-radius: 5px;
   width: fit-content;
   background-color: var(--accent-color);
-  margin-top: 20px;
   opacity: 60%;
 }
 
@@ -408,6 +408,20 @@ nav ul li {
   object-fit: cover;
 }
 
+@media (max-width: 1024px) {
+  .heroText .txt {
+    width: 400px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 950px) {
+  .heroText .txt {
+    width: 350px;
+    height: 250px;
+  }
+}
+
 @media (max-width: 768px) {
   .heropage{
     flex-direction: column-reverse;
@@ -421,8 +435,13 @@ nav ul li {
     align-items: center;
   }
   
+  .heroText .txt {
+    width: 350px;
+    height: 200px;
+  }
+
   .heroText h1 {
-    font-size: 36px;
+    font-size: 30px;
     max-width: 100%;
     text-align: center;
   }
