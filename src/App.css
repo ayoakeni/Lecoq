@@ -1591,7 +1591,7 @@ nav ul li {
 
 @media (max-width: 768px) {
   .blog{
-    padding: 55px 20px 40px;
+    padding: 55px 20px 20px;
   }
 
   .blog-grid h2 {
