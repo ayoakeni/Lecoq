@@ -1482,7 +1482,7 @@ nav ul li {
 
 /* General grid layout */
 .blog{
-  padding: 85px;
+  padding: 85px 85px 32px;
   background-color: #f5f5f5;
 }
 
