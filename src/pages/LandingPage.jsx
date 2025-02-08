@@ -89,7 +89,7 @@ function LandingPage() {
       {/* Hero Section */}
       <section className="heropage" ref={heroRef} id="home">
         <div className="heroText">
-          <h1>Open Up To Global <strong>Opportunities</strong> with French</h1>
+          <h1>Open Up To <br /> <strong>Global Opportunities</strong> with French</h1>
           <div className="lineradius"></div>
           <span>Enjoy 14 days free trial on our Educational programs</span>
           <button
