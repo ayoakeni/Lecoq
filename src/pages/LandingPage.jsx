@@ -1,24 +1,24 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-// import { Scrollbar, Autoplay } from "swiper/modules";
+import { Scrollbar, Autoplay } from "swiper/modules";
 import RecentBlogs from "../components/recentBlogpost";
 import Testimonials from "../components/testimonial";
 import { Helmet } from "react-helmet";
 
 // Import images
-import lady from "../assets/images/lady.png";
+// import lady from "../assets/images/lady.png";
 
-// import Gplay from "../assets/images/Globalplayer.png";
-// import Aceexam from "../assets/images/Aceexam.png";
-// import Kid from "../assets/images/kid.png";
-// import Opportunities from "../assets/images/opportunities.png";
+import Gplay from "../assets/images/Globalplayer.png";
+import Aceexam from "../assets/images/Aceexam.png";
+import Kid from "../assets/images/kid.png";
+import Opportunities from "../assets/images/opportunities.png";
 
 import girl from "../assets/images/gh.jpg";
-
+import Gcontent from "../assets/images/Globalcontent.png";
 import ed1 from "../assets/images/teach.jpg";
 import ed2 from "../assets/images/writing.jpg";
 import ed3 from "../assets/images/loo.jpg";
@@ -100,12 +100,12 @@ function LandingPage() {
           </button>
         </div>
 
-        <div className="imgPart">
+        {/* <div className="imgPart">
           <img src={lady} alt="woman" />
-        </div>
+        </div> */}
 
         {/* Swiper */}
-        {/* <Swiper
+        <Swiper
           loop={true}
           scrollbar={{ hide: true }}
           autoplay={{
@@ -120,7 +120,7 @@ function LandingPage() {
               <img src={image} alt={`Slide ${index + 1}`} className="swiperImage" />
             </SwiperSlide>
           ))}
-        </Swiper> */}
+        </Swiper>
       </section>
 
       {/* About Section */}
