@@ -103,7 +103,7 @@ const Blog = () => {
   }
 
   if (!blogs.length) {
-    return <div className="recentBlog">No blogs found.</div>;
+    return <div className="noDetailBlog">No blogs found.</div>;
   }
 
   return (

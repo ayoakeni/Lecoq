@@ -60,7 +60,7 @@ const BlogDetails = () => {
   }
 
   if (!blog) {
-    return <div className="recentBlog">No blog found.</div>;
+    return <div className="noDetailBlog">No blog found.</div>;
   }
 
   return (
