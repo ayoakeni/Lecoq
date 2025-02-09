@@ -19,7 +19,7 @@ import Opportunities from "../assets/images/opportunities.png";
 
 import girl from "../assets/images/gh.jpg";
 import Gcontent from "../assets/images/Globalcontent.png";
-import ed1 from "../assets/images/teach.jpg";
+import ed1 from "../assets/images/guy.jpg";
 import ed2 from "../assets/images/writing.jpg";
 import ed3 from "../assets/images/loo.jpg";
 import ed4 from "../assets/images/translate.jpg";

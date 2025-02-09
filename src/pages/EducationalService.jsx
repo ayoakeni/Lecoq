@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
 // Import images
-import ed1 from "../assets/images/teach.jpg";
+import ed1 from "../assets/images/guy.jpg";
 import ed2 from "../assets/images/writing.jpg";
 import ed3 from "../assets/images/loo.jpg";
 import ed4 from "../assets/images/nm.jpg";
