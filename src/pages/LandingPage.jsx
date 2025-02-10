@@ -94,7 +94,7 @@ function LandingPage() {
           <span>Enjoy 14 days free trial on our Educational programs</span>
           <button
             className="heroButton"
-            onClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" })}
           >
             Get Started
           </button>
@@ -146,7 +146,7 @@ function LandingPage() {
       </section>
 
       {/* Programs */}
-      <section className="programs-home-display">
+      <section className="programs-home-display" id="programs">
         <h2 className="intPro">Programs</h2>
         <div className="programBox">
           <div className="subProgram">
