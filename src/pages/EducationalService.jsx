@@ -75,10 +75,25 @@ function Educational() {
   return (
     <div className="educational-services">
       <Helmet>
+        {/* Primary Meta Tags */}
         <title>Programs - Educational Service</title>
-        <meta property="og:description" content="Course programs we are offering." />
+        <meta name="description" content="Discover our educational programs designed to provide quality learning experiences across various subjects." />
+        <meta name="keywords" content="educational programs, courses, learning, workshops, training" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://lecoqfrench.com/educational-service" />
+
+        {/* Open Graph (OG) Meta Tags for Facebook */}
         <meta property="og:title" content="Programs - Educational Service" />
+        <meta property="og:description" content="Discover our educational programs designed to provide quality learning experiences across various subjects." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://lecoqfrench.com/educational-service" />
+        <meta property="og:image" content="https://www.yoursite.com/images/education-preview.png" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Programs - Educational Service" />
+        <meta name="twitter:description" content="Discover our educational programs designed to provide quality learning experiences across various subjects." />
+        <meta name="twitter:image" content="https://www.yoursite.com/images/education-preview.png" />
       </Helmet>
       <div className="container">
         <h2 className="title edu">Educational Services</h2>

@@ -66,11 +66,25 @@ const BlogDetails = () => {
   return (
     <div className="blog-details-container">
       <Helmet>
+        {/* Primary Meta Tags */}
         <title>{blog.title || "Lecoq French School"}</title>
-        <meta property="og:image" content={blog.imageUrl} />
+        <meta name="description" content={blog.excerpt || "Read about the latest updates, news, and programs from Lecoq French School."} />
+        <meta name="keywords" content="Lecoq French School, blog, education, French school, learning, news, updates" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={window.location.href} />
+
+        {/* Open Graph (OG) Meta Tags for Facebook */}
         <meta property="og:title" content={blog.title} />
         <meta property="og:description" content={blog.excerpt} />
+        <meta property="og:image" content={blog.imageUrl} />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={blog.title} />
+        <meta name="twitter:description" content={blog.excerpt} />
+        <meta name="twitter:image" content={blog.imageUrl} />
       </Helmet>
       <div className="blogContent">
         <div className="blog-header">
