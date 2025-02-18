@@ -1,4 +1,0 @@
-{
-  "include": ["/", "/blogs", "/blog/:id", "/educational-service", "/non-educational-service"],
-  "skipThirdPartyRequests": true
-}
